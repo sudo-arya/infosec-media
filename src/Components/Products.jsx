@@ -1,11 +1,11 @@
 import React from "react";
 
-const Home = () => {
+const Products = () => {
   return (
     <div className="min-h-screen flex justify-center items-center">
-      <div>home</div>
+      <div>Products</div>
     </div>
   );
 };
 
-export default Home;
+export default Products;
