@@ -392,7 +392,7 @@ const Home = ({ setActiveComponent }) => {
           className={
             isSmallScreen
               ? "flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 p-4 items-center justify-center icon-grid"
-              : "flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 p-4 items-center justify-center pb-12"
+              : "flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-14 p-4 items-center justify-center pb-12"
           }
         >
           <div>

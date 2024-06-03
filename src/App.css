@@ -13,6 +13,13 @@
   }
 }
 
+
+.vertical-line {
+        border-left: 1px solid white; /* Adjust the color and width as needed */
+        height: 200px; /* Adjust the height of the line */
+        margin: 0 10px; /* Adjust the margin as needed */
+    }
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -61,3 +68,7 @@
     grid-template-columns: repeat(2, minmax(48px, 1fr));
   }
 }
+
+
+
+
