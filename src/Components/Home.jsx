@@ -39,11 +39,11 @@ const Home = () => {
 
   return (
     <div className="min-h-screen flex-col justify-center items-center">
-      <div>home</div>
-      <div className="relative w-full mx-auto">
-        <div className="overflow-hidden relative">
+      {/* <div>home</div> */}
+      <div className="relative w-full mx-auto mt-4 mb-6" style={{ height: "56vh" }}>
+        <div className="overflow-hidden relative h-full">
           <div
-            className="whitespace-nowrap transition-transform duration-500"
+            className="whitespace-nowrap transition-transform duration-500 h-full"
             style={{ transform: `translateX(${-currentIndex * 100}%)` }}
           >
             {images.map((image, index) => (
@@ -51,13 +51,13 @@ const Home = () => {
                 key={index}
                 src={image}
                 alt={`Slide ${index + 1}`}
-                className="inline-block w-full"
+                className="inline-block w-full h-full object-cover object-center"
               />
             ))}
           </div>
         </div>
         <button
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-4 py-60 hover:bg-gray-500"
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-4 hover:bg-gray-500"
           onClick={handlePrevious}
         >
           <svg
@@ -70,13 +70,13 @@ const Home = () => {
             }}
           >
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M10.634.292a1.063 1.063 0 0 0-1.464 0L.607 8.556a1.95 1.95 0 0 0 0 2.827l8.625 8.325c.4.385 1.048.39 1.454.01a.975.975 0 0 0 .01-1.425l-7.893-7.617a.975.975 0 0 1 0-1.414l7.83-7.557a.974.974 0 0 0 0-1.413"
             ></path>
           </svg>
         </button>
         <button
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-4 py-60 hover:bg-gray-500"
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-4 hover:bg-gray-500"
           onClick={handleNext}
         >
           <svg
@@ -96,6 +96,7 @@ const Home = () => {
           </svg>
         </button>
       </div>
+
 
 
 
