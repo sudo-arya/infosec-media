@@ -16,7 +16,7 @@ function App() {
   const renderComponent = () => {
     switch (activeComponent) {
       case "Home":
-        return <Home />;
+        return <Home setActiveComponent={setActiveComponent} />;
       case "About":
         return <About />;
       case "Services":

@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(72px, 1fr)); /* Updated to 3 columns */
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .icon-grid {
+    grid-template-columns: repeat(3, minmax(48px, 1fr));
+  }
+}
+
+
+.icon-grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(72px, 1fr)); /* Updated to 3 columns */
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .icon-grid2 {
+    grid-template-columns: repeat(2, minmax(48px, 1fr));
+  }
+}
