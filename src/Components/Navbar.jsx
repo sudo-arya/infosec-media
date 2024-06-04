@@ -12,7 +12,7 @@ const Navbar = ({ setActiveComponent }) => {
     <nav className="bg-gray-800 p-4 pt-10">
       <div className="container mx-auto flex justify-between items-center">
         <div
-          className="text-white text-lg font-bold cursor-pointer"
+          className="text-white text-lg font-bold cursor-pointer nav-item"
           onClick={() => handleNavItemClick("Home")}
         >
           MyApp
@@ -46,39 +46,39 @@ const Navbar = ({ setActiveComponent }) => {
             </svg>
           </button>
         </div>
-        <div className="hidden md:flex md:space-x-4">
+        <div className="hidden md:flex md:space-x-4 ">
           <div
-            className="text-white hover:text-gray-300 cursor-pointer"
+            className="text-white hover:text-gray-300 cursor-pointer nav-item"
             onClick={() => handleNavItemClick("Home")}
           >
             Home
           </div>
           <div
-            className="text-white hover:text-gray-300 cursor-pointer"
+            className="text-white hover:text-gray-300 cursor-pointer nav-item"
             onClick={() => handleNavItemClick("About")}
           >
             About Us
           </div>
           <div
-            className="text-white hover:text-gray-300 cursor-pointer"
+            className="text-white hover:text-gray-300 cursor-pointer nav-item"
             onClick={() => handleNavItemClick("Services")}
           >
             Service
           </div>
           <div
-            className="text-white hover:text-gray-300 cursor-pointer"
+            className="text-white hover:text-gray-300 cursor-pointer nav-item"
             onClick={() => handleNavItemClick("Rental")}
           >
             Rental Equipments
           </div>
           <div
-            className="text-white hover:text-gray-300 cursor-pointer"
+            className="text-white hover:text-gray-300 cursor-pointer nav-item"
             onClick={() => handleNavItemClick("Products")}
           >
             Products
           </div>
           <div
-            className="text-white hover:text-gray-300 cursor-pointer"
+            className="text-white hover:text-gray-300 cursor-pointer nav-item"
             onClick={() => handleNavItemClick("Contact")}
           >
             Contact

@@ -352,7 +352,7 @@ const Home = ({ setActiveComponent }) => {
         {/* Redirect button */}
         <div className="flex items-center justify-center pt-6">
           <button
-            className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700"
+            className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 allproduct"
             onClick={() => handleNavItemClick("Products")}
           >
             View All Products
@@ -372,7 +372,7 @@ const Home = ({ setActiveComponent }) => {
         {/* Services list */}
         <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 p-4 items-center justify-center">
           <button onClick={() => handleNavItemClick("Services")}>
-            <div className="max-w-full sm:max-w-sm rounded overflow-hidden shadow-lg bg-white">
+            <div className="max-w-full sm:max-w-sm rounded overflow-hidden shadow-lg bg-white service">
               <img
                 className="w-full h-48 object-cover"
                 src="https://media.istockphoto.com/id/1183957058/photo/disassembled-phone-screwdriver-tool-and-laptop.jpg?s=2048x2048&w=is&k=20&c=xGYEUmBzmRMAERp7YRIE0tsuQ_fbTKUtFF8QsFajRdk="
@@ -403,7 +403,7 @@ const Home = ({ setActiveComponent }) => {
           </button>
 
           <button onClick={() => handleNavItemClick("Rental")}>
-            <div className="max-w-full sm:max-w-sm rounded overflow-hidden shadow-lg bg-white">
+            <div className="max-w-full sm:max-w-sm rounded overflow-hidden shadow-lg bg-white service">
               <img
                 className="w-full h-48 object-cover"
                 src="https://media.istockphoto.com/id/1331391361/photo/imac-computer-and-glasses-on-the-table.jpg?s=2048x2048&w=is&k=20&c=alskFa6WLwUmEyPczV2KYetsb3XRMMs1qFs1qar94Qg="
@@ -431,7 +431,7 @@ const Home = ({ setActiveComponent }) => {
           </button>
 
           <button onClick={() => handleNavItemClick("Services")}>
-            <div className="max-w-full sm:max-w-sm rounded overflow-hidden shadow-lg bg-white">
+            <div className="max-w-full sm:max-w-sm rounded overflow-hidden shadow-lg bg-white service">
               <img
                 className="w-full h-48 object-cover"
                 src="https://media.istockphoto.com/id/1049216804/photo/the-disassembled-apple-imac-computer-body-cover.jpg?s=2048x2048&w=is&k=20&c=tCAvVORwZV1qIZ3iHh6AmIC9bU6wjzshUG8bJQZfY-E="

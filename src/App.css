@@ -96,8 +96,40 @@
 }
 
 .stat-item:hover {
+  transform: translateY(-10px);
+}
+
+.service {
+  transition: transform 0.3s ease;
+}
+
+
+.service:hover {
+  
+  transform: translateY(-16px);
+}
+
+.allproduct {
+  transition: transform 0.3s ease;
+}
+
+
+.allproduct:hover {
+  
+  transform: translateY(-10px);
+}
+
+.nav-item {
+  transition: transform 0.3s ease;
+}
+
+
+.nav-item:hover {
+  
   transform: translateY(-5px);
 }
+
+
 
 .number {
   transition: color 0.3s ease;

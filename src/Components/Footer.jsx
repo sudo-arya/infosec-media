@@ -93,7 +93,7 @@ const Footer = () => {
               Infosec Media Solutions
             </p>
             <p
-              className="text-gray-300 text-sm cursor-pointer"
+              className="text-gray-300 text-sm cursor-pointer nav-item"
               style={{ display: "flex", alignItems: "center" }}
             >
               <svg
@@ -119,7 +119,7 @@ const Footer = () => {
             </p>
 
             <p
-              className="text-gray-300 text-sm cursor-pointer"
+              className="text-gray-300 text-sm cursor-pointer nav-item"
               style={{ display: "flex", alignItems: "center" }}
             >
               <svg
@@ -137,7 +137,7 @@ const Footer = () => {
             </p>
 
             <p
-              className="text-gray-300 text-sm cursor-pointer"
+              className="text-gray-300 text-sm cursor-pointer nav-item"
               style={{ display: "flex", alignItems: "center" }}
             >
               <svg
@@ -160,7 +160,7 @@ const Footer = () => {
             </p>
 
             <p
-              className="text-gray-300 text-sm cursor-pointer"
+              className="text-gray-300 text-sm cursor-pointer nav-item"
               style={{ display: "flex", alignItems: "center" }}
             >
               <svg
