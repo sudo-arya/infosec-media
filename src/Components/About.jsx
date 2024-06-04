@@ -83,7 +83,7 @@ const About = ({ setActiveComponent }) => {
       <div>
         {/* Services  */}
         <div className="bg-gray-100">
-          <h1 className="text-2xl font-semibold text-center text-gray-800 mt-12 pt-6 mb-4">
+          <h1 className="text-3xl font-semibold text-center text-gray-800 mt-12 pt-6 mb-4">
             What we offer ??
           </h1>
           <div className="flex items-center justify-center">
