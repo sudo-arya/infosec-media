@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+// import blackmagic from "../Assets/blackmagic-design-seeklogo.com.svg";
 
 const images = [
   "https://media.istockphoto.com/id/1049216804/photo/the-disassembled-apple-imac-computer-body-cover.jpg?s=2048x2048&w=is&k=20&c=tCAvVORwZV1qIZ3iHh6AmIC9bU6wjzshUG8bJQZfY-E=",
@@ -8,7 +9,60 @@ const images = [
   // Add more image URLs here
 ];
 
+const StatItem = ({ target, label }) => {
+  const numberRef = useRef();
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const element = entry.target;
+            const target = +element.getAttribute("data-target");
+            const duration = 2000; // Duration of animation in milliseconds
+            const start = 0;
+            const startTime = performance.now();
+
+            const updateCounter = (currentTime) => {
+              const elapsedTime = currentTime - startTime;
+              const progress = Math.min(elapsedTime / duration, 1);
+              const currentNumber = Math.floor(
+                progress * (target - start) + start
+              );
+              element.textContent = currentNumber;
+
+              if (progress < 1) {
+                requestAnimationFrame(updateCounter);
+              }
+            };
+
+            requestAnimationFrame(updateCounter);
+
+            observer.unobserve(element); // Stop observing the element once animation starts
+          }
+        });
+      },
+      {
+        threshold: 0.5, // Trigger animation when 50% of the element is visible
+      }
+    );
+
+    observer.observe(numberRef.current);
+  }, [target]);
+
+  return (
+    <div className="stat-item text-center p-4">
+      <div
+        ref={numberRef}
+        data-target={target}
+        className="number text-4xl font-bold text-gray-600"
+      >
+        0
+      </div>
+      <p className="text-gray-500 mt-2">{label}</p>
+    </div>
+  );
+};
 
 const Home = ({ setActiveComponent }) => {
   const handleNavItemClick = (componentName) => {
@@ -58,7 +112,8 @@ const Home = ({ setActiveComponent }) => {
   return (
     <div className="min-h-screen flex-col justify-center items-center">
       {/* <div>home</div> */}
-      <div className="relative w-full mx-auto mt-4" style={{ height: "56vh" }}>
+      <div className="relative w-full mx-auto  mt-4" style={{ height: "56vh" }}>
+        {/* {add w-screen for full width} */}
         <div className="overflow-hidden relative h-full">
           <div
             className="whitespace-nowrap transition-transform duration-500 h-full"
@@ -249,7 +304,33 @@ const Home = ({ setActiveComponent }) => {
               alt="Product"
             />
             <div className="px-6 py-4">
-              <div className="font-bold text-xl mb-2">Windows PC</div>
+              <div className="font-bold text-xl mb-2">PC & workstation</div>
+              {/* <p className="text-gray-700 text-base">
+                Product description goes here. It provides brief details about
+                the product.
+              </p> */}
+            </div>
+            <div className="px-6 pt-1 pb-2">
+              <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                #tag1
+              </span>
+              <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                #tag2
+              </span>
+              {/* <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                #tag3
+              </span> */}
+            </div>
+          </div>
+
+          <div className="max-w-full sm:max-w-sm rounded overflow-hidden shadow-lg bg-white">
+            <img
+              className="w-full h-48 object-cover"
+              src="https://imgs.search.brave.com/ftc60KrdgBbri3SGYTLIrS7LlX6-jZCVRhRO78H5SWQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzFmL2E0/Lzk2LzFmYTQ5NjBk/YjVmY2NkMmE4NTEw/N2NmMjI5ZWM2MzQ3/LmpwZw"
+              alt="Product"
+            />
+            <div className="px-6 py-4">
+              <div className="font-bold text-xl mb-2">Audio Studio</div>
               {/* <p className="text-gray-700 text-base">
                 Product description goes here. It provides brief details about
                 the product.
@@ -392,7 +473,7 @@ const Home = ({ setActiveComponent }) => {
           className={
             isSmallScreen
               ? "flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 p-4 items-center justify-center icon-grid"
-              : "flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-14 p-4 items-center justify-center pb-12"
+              : "flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-14 p-4 items-center justify-center icon-grid3 pb-12"
           }
         >
           <div>
@@ -400,7 +481,7 @@ const Home = ({ setActiveComponent }) => {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 128 128"
               id="apple"
-              width="72"
+              width="160"
               height="72"
             >
               <path d="M97.905 67.885c.174 18.8 16.494 25.057 16.674 25.137-.138.44-2.607 8.916-8.597 17.669-5.178 7.568-10.553 15.108-19.018 15.266-8.318.152-10.993-4.934-20.504-4.934-9.508 0-12.479 4.776-20.354 5.086-8.172.31-14.395-8.185-19.616-15.724-10.668-15.424-18.821-43.585-7.874-62.594 5.438-9.44 15.158-15.417 25.707-15.571 8.024-.153 15.598 5.398 20.503 5.398 4.902 0 14.106-6.676 23.782-5.696 4.051.169 15.421 1.636 22.722 12.324-.587.365-13.566 7.921-13.425 23.639m-15.633-46.166c4.338-5.251 7.258-12.563 6.462-19.836-6.254.251-13.816 4.167-18.301 9.416-4.02 4.647-7.54 12.087-6.591 19.216 6.971.54 14.091-3.542 18.43-8.796"></path>
@@ -409,9 +490,32 @@ const Home = ({ setActiveComponent }) => {
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
+              width="160"
+              viewBox="0 0 192.756 192.756"
+            >
+              <g fill-rule="evenodd" clip-rule="evenodd">
+                <path fill="#fff" d="M0 0h192.756v192.756H0V0z" />
+                <path
+                  d="M2.834 96.378c0-21.826 41.882-39.52 93.544-39.52 51.663 0 93.543 17.694 93.543 39.52 0 21.825-41.881 39.521-93.543 39.521-51.662-.001-93.544-17.696-93.544-39.521z"
+                  fill="#1b3771"
+                />
+                <path
+                  fill="#fff"
+                  d="M162.209 115.869h-21.652V77.32h21.652v5.102h-16.014v9.768h15.549v5.101h-15.549v13.475h16.014v5.103zM36.185 110.766h11.586l16.762-35.584L83.7 115.869h-6.082l-4.43-9.463H55.877l-4.429 9.463h-20.9V77.32h5.637v33.446zM129.674 77.32h5.637v38.549h-5.637V77.32zM111.836 69.34c4.469 0 8.736 1.053 12.594 3.354v7.898c-3.795-3.278-8.109-5.089-13.172-5.089-10.617 0-18.729 8.611-18.729 18.822 0 10.086 8.048 18.698 18.601 18.698 5.24 0 9.408-1.963 13.301-5.342v8.031c-3.898 2.223-8.615 3.475-13.107 3.475-14.002 0-25.622-10.834-25.622-24.674-.001-14.152 11.681-25.173 26.134-25.173z"
+                />
+                <path
+                  fill="#1b3771"
+                  d="M71.433 101.701l-6.9-15.27-6.901 15.27h13.801z"
+                />
+              </g>
+            </svg>
+          </div>
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
               enableBackground="new 0 0 40 40"
               viewBox="0 0 40 40"
-              width="72"
+              width="160"
               height="72"
               id="hp"
             >
@@ -429,13 +533,23 @@ const Home = ({ setActiveComponent }) => {
               </switch>
             </svg>
           </div>
-
+          <div>
+            <img
+              alt="OWC Logo"
+              class="image square"
+              src="https://m.media-amazon.com/images/S/abs-image-upload-na/2/AmazonStores/ATVPDKIKX0DER/aa5ad236525b57dd39311a3dccf400a0.w400.h400._CR0%2C0%2C400%2C400_SX100_.jpg"
+              srcset="https://m.media-amazon.com/images/S/abs-image-upload-na/2/AmazonStores/ATVPDKIKX0DER/aa5ad236525b57dd39311a3dccf400a0.w400.h400._CR0%2C0%2C400%2C400_SX56_.jpg 56w, https://m.media-amazon.com/images/S/abs-image-upload-na/2/AmazonStores/ATVPDKIKX0DER/aa5ad236525b57dd39311a3dccf400a0.w400.h400._CR0%2C0%2C400%2C400_SX86_.jpg 86w, https://m.media-amazon.com/images/S/abs-image-upload-na/2/AmazonStores/ATVPDKIKX0DER/aa5ad236525b57dd39311a3dccf400a0.w400.h400._CR0%2C0%2C400%2C400_SX100_.jpg 100w, https://m.media-amazon.com/images/S/abs-image-upload-na/2/AmazonStores/ATVPDKIKX0DER/aa5ad236525b57dd39311a3dccf400a0.w400.h400._CR0%2C0%2C400%2C400_SX128_.jpg 128w, https://m.media-amazon.com/images/S/abs-image-upload-na/2/AmazonStores/ATVPDKIKX0DER/aa5ad236525b57dd39311a3dccf400a0.w400.h400._CR0%2C0%2C400%2C400_SX200_.jpg 200w, https://m.media-amazon.com/images/S/abs-image-upload-na/2/AmazonStores/ATVPDKIKX0DER/aa5ad236525b57dd39311a3dccf400a0.w400.h400._CR0%2C0%2C400%2C400_SX400_.jpg 400w"
+              width="120"
+              data-feature="cf"
+              data-testid="image"
+            ></img>
+          </div>
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               enableBackground="new 0 0 24 24"
               viewBox="0 0 24 24"
-              width="72"
+              width="160"
               height="72"
               id="dell"
             >
@@ -453,11 +567,54 @@ const Home = ({ setActiveComponent }) => {
               ></path>
             </svg>
           </div>
+          <div>
+            {/* <img src={blackmagic} /> */}
+            <svg
+              viewBox="-20 -20 215 122"
+              width="160"
+              id="blackmagic"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="m-20-20h215v122h-215z" fill="#111" />
+              <path
+                d="m141.613 61.921a2.91 2.91 0 0 1 -2.91-2.911v-5.589a2.911 2.911 0 0 1 2.91-2.91h5.588a2.912 2.912 0 0 1 2.912 2.91v5.589a2.91 2.91 0 0 1 -2.912 2.911z"
+                fill="#a7423b"
+              />
+              <path
+                d="m141.613 49.702a3.723 3.723 0 0 0 -3.718 3.719v5.589a3.723 3.723 0 0 0 3.718 3.72h5.588a3.724 3.724 0 0 0 3.72-3.72v-5.589a3.724 3.724 0 0 0 -3.72-3.719zm-2.101 9.308v-5.589c0-1.159.943-2.102 2.102-2.102h5.588c1.16 0 2.104.943 2.104 2.102v5.589c0 1.16-.943 2.103-2.104 2.103h-5.588a2.105 2.105 0 0 1 -2.102-2.103"
+                fill="#faa634"
+              />
+              <path
+                d="m141.613 47.334a2.91 2.91 0 0 1 -2.91-2.91v-5.589a2.91 2.91 0 0 1 2.91-2.91h5.588a2.911 2.911 0 0 1 2.912 2.91v5.589a2.911 2.911 0 0 1 -2.912 2.91z"
+                fill="#df6d36"
+              />
+              <path
+                d="m141.613 35.117a3.722 3.722 0 0 0 -3.718 3.718v5.589a3.723 3.723 0 0 0 3.718 3.719h5.588a3.724 3.724 0 0 0 3.72-3.719v-5.589a3.723 3.723 0 0 0 -3.72-3.718zm-2.101 9.307v-5.589c0-1.159.943-2.101 2.102-2.101h5.588c1.16 0 2.104.942 2.104 2.101v5.589a2.105 2.105 0 0 1 -2.104 2.102h-5.588a2.104 2.104 0 0 1 -2.102-2.102"
+                fill="#faa634"
+              />
+              <path
+                d="m141.613 32.786a2.911 2.911 0 0 1 -2.91-2.912v-5.588a2.91 2.91 0 0 1 2.91-2.91h5.588a2.911 2.911 0 0 1 2.912 2.91v5.588a2.912 2.912 0 0 1 -2.912 2.912z"
+                fill="#ba683d"
+              />
+              <path
+                d="m141.613 20.567a3.723 3.723 0 0 0 -3.718 3.719v5.588a3.723 3.723 0 0 0 3.718 3.72h5.588a3.724 3.724 0 0 0 3.72-3.72v-5.588a3.724 3.724 0 0 0 -3.72-3.719zm-2.101 9.307v-5.588c0-1.159.943-2.102 2.102-2.102h5.588c1.16 0 2.104.943 2.104 2.102v5.588c0 1.16-.943 2.104-2.104 2.104h-5.588a2.106 2.106 0 0 1 -2.102-2.104"
+                fill="#faa634"
+              />
+              <g fill="#fff">
+                <path d="m24.267 46.057h3.561c1.253 0 2.246-.29 2.979-.874.734-.582 1.102-1.367 1.102-2.353 0-1.646-.938-2.672-2.811-3.078 1.166-.633 1.749-1.535 1.749-2.707 0-.981-.343-1.75-1.027-2.307s-1.691-.836-3.02-.836h-2.533zm2.206-11.377c2.237 0 3.355.811 3.355 2.431 0 1.615-1.106 2.423-3.32 2.423h-1.306v-4.854zm.838 5.646c2.396 0 3.592.83 3.592 2.49 0 .749-.269 1.346-.811 1.793-.541.448-1.331.671-2.372.671h-2.518v-4.954zm5.797-6.424h.862v12.155h-.862zm8.005 11.489c-.127 0-.191-.136-.191-.409v-4.997c0-.68-.234-1.199-.705-1.557-.469-.357-1.066-.536-1.791-.536-.817 0-1.679.283-2.584.85v.877c.875-.68 1.69-1.02 2.443-1.02 1.182 0 1.773.547 1.773 1.641v1.019c-1.494.077-2.644.366-3.448.869-.805.504-1.207 1.192-1.207 2.064 0 .566.209 1.045.625 1.441.418.396.927.593 1.528.593.828 0 1.663-.331 2.502-.993.035.401.09.667.165.797.076.13.214.196.41.196.342 0 .882-.276 1.618-.831v-.711c-.596.472-.975.707-1.138.707m-1.054-.907c-.753.69-1.494 1.035-2.225 1.035-.452 0-.828-.129-1.13-.385-.301-.256-.451-.572-.451-.944 0-.666.36-1.212 1.081-1.641.721-.428 1.63-.623 2.725-.582zm6.494-6.592c-1.13 0-2.061.4-2.788 1.199-.726.8-1.091 1.829-1.091 3.091 0 1.209.361 2.185 1.083 2.929.72.744 1.666 1.116 2.835 1.116.685 0 1.425-.136 2.225-.411v-.891c-.753.311-1.471.466-2.154.466-.938 0-1.687-.298-2.244-.893-.558-.596-.838-1.4-.838-2.412 0-.995.28-1.803.839-2.425.559-.623 1.285-.934 2.178-.934.619 0 1.312.17 2.078.509v-.947c-.795-.265-1.503-.397-2.123-.397m3.403-3.99h.848v12.155h-.848zm5.391 4.146-4.415 3.807 5.056 4.202h1.17l-5.061-4.206 4.382-3.803z" />
+                <path d="m57.142 38.048v8.009h.85v-5.617c.679-1.142 1.483-1.713 2.413-1.713.64 0 1.148.239 1.531.719.381.479.569 1.162.569 2.05v4.561h.863v-5.46c.388-.654.764-1.13 1.129-1.426s.794-.444 1.286-.444c.66 0 1.174.248 1.537.744.365.497.548 1.177.548 2.042v4.544h.849v-4.918c0-.981-.254-1.767-.764-2.359-.508-.593-1.178-.888-2.006-.888-1.101 0-2.025.641-2.778 1.922-.5-1.281-1.363-1.922-2.589-1.922-1.052 0-1.903.522-2.554 1.566h-.035v-1.41zm18.563 7.343c-.129 0-.192-.136-.192-.409v-4.997c0-.68-.235-1.199-.705-1.557-.47-.357-1.065-.536-1.791-.536-.817 0-1.679.283-2.583.85v.877c.874-.68 1.689-1.02 2.442-1.02 1.183 0 1.773.547 1.773 1.641v1.019c-1.493.077-2.643.366-3.447.869-.806.504-1.208 1.192-1.208 2.064 0 .566.209 1.045.626 1.441s.926.593 1.528.593c.828 0 1.661-.331 2.501-.993.035.401.089.667.165.797s.213.196.409.196c.343 0 .882-.276 1.619-.831v-.711c-.595.472-.975.707-1.137.707m-1.056-.907c-.753.69-1.495 1.035-2.225 1.035-.452 0-.829-.129-1.13-.385s-.452-.572-.452-.944c0-.666.361-1.212 1.082-1.641.721-.428 1.63-.623 2.725-.582zm9.295-6.436h-3.209c-1.095 0-1.935.266-2.52.796-.586.531-.879 1.218-.879 2.061 0 .591.181 1.129.545 1.614.362.485.894.832 1.597 1.041v.035c-1.069.308-1.604.744-1.604 1.306 0 .557.434.938 1.3 1.141v.035c-1.555.249-2.332.896-2.332 1.941 0 .646.303 1.163.91 1.555.608.392 1.47.587 2.588.587 1.123 0 2-.206 2.631-.622.63-.415.946-.984.946-1.71 0-.614-.197-1.107-.591-1.479-.393-.37-1.154-.588-2.285-.652s-1.805-.166-2.021-.306c-.218-.14-.326-.325-.326-.559 0-.197.084-.372.253-.523.168-.152.583-.313 1.244-.484.661-.172 1.19-.347 1.588-.524s.74-.46 1.027-.85c.287-.389.43-.917.43-1.585 0-.743-.367-1.452-1.104-2.125h1.812zm-.848 9.852c0 .465-.244.841-.732 1.126s-1.146.427-1.972.427c-1.82 0-2.729-.494-2.729-1.483 0-.99.965-1.484 2.895-1.484 1.692 0 2.538.473 2.538 1.414m-.679-7.017a2.06 2.06 0 0 1 -.632 1.513c-.42.421-.922.633-1.508.633a2.018 2.018 0 0 1 -1.504-.637 2.137 2.137 0 0 1 -.617-1.543c0-.582.204-1.077.609-1.483.405-.407.904-.61 1.496-.61.596 0 1.104.208 1.523.624.423.415.633.916.633 1.503m2.502-6.982h.863v1.458h-.863zm0 4.147h.863v8.009h-.863zm6.287-.156c-1.13 0-2.061.4-2.788 1.199-.728.8-1.091 1.829-1.091 3.091 0 1.209.36 2.185 1.082 2.929.721.744 1.667 1.116 2.835 1.116.685 0 1.426-.136 2.225-.411v-.891c-.752.311-1.47.466-2.153.466-.938 0-1.686-.298-2.245-.893-.559-.596-.837-1.4-.837-2.412 0-.995.279-1.803.839-2.425.559-.623 1.284-.934 2.178-.934.62 0 1.312.17 2.078.509v-.947c-.795-.265-1.503-.397-2.123-.397" />
+              </g>
+              <path
+                d="m100.707 33.901v4.634c-.839-.429-1.625-.644-2.36-.644-1.157 0-2.119.396-2.887 1.187-.766.791-1.148 1.781-1.148 2.973 0 1.174.389 2.163 1.168 2.968.777.806 1.732 1.207 2.867 1.207.845 0 1.632-.26 2.36-.782v.612h.863v-12.155zm0 10.761c-.693.487-1.411.73-2.15.73-.955 0-1.749-.322-2.386-.967-.637-.646-.954-1.455-.954-2.426 0-.954.299-1.738.894-2.35.595-.614 1.353-.921 2.272-.921.786 0 1.562.249 2.324.747zm4.033-.203a3.046 3.046 0 0 1 -.957-2.272c0-.14.01-.28.025-.417h6.314c0-1.195-.342-2.139-1.028-2.835-.684-.695-1.522-1.044-2.515-1.044-1.058 0-1.934.386-2.629 1.156-.697.77-1.045 1.742-1.045 2.916 0 1.238.378 2.259 1.132 3.061s1.708 1.202 2.861 1.202c1.139 0 2.164-.353 3.081-1.059v-.965c-.969.793-1.961 1.189-2.977 1.189-.868.001-1.623-.309-2.262-.932m.137-5.115a2.532 2.532 0 0 1 1.704-.617c1.39 0 2.233.784 2.537 2.35h-5.195c.156-.746.473-1.324.954-1.733m8.773-1.452c-.72 0-1.329.214-1.831.641-.503.428-.756.947-.756 1.557 0 .43.136.821.405 1.172.272.351.86.707 1.769 1.067.908.36 1.467.659 1.677.895.208.235.312.493.312.771 0 .408-.159.743-.475 1.005-.319.261-.724.391-1.219.391-.734 0-1.575-.243-2.523-.735v.835c.796.492 1.597.736 2.406.736.743 0 1.368-.213 1.873-.641.506-.427.76-.952.76-1.573 0-.465-.14-.886-.419-1.265-.279-.377-.872-.744-1.779-1.098-.903-.353-1.459-.645-1.66-.874a1.111 1.111 0 0 1 -.303-.75c0-.383.165-.704.495-.965.331-.26.737-.391 1.218-.391.649 0 1.381.274 2.192.821v-.919c-.772-.452-1.485-.68-2.142-.68m3.744-3.991h.863v1.458h-.863zm0 4.147h.863v8.009h-.863zm9.088 0h-3.21c-1.095 0-1.935.266-2.521.796-.586.531-.878 1.218-.878 2.061 0 .591.181 1.129.544 1.614.362.485.896.832 1.597 1.041v.035c-1.069.308-1.603.744-1.603 1.306 0 .557.433.938 1.3 1.141v.035c-1.557.249-2.333.896-2.333 1.941 0 .646.304 1.163.911 1.555.606.392 1.47.587 2.587.587 1.122 0 1.999-.206 2.631-.622.63-.415.945-.984.945-1.71 0-.614-.196-1.107-.59-1.479-.393-.37-1.155-.588-2.285-.652-1.131-.064-1.804-.166-2.021-.306-.219-.14-.326-.325-.326-.559 0-.197.086-.372.253-.523.168-.152.584-.313 1.244-.484.661-.172 1.191-.347 1.588-.524.398-.177.74-.46 1.027-.85.287-.389.431-.917.431-1.585 0-.743-.368-1.452-1.104-2.125h1.812v-.693zm-.849 9.852c0 .465-.243.841-.732 1.126-.488.285-1.145.427-1.972.427-1.82 0-2.731-.494-2.731-1.483 0-.99.967-1.484 2.896-1.484 1.693 0 2.539.473 2.539 1.414m-.68-7.017a2.07 2.07 0 0 1 -.63 1.513 2.059 2.059 0 0 1 -1.508.633 2.017 2.017 0 0 1 -1.504-.637 2.133 2.133 0 0 1 -.617-1.543c0-.582.202-1.077.608-1.483.405-.407.904-.61 1.496-.61.596 0 1.104.208 1.524.624.42.415.631.916.631 1.503m2.361-2.835v8.009h.849v-5.617c.686-1.142 1.559-1.713 2.62-1.713 1.452 0 2.178.923 2.178 2.769v4.561h.85v-4.883c0-1.027-.27-1.831-.811-2.411-.539-.581-1.262-.871-2.165-.871-1.092 0-1.971.516-2.637 1.549h-.035v-1.393z"
+                fill="#9d9fa2"
+              />
+            </svg>
+          </div>
 
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="72"
+              width="160"
               height="72"
               viewBox="35.433 35.353 1062.992 155.711"
               id="lenovo"
@@ -472,7 +629,7 @@ const Home = ({ setActiveComponent }) => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              width="72"
+              width="160"
               height="72"
               id="intel"
             >
@@ -494,7 +651,7 @@ const Home = ({ setActiveComponent }) => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
-              width="72"
+              width="160"
               height="72"
               id="amd"
             >
@@ -503,6 +660,18 @@ const Home = ({ setActiveComponent }) => {
             </svg>
           </div>
         </div>
+      </div>
+      <h1 className="text-2xl font-semibold text-center text-gray-800 mt-16 mb-4">
+        Our Clients
+      </h1>
+      <div className="flex items-center justify-center">
+        <hr className="h-2 w-2/4 border-gray-400 pb-4" />
+      </div>
+      <div className="stats-section grid grid-cols-1 sm:grid-cols-4 gap-6 p-8">
+        <StatItem target={25} label="ALLIANCES WITH BRANDS" />
+        <StatItem target={400} label="PRODUCTS" />
+        <StatItem target={180} label="CLIENTS" />
+        <StatItem target={200} label="PROJECTS" />
       </div>
     </div>
   );

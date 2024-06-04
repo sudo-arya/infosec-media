@@ -64,15 +64,16 @@ const Footer = () => {
               src="https://imgs.search.brave.com/XJLimc3VA-K1mBfEC2nuvGcQ0r6yznc8p9aQ_sebX80/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9keW5h/bWljLmJyYW5kY3Jv/d2QuY29tL2Fzc2V0/L2xvZ28vMmQxMjM2/ODEtM2ZiNS00NDVl/LThjMGUtMGExYmM1/NTUyNTc4L2xvZ28t/c2VhcmNoLWdyaWQt/MXg_bG9nb1RlbXBs/YXRlVmVyc2lvbj0x/JnY9NjM3MDkxMjEx/NzEzNDAwMDAw"
               width="100"
               height="100"
+              alt="logo"
             />
 
             <p
-              className="text-gray-300 text-sm cursor-pointer"
+              className="text-gray-300 text-sm "
               style={{ display: "flex", alignItems: "center" }}
             >
               <span className="mt-2">
-                Infosec Media Solutions Pvt. Ltd. is dedicated to providing the
-                best customer service and computer repair available to you.
+                Infosec Media Solutions is dedicated to providing the best
+                customer service and computer repair available to you.
               </span>
             </p>
           </div>
@@ -89,7 +90,7 @@ const Footer = () => {
               <hr className="h-2 w-2/4 border-gray-400 pb-4" />
             </div>
             <p className="text-gray-300 text-xl mb-2">
-              Infosec Media Solutions Pvt. Ltd.
+              Infosec Media Solutions
             </p>
             <p
               className="text-gray-300 text-sm cursor-pointer"
@@ -152,7 +153,33 @@ const Footer = () => {
                   <path d="M0 11.283V8a8 8 0 0 1 8-8h112a8 8 0 0 1 8 8v3.283l-64 40zm66.12 48.11a4.004 4.004 0 0 1-4.24 0L0 20.717V88a8 8 0 0 0 8 8h112a8 8 0 0 0 8-8V20.717z"></path>
                 </g>
               </svg>
-              <span onClick={handleEmailClick}>&nbsp;test@gmail.com</span>
+              <span onClick={handleEmailClick}>
+                &nbsp;bhupendra@infosecmediasolutions.com
+              </span>
+              <br />
+            </p>
+
+            <p
+              className="text-gray-300 text-sm cursor-pointer"
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 128 96"
+                width="36"
+                height="36"
+                style={{ fill: "white" }}
+                className="pr-2"
+                id="email"
+              >
+                <g>
+                  <path d="M0 11.283V8a8 8 0 0 1 8-8h112a8 8 0 0 1 8 8v3.283l-64 40zm66.12 48.11a4.004 4.004 0 0 1-4.24 0L0 20.717V88a8 8 0 0 0 8 8h112a8 8 0 0 0 8-8V20.717z"></path>
+                </g>
+              </svg>
+              <span onClick={handleEmailClick}>
+                &nbsp;sales@infosecmediasolutions.com
+              </span>
+              <br />
             </p>
           </div>
         </div>
@@ -162,9 +189,7 @@ const Footer = () => {
         &nbsp;
       </div>
       <div className="container mx-auto">
-        <p className="text-center">
-          &copy; 2024 Infosec Media Solutions Pvt. Ltd.
-        </p>
+        <p className="text-center">&copy; 2024 Infosec Media Solutions</p>
       </div>
     </footer>
   );

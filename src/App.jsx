@@ -37,6 +37,7 @@ function App() {
     <div>
       <Navbar setActiveComponent={setActiveComponent} />
       <div className="container mx-auto p-4">{renderComponent()}</div>
+      {/* {removed mx-auto p-4} */}
       <Footer />
     </div>
   );
