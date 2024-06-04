@@ -18,7 +18,7 @@ function App() {
       case "Home":
         return <Home setActiveComponent={setActiveComponent} />;
       case "About":
-        return <About />;
+        return <About setActiveComponent={setActiveComponent} />;
       case "Services":
         return <Services />;
       case "Rental":

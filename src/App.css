@@ -126,7 +126,7 @@
 
 .nav-item:hover {
   
-  transform: translateY(-5px);
+  transform: translateY(-4px);
 }
 
 
@@ -139,4 +139,28 @@
   color: gray; 
   /* color: #ea580c;  */
   /* Tailwind's orange-500 color */
+}
+
+
+
+/* styles.css */
+.animated-gradient {
+  width:60vw;
+  height: 12vh;
+   /* Full viewport height */
+  background: linear-gradient(270deg, #ff6ec4, #7873f5, #55efc4, #ff6ec4);
+  background-size: 600% 600%;
+  animation: gradientAnimation 12s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
