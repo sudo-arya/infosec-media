@@ -106,8 +106,30 @@ const productsData = {
         },
       ],
     },
+    {
+      name: "Studio Display",
+      variants: [
+        {
+          model: "Studio Display (5k, 27 inch, 600 nits brightness)",
+          processorOptions: [],
+          storageOptions: [],
+          memoryOptions: [],
+        },
+      ],
+    },
+    {
+      name: "Pro Display XDR",
+      variants: [
+        {
+          model: "Pro Display XDR (6k, 32 inch, 1600 nits brightness)",
+          processorOptions: [],
+          storageOptions: [],
+          memoryOptions: [],
+        },
+      ],
+    },
   ],
-  Other: [
+  Windows: [
     // Add other brands' products here...
   ],
 };
@@ -115,16 +137,77 @@ const productsData = {
 // Define the product data for Windows
 const windowsData = {
   Desktop: {
-    processorOptions: ["Intel i5", "Intel i7", "AMD Ryzen 5", "AMD Ryzen 7"],
-    graphicsOptions: ["NVIDIA GTX 1650", "AMD Radeon RX 550"],
-    storageOptions: ["256GB SSD", "512GB SSD", "1TB SSD"],
-    memoryOptions: ["8GB", "16GB", "32GB"],
+    processorOptions: [
+      "Dont Know Much",
+      "Intel i3",
+      "Intel i5",
+      "Intel i7",
+      "Intel i9",
+      "AMD Ryzen 3",
+      "AMD Ryzen 5",
+      "AMD Ryzen 7",
+      "AMD Ryzen 9",
+    ],
+    graphicsOptions: [
+      "No Graphic Card",
+      "Dont Know Much",
+      "NVIDIA GTX 1650",
+      "NVIDIA GTX 3050",
+      "NVIDIA GTX 3060",
+      "NVIDIA GTX 4070",
+      "NVIDIA GTX 4090",
+      "AMD Radeon RX 550",
+    ],
+    storageOptions: [
+      "Dont Know Much",
+      "256GB HDD",
+      "512GB HDD",
+      "1TB HDD",
+      "2TB HDD",
+      "4TB HDD",
+      "256GB SSD",
+      "512GB SSD",
+      "1TB SSD",
+      "2TB SSD",
+      "4TB SSD",
+    ],
+    memoryOptions: ["Dont Know Much", "8GB", "16GB", "32GB", "64GB"],
   },
   Laptop: {
-    processorOptions: ["Intel i5", "Intel i7"],
-    graphicsOptions: ["Intel Iris Xe"],
-    storageOptions: ["256GB SSD", "512GB SSD", "1TB SSD"],
-    memoryOptions: ["8GB", "16GB"],
+    processorOptions: [
+      "Dont Know Much",
+      "Intel i3",
+      "Intel i5",
+      "Intel i7",
+      "Intel i9",
+      "AMD Ryzen 3",
+      "AMD Ryzen 5",
+      "AMD Ryzen 7",
+      "AMD Ryzen 9",
+    ],
+    graphicsOptions: [
+      "No Graphic Card",
+      "Dont Know Much",
+      "Intel Iris Xe",
+      "NVIDIA GTX 1650",
+      "NVIDIA GTX 3050",
+      "NVIDIA GTX 3060",
+      "NVIDIA GTX 4070",
+      "NVIDIA GTX 4090",
+      "AMD Radeon RX 550",
+    ],
+    storageOptions: [
+      "Dont Know Much",
+      "256GB HDD",
+      "512GB HDD",
+      "1TB HDD",
+      "2TB HDD",
+      "256GB SSD",
+      "512GB SSD",
+      "1TB SSD",
+      "2TB SSD",
+    ],
+    memoryOptions: ["Dont Know Much", "8GB", "16GB", "32GB"],
   },
 };
 
@@ -133,35 +216,31 @@ const Select = () => {
   const [selectedProductType, setSelectedProductType] = useState("");
   const [selectedProduct, setSelectedProduct] = useState("");
   const [selectedVariant, setSelectedVariant] = useState(null);
-    const [selectedGraphics, setSelectedGraphics] = useState("");
+  const [selectedGraphics, setSelectedGraphics] = useState("");
   const [selectedStorage, setSelectedStorage] = useState("");
   const [selectedMemory, setSelectedMemory] = useState("");
   const [selectedProcessor, setSelectedProcessor] = useState("");
+  const [selectedDisplay, setSelectedDisplay] = useState(""); // New state for selected display
   // Reset selectedProcessor in handleBrandSelect, handleProductSelect, handleVariantSelect
 
+  const handleProductTypeSelect = (productType) => {
+    setSelectedProductType(productType);
+    setSelectedProcessor("");
+    setSelectedGraphics("");
+    setSelectedStorage("");
+    setSelectedMemory("");
+  };
 
-
-const handleProductTypeSelect = (productType) => {
-  setSelectedProductType(productType);
-  setSelectedProcessor("");
-  setSelectedGraphics("");
-  setSelectedStorage("");
-  setSelectedMemory("");
-};
-
-
-
-
-
-   const handleBrandSelect = (brand) => {
-     setSelectedBrand(brand);
-     setSelectedProduct("");
-     setSelectedVariant(null);
-     setSelectedProcessor("");
-     setSelectedGraphics("");
-     setSelectedStorage("");
-     setSelectedMemory("");
-   };
+  const handleBrandSelect = (brand) => {
+    setSelectedBrand(brand);
+    setSelectedProduct("");
+    setSelectedVariant(null);
+    setSelectedProcessor("");
+    setSelectedGraphics("");
+    setSelectedStorage("");
+    setSelectedMemory("");
+    setSelectedDisplay(""); // Reset selectedDisplay
+  };
 
   const handleProductSelect = (product) => {
     setSelectedProduct(product);
@@ -170,30 +249,36 @@ const handleProductTypeSelect = (productType) => {
     setSelectedGraphics("");
     setSelectedStorage("");
     setSelectedMemory("");
+    setSelectedDisplay(""); // Reset selectedDisplay
   };
-
 
   const handleVariantSelect = (variant) => {
     setSelectedVariant(variant);
     setSelectedProcessor("");
     setSelectedStorage("");
     setSelectedMemory("");
+    setSelectedDisplay(""); // Reset selectedDisplay
   };
 
   const handleProcessorSelect = (processor) => {
     setSelectedProcessor(processor);
   };
 
-const handleGraphicsSelect = (graphics) => {
-  setSelectedGraphics(graphics);
-};
-  
+  const handleGraphicsSelect = (graphics) => {
+    setSelectedGraphics(graphics);
+  };
+
   const handleStorageSelect = (storage) => {
     setSelectedStorage(storage);
   };
 
   const handleMemorySelect = (memory) => {
     setSelectedMemory(memory);
+  };
+
+  const handleDisplaySelect = (display) => {
+    // New handler for display selection
+    setSelectedDisplay(display);
   };
 
   return (
@@ -212,16 +297,17 @@ const handleGraphicsSelect = (graphics) => {
           Apple
         </button>
         <button
-          onClick={() => handleBrandSelect("Other")}
+          onClick={() => handleBrandSelect("Windows")}
           className={`ml-2 p-2 rounded ${
-            selectedBrand === "Other"
+            selectedBrand === "Windows"
               ? "bg-blue-500 text-white"
               : "bg-white border"
           }`}
         >
-          Other
+          Windows
         </button>
       </div>
+
       {/* Product Selection */}
       {selectedBrand && (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
@@ -240,7 +326,7 @@ const handleGraphicsSelect = (graphics) => {
       )}
       {/* Product Type Selection */}
       {/* // Product Type Selection */}
-      {selectedBrand === "Other" && (
+      {selectedBrand === "Windows" && (
         <div className="mb-4">
           <h3 className="text-lg font-semibold mb-2">Select Product Type:</h3>
           <div className="flex">
@@ -359,21 +445,33 @@ const handleGraphicsSelect = (graphics) => {
       {/* Variant Selection */}
       {selectedProduct && (
         <div>
-          {productsData[selectedBrand]
-            .find((product) => product.name === selectedProduct)
-            .variants.map((variant, index) => (
-              <div
-                key={index}
-                onClick={() => handleVariantSelect(variant)}
-                className={`p-4 border rounded cursor-pointer mb-2 ${
-                  selectedVariant === variant ? "bg-blue-100" : "bg-white"
-                }`}
-              >
-                <div>{variant.model}</div>
-                <div>Storage Options: {variant.storageOptions.join(", ")}</div>
-                <div>Memory Options: {variant.memoryOptions.join(", ")}</div>
-              </div>
-            ))}
+          {(selectedProduct === "Studio Display" ||
+          selectedProduct === "Pro Display XDR") ? (
+            <></>
+          ) : (
+            <>
+              {productsData[selectedBrand]
+                .find((product) => product.name === selectedProduct)
+                .variants.map((variant, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handleVariantSelect(variant)}
+                    className={`p-4 border rounded cursor-pointer mb-2 ${
+                      selectedVariant === variant ? "bg-blue-100" : "bg-white"
+                    }`}
+                  >
+                    <div>{variant.model}</div>
+
+                    <div>
+                      Storage Options: {variant.storageOptions.join(", ")}
+                    </div>
+                    <div>
+                      Memory Options: {variant.memoryOptions.join(", ")}
+                    </div>
+                  </div>
+                ))}
+            </>
+          )}
         </div>
       )}
       {selectedVariant && (
@@ -441,10 +539,31 @@ const handleGraphicsSelect = (graphics) => {
           {selectedBrand === "Apple" && (
             <div>Model: {selectedVariant.model}</div>
           )}
-          {selectedBrand === "Other" && <div>Model: {selectedProductType}</div>}
+          {selectedBrand === "Windows" && (
+            <div>Model: {selectedProductType}</div>
+          )}
           <div>Processor: {selectedProcessor}</div>
           <div>Storage: {selectedStorage}</div>
           <div>Memory: {selectedMemory}</div>
+        </div>
+      )}
+
+      {(selectedProduct === "Studio Display" ||
+        selectedProduct === "Pro Display XDR") && (
+        <div className="mt-4 p-4 border rounded bg-white">
+          <h2 className="text-xl font-bold mb-2">Selected Product</h2>
+          <div>Brand: {selectedBrand}</div>
+          <div>Product: {selectedProduct}</div>
+          <div>
+            Size: {selectedProduct === "Studio Display" ? "27 inch" : "32 inch"}
+          </div>{" "}
+          <div>
+            Resolution: {selectedProduct === "Studio Display" ? "5K" : "6K"}
+          </div>{" "}
+          <div>
+            Brightness:{" "}
+            {selectedProduct === "Studio Display" ? "600 nits" : "1600 nits"}
+          </div>{" "}
         </div>
       )}
 
