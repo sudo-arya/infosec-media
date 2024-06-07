@@ -354,7 +354,7 @@ const Home = ({ setActiveComponent }) => {
         <div className="flex items-center justify-center pt-6">
           <button
             className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-600 allproduct"
-            onClick={() => handleNavItemClick("Products")}
+            onClick={() => handleNavItemClick("Select")}
           >
             View All Products
           </button>

@@ -5,6 +5,7 @@ import Home from "./Components/Home";
 import About from "./Components/About";
 import Products from "./Components/Products";
 import Services from "./Components/Services";
+import Select from "./Components/Select";
 import Rental from "./Components/Rental";
 import Contact from "./Components/Contact";
 import Navbar from "./Components/Navbar";
@@ -21,6 +22,8 @@ function App() {
         return <About setActiveComponent={setActiveComponent} />;
       case "Services":
         return <Services />;
+      case "Select":
+        return <Select setActiveComponent={setActiveComponent} />;
       case "Rental":
         return <Rental />;
       case "Products":
