@@ -112,30 +112,66 @@ const productsData = {
   ],
 };
 
+// Define the product data for Windows
+const windowsData = {
+  Desktop: {
+    processorOptions: ["Intel i5", "Intel i7", "AMD Ryzen 5", "AMD Ryzen 7"],
+    graphicsOptions: ["NVIDIA GTX 1650", "AMD Radeon RX 550"],
+    storageOptions: ["256GB SSD", "512GB SSD", "1TB SSD"],
+    memoryOptions: ["8GB", "16GB", "32GB"],
+  },
+  Laptop: {
+    processorOptions: ["Intel i5", "Intel i7"],
+    graphicsOptions: ["Intel Iris Xe"],
+    storageOptions: ["256GB SSD", "512GB SSD", "1TB SSD"],
+    memoryOptions: ["8GB", "16GB"],
+  },
+};
+
 const Select = () => {
   const [selectedBrand, setSelectedBrand] = useState("");
+  const [selectedProductType, setSelectedProductType] = useState("");
   const [selectedProduct, setSelectedProduct] = useState("");
   const [selectedVariant, setSelectedVariant] = useState(null);
+    const [selectedGraphics, setSelectedGraphics] = useState("");
   const [selectedStorage, setSelectedStorage] = useState("");
   const [selectedMemory, setSelectedMemory] = useState("");
   const [selectedProcessor, setSelectedProcessor] = useState("");
   // Reset selectedProcessor in handleBrandSelect, handleProductSelect, handleVariantSelect
-  const handleBrandSelect = (brand) => {
-    setSelectedBrand(brand);
-    setSelectedProduct("");
-    setSelectedVariant(null);
-    setSelectedProcessor("");
-    setSelectedStorage("");
-    setSelectedMemory("");
-  };
+
+
+
+const handleProductTypeSelect = (productType) => {
+  setSelectedProductType(productType);
+  setSelectedProcessor("");
+  setSelectedGraphics("");
+  setSelectedStorage("");
+  setSelectedMemory("");
+};
+
+
+
+
+
+   const handleBrandSelect = (brand) => {
+     setSelectedBrand(brand);
+     setSelectedProduct("");
+     setSelectedVariant(null);
+     setSelectedProcessor("");
+     setSelectedGraphics("");
+     setSelectedStorage("");
+     setSelectedMemory("");
+   };
 
   const handleProductSelect = (product) => {
     setSelectedProduct(product);
     setSelectedVariant(null);
     setSelectedProcessor("");
+    setSelectedGraphics("");
     setSelectedStorage("");
     setSelectedMemory("");
   };
+
 
   const handleVariantSelect = (variant) => {
     setSelectedVariant(variant);
@@ -148,7 +184,9 @@ const Select = () => {
     setSelectedProcessor(processor);
   };
 
-
+const handleGraphicsSelect = (graphics) => {
+  setSelectedGraphics(graphics);
+};
   
   const handleStorageSelect = (storage) => {
     setSelectedStorage(storage);
@@ -161,7 +199,6 @@ const Select = () => {
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100 p-4">
       <h1 className="text-2xl font-bold mb-4">Select a Product</h1>
-
       {/* Brand Selection */}
       <div className="mb-4">
         <button
@@ -185,7 +222,6 @@ const Select = () => {
           Other
         </button>
       </div>
-
       {/* Product Selection */}
       {selectedBrand && (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
@@ -202,7 +238,124 @@ const Select = () => {
           ))}
         </div>
       )}
+      {/* Product Type Selection */}
+      {/* // Product Type Selection */}
+      {selectedBrand === "Other" && (
+        <div className="mb-4">
+          <h3 className="text-lg font-semibold mb-2">Select Product Type:</h3>
+          <div className="flex">
+            <button
+              onClick={() => handleProductTypeSelect("Desktop")}
+              className={`p-2 rounded ${
+                selectedProductType === "Desktop"
+                  ? "bg-blue-500 text-white"
+                  : "bg-white border"
+              }`}
+            >
+              Desktop
+            </button>
+            <button
+              onClick={() => handleProductTypeSelect("Laptop")}
+              className={`ml-2 p-2 rounded ${
+                selectedProductType === "Laptop"
+                  ? "bg-blue-500 text-white"
+                  : "bg-white border"
+              }`}
+            >
+              Laptop
+            </button>
+          </div>
+        </div>
+      )}
+      {/* Configuration Options */}
+      {selectedProductType && (
+        <div className="mt-4">
+          <h2 className="text-xl font-bold mb-2">Select Specifications</h2>
+          {/* Processor Options */}
+          <div className="mb-4">
+            <h3 className="text-lg font-semibold mb-2">Select Processor:</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {windowsData[selectedProductType].processorOptions.map(
+                (processor, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handleProcessorSelect(processor)}
+                    className={`p-4 border rounded cursor-pointer ${
+                      selectedProcessor === processor
+                        ? "bg-blue-100"
+                        : "bg-white"
+                    }`}
+                  >
+                    {processor}
+                  </div>
+                )
+              )}
+            </div>
+          </div>
 
+          {/* Graphics Options */}
+          <div className="mb-4">
+            <h3 className="text-lg font-semibold mb-2">
+              Select Graphics Card:
+            </h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {windowsData[selectedProductType].graphicsOptions.map(
+                (graphics, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handleGraphicsSelect(graphics)}
+                    className={`p-4 border rounded cursor-pointer ${
+                      selectedGraphics === graphics ? "bg-blue-100" : "bg-white"
+                    }`}
+                  >
+                    {graphics}
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+
+          {/* Storage Options */}
+          <div className="mb-4">
+            <h3 className="text-lg font-semibold mb-2">Select Storage:</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {windowsData[selectedProductType].storageOptions.map(
+                (storage, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handleStorageSelect(storage)}
+                    className={`p-4 border rounded cursor-pointer ${
+                      selectedStorage === storage ? "bg-blue-100" : "bg-white"
+                    }`}
+                  >
+                    {storage}
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+
+          {/* Memory Options */}
+          <div className="mb-4">
+            <h3 className="text-lg font-semibold mb-2">Select Memory:</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {windowsData[selectedProductType].memoryOptions.map(
+                (memory, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handleMemorySelect(memory)}
+                    className={`p-4 border rounded cursor-pointer ${
+                      selectedMemory === memory ? "bg-blue-100" : "bg-white"
+                    }`}
+                  >
+                    {memory}
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        </div>
+      )}
       {/* Variant Selection */}
       {selectedProduct && (
         <div>
@@ -223,7 +376,6 @@ const Select = () => {
             ))}
         </div>
       )}
-
       {selectedVariant && (
         <div className="mt-4">
           {/* Processor Options */}
@@ -281,18 +433,39 @@ const Select = () => {
           </div>
         </div>
       )}
-
       {selectedProcessor && selectedStorage && selectedMemory && (
         <div className="mt-4 p-4 border rounded bg-white">
           <h2 className="text-xl font-bold mb-2">Selected Configuration</h2>
           <div>Brand: {selectedBrand}</div>
           <div>Product: {selectedProduct}</div>
-          <div>Model: {selectedVariant.model}</div>
+          {selectedBrand === "Apple" && (
+            <div>Model: {selectedVariant.model}</div>
+          )}
+          {selectedBrand === "Other" && <div>Model: {selectedProductType}</div>}
           <div>Processor: {selectedProcessor}</div>
           <div>Storage: {selectedStorage}</div>
           <div>Memory: {selectedMemory}</div>
         </div>
       )}
+
+      {/* Selected Configuration */}
+      {/* {selectedVariant && (
+        <div>
+          {selectedVariant.map((variant, index) => (
+            <div
+              key={index}
+              onClick={() => handleVariantSelect(variant)}
+              className={`p-4 border rounded cursor-pointer mb-2 ${
+                selectedVariant === variant ? "bg-blue-100" : "bg-white"
+              }`}
+            >
+              <div>{variant.model}</div>
+              <div>Storage Options: {variant.storageOptions.join(", ")}</div>
+              <div>Memory Options: {variant.memoryOptions.join(", ")}</div>
+            </div>
+          ))}
+        </div>
+      )} */}
     </div>
   );
 };
