@@ -1,9 +1,12 @@
 import React from "react";
+import Select from "../Components/Select";
 
 const Products = () => {
+
+  
   return (
-    <div className="min-h-screen flex justify-center items-center">
-      <div>Products</div>
+    <div className="">
+      <Select />
     </div>
   );
 };

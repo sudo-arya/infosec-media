@@ -240,6 +240,7 @@ const Select = () => {
     setSelectedStorage("");
     setSelectedMemory("");
     setSelectedDisplay(""); // Reset selectedDisplay
+    setSelectedProductType(""); // Reset selectedProductType for Windows
   };
 
   const handleProductSelect = (product) => {
@@ -282,7 +283,7 @@ const Select = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100 p-4">
+    <div className="min-h-screen flex flex-col items-center bg-gray-100 p-4">
       <h1 className="text-2xl font-bold mb-4">Select a Product</h1>
       {/* Brand Selection */}
       <div className="mb-4">

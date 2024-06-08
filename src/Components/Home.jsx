@@ -372,6 +372,34 @@ const Home = ({ setActiveComponent }) => {
 
         {/* Services list */}
         <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 p-4 items-center justify-center">
+          <button onClick={() => handleNavItemClick("Products")}>
+            <div className="max-w-full sm:max-w-sm rounded overflow-hidden shadow-lg bg-white service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
+              <img
+                className="w-full h-48 object-cover"
+                src="https://media.istockphoto.com/id/1183957058/photo/disassembled-phone-screwdriver-tool-and-laptop.jpg?s=2048x2048&w=is&k=20&c=xGYEUmBzmRMAERp7YRIE0tsuQ_fbTKUtFF8QsFajRdk="
+                alt="Product"
+              />
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2">Purchase With Us</div>
+                <p className="text-gray-700 text-base">
+                  Apple Macintosh & PC (windows) computers are available with us
+                  for high-end Graphics & Editing purposes.
+                </p>
+              </div>
+              <div className="px-6 pt-1 pb-2">
+                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                  #buy
+                </span>
+                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                  #purchase
+                </span>
+                {/* <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                #tag3
+              </span> */}
+              </div>
+            </div>
+          </button>
+          
           <button onClick={() => handleNavItemClick("Services")}>
             <div className="max-w-full sm:max-w-sm rounded overflow-hidden shadow-lg bg-white service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
               <img
