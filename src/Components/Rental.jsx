@@ -4,7 +4,7 @@ import Select from "../Components/Select";
 const Rental = () => {
   return (
     <div>
-      
+      rent
       <Select/>
     </div>
   );

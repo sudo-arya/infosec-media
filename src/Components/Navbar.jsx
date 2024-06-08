@@ -61,9 +61,15 @@ const Navbar = ({ setActiveComponent }) => {
           </div>
           <div
             className="text-white hover:text-gray-300 cursor-pointer nav-item"
+            onClick={() => handleNavItemClick("Products")}
+          >
+            Products
+          </div>
+          <div
+            className="text-white hover:text-gray-300 cursor-pointer nav-item"
             onClick={() => handleNavItemClick("Services")}
           >
-            Service
+            Service & Upgrade
           </div>
           <div
             className="text-white hover:text-gray-300 cursor-pointer nav-item"
@@ -73,10 +79,11 @@ const Navbar = ({ setActiveComponent }) => {
           </div>
           <div
             className="text-white hover:text-gray-300 cursor-pointer nav-item"
-            onClick={() => handleNavItemClick("Products")}
+            onClick={() => handleNavItemClick("Repair")}
           >
-            Products
+            Repair
           </div>
+
           <div
             className="text-white hover:text-gray-300 cursor-pointer nav-item"
             onClick={() => handleNavItemClick("Contact")}

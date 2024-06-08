@@ -354,7 +354,7 @@ const Home = ({ setActiveComponent }) => {
         <div className="flex items-center justify-center pt-6">
           <button
             className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-600 allproduct"
-            onClick={() => handleNavItemClick("Select")}
+            onClick={() => handleNavItemClick("Products")}
           >
             View All Products
           </button>
@@ -399,7 +399,7 @@ const Home = ({ setActiveComponent }) => {
               </div>
             </div>
           </button>
-          
+
           <button onClick={() => handleNavItemClick("Services")}>
             <div className="max-w-full sm:max-w-sm rounded overflow-hidden shadow-lg bg-white service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
               <img
@@ -459,7 +459,7 @@ const Home = ({ setActiveComponent }) => {
             </div>
           </button>
 
-          <button onClick={() => handleNavItemClick("Services")}>
+          <button onClick={() => handleNavItemClick("Repair")}>
             <div className="max-w-full sm:max-w-sm rounded overflow-hidden shadow-lg bg-white service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
               <img
                 className="w-full h-48 object-cover"

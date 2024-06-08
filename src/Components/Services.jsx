@@ -4,7 +4,7 @@ import Select from "../Components/Select";
 const Services = () => {
   return (
     <div className="">
-      
+      service
       <Select />
     </div>
   );

@@ -179,7 +179,7 @@ const About = ({ setActiveComponent }) => {
               </div>
             </button>
 
-            <button onClick={() => handleNavItemClick("Services")}>
+            <button onClick={() => handleNavItemClick("Repair")}>
               <div className="max-w-full sm:max-w-sm rounded overflow-hidden shadow-lg bg-white service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
                 <img
                   className="w-full h-48 object-cover"

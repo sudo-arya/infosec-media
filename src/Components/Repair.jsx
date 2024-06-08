@@ -1,15 +1,13 @@
 import React from "react";
 import Select from "../Components/Select";
 
-const Products = () => {
-
-  
+const Repair = () => {
   return (
     <div className="">
-      product
+      Repair
       <Select />
     </div>
   );
 };
 
-export default Products;
+export default Repair;
