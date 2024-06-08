@@ -318,13 +318,17 @@ const handleEmail = () => {
   };
 
   return (
-    <div className="h-auto flex flex-col items-center bg-gray-100 p-4">
-      <h1 className="text-2xl font-bold mb-4">Select a Product</h1>
+    <div className="h-auto flex flex-col items-center p-4">
+      <h1 className="text-2xl font-semibold text-center text-gray-800 mt-16 mb-4">
+        Select your Product
+      </h1>
+      <hr className="h-2 w-2/4 border-gray-400 pb-2" />
+      
       {/* Brand Selection */}
-      <div className="mb-4 flex flex-row">
+      <div className="mb-4 flex md:flex-row flex-col">
         <button
           onClick={() => handleBrandSelect("Apple")}
-          className={`p-4 rounded ${
+          className={`p-4 rounded mx-14 mt-3 ${
             selectedBrand === "Apple"
               ? "bg-gray-300 text-white"
               : "bg-white border"
@@ -342,7 +346,7 @@ const handleEmail = () => {
         </button>
         <button
           onClick={() => handleBrandSelect("Windows")}
-          className={`ml-2 p-2 rounded ${
+          className={`p-2 rounded mx-14 mt-3 ${
             selectedBrand === "Windows"
               ? "bg-gray-300 text-white"
               : "bg-white border"
