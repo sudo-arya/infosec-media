@@ -372,11 +372,14 @@ const Home = ({ setActiveComponent }) => {
 
         {/* Services list */}
         <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 p-4 items-center justify-center">
-          <button onClick={() => handleNavItemClick("Products")}>
+          <button
+            onClick={() => handleNavItemClick("Products")}
+            className="flex-grow"
+          >
             <div className="max-w-full sm:max-w-sm rounded overflow-hidden shadow-lg bg-white service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
               <img
                 className="w-full h-48 object-cover"
-                src="https://media.istockphoto.com/id/1183957058/photo/disassembled-phone-screwdriver-tool-and-laptop.jpg?s=2048x2048&w=is&k=20&c=xGYEUmBzmRMAERp7YRIE0tsuQ_fbTKUtFF8QsFajRdk="
+                src="https://media.istockphoto.com/id/459232553/photo/man-while-using-apple-imac.jpg?s=2048x2048&w=is&k=20&c=ODRlZlRiuHPSXXIHwYiVKxYjP4xbYJg4PfMSdOQsEpY="
                 alt="Product"
               />
               <div className="px-6 py-4">
@@ -400,7 +403,10 @@ const Home = ({ setActiveComponent }) => {
             </div>
           </button>
 
-          <button onClick={() => handleNavItemClick("Services")}>
+          <button
+            onClick={() => handleNavItemClick("Services")}
+            className="flex-grow"
+          >
             <div className="max-w-full sm:max-w-sm rounded overflow-hidden shadow-lg bg-white service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
               <img
                 className="w-full h-48 object-cover"
@@ -431,7 +437,10 @@ const Home = ({ setActiveComponent }) => {
             </div>
           </button>
 
-          <button onClick={() => handleNavItemClick("Rental")}>
+          <button
+            onClick={() => handleNavItemClick("Rental")}
+            className="flex-grow"
+          >
             <div className="max-w-full sm:max-w-sm rounded overflow-hidden shadow-lg bg-white service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
               <img
                 className="w-full h-48 object-cover"
@@ -459,7 +468,10 @@ const Home = ({ setActiveComponent }) => {
             </div>
           </button>
 
-          <button onClick={() => handleNavItemClick("Repair")}>
+          <button
+            onClick={() => handleNavItemClick("Repair")}
+            className="flex-grow"
+          >
             <div className="max-w-full sm:max-w-sm rounded overflow-hidden shadow-lg bg-white service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
               <img
                 className="w-full h-48 object-cover"
