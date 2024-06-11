@@ -182,7 +182,7 @@ const Home = ({ setActiveComponent }) => {
         The Single Source for All Your IT Needs
       </h1>
       <div className="container mx-auto px-4 relative">
-        <h1 className="text-2xl font-semibold text-center text-gray-800 mt-16 mb-4">
+        <h1 className="text-2xl font-semibold text-center text-gray-800 mt-20 mb-4">
           Products
         </h1>
         <div className="flex items-center justify-center">
@@ -390,7 +390,7 @@ const Home = ({ setActiveComponent }) => {
 
       {/* Services  */}
       <div className="bg-gray-100">
-        <h1 className="text-2xl font-semibold text-center text-gray-800 mt-12 pt-6 mb-4">
+        <h1 className="text-2xl font-semibold text-center text-gray-800 mt-20 pt-6 mb-4">
           Services
         </h1>
         <div className="flex items-center justify-center">
@@ -531,7 +531,7 @@ const Home = ({ setActiveComponent }) => {
 
       {/* Authorized Seller of  */}
       <div>
-        <h1 className="text-2xl font-semibold text-center text-gray-800 mt-16 mb-4">
+        <h1 className="text-2xl font-semibold text-center text-gray-800 mt-20 mb-4">
           Authorized Seller for Brands
         </h1>
         <div className="flex items-center justify-center">
@@ -739,7 +739,7 @@ const Home = ({ setActiveComponent }) => {
           </div>
         </div>
       </div>
-      <h1 className="text-2xl font-semibold text-center text-gray-800 mt-16 mb-4">
+      <h1 className="text-2xl font-semibold text-center text-gray-800 md:mt-3 mt-20 mb-4">
         Our Clients
       </h1>
       <div className="flex items-center justify-center">
