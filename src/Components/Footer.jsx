@@ -53,7 +53,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white py-4">
       <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 p-4 items-center justify-center">
-        <div className="max-w-full sm:max-w-sm rounded overflow-hidden shadow-lg ">
+        <div className="max-w-full sm:max-w-sm rounded overflow-hidden ">
           <div className=" py-4">
             <div className="font-bold text-2xl mb-2">About Us</div>
             <div className="flex ">
@@ -83,7 +83,7 @@ const Footer = () => {
           className={isSmallScreen ? "" : " pr-12 pl-12 vertical-line"}
         ></div>
 
-        <div className="max-w-full sm:max-w-sm rounded overflow-hidden shadow-lg ">
+        <div className="max-w-full sm:max-w-sm rounded overflow-hidden ">
           <div className=" py-4">
             <div className="font-bold text-2xl mb-2">Contact Details</div>
             <div className="flex ">
