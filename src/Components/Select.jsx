@@ -225,17 +225,29 @@ const Select = ({ arg }) => {
   const [selectedProcessor, setSelectedProcessor] = useState("");
   const [selectedDisplay, setSelectedDisplay] = useState(""); // New state for selected display
   // Reset selectedProcessor in handleBrandSelect, handleProductSelect, handleVariantSelect
+   const [inputedText, setInputedText] = useState("");
 
   const handleWhatsAppClick = () => {
     const phoneNumber = "9210760003"; // Your WhatsApp number
-    const specifications = `Hello Bhupendra Sir,\n I want to ${arg} \nBrand: ${selectedBrand}\nProduct: ${selectedProduct}\nProcessor: ${selectedProcessor}\nStorage: ${selectedStorage}\nMemory: ${selectedMemory}`;
+    let specifications = `Hello Bhupendra Sir,\nI want to ${arg}\nBrand: ${selectedBrand}\nProduct: ${selectedProduct}\nProcessor: ${selectedProcessor}\nStorage: ${selectedStorage}\nMemory: ${selectedMemory}`;
+
+    // Add inputedText if arg is Upgrade or Repair
+    if (arg === "Upgrade" || arg === "Repair") {
+      specifications += `\nDescription: \nWant to ${arg} -> ${inputedText}`;
+    }
+
     const message = encodeURIComponent(specifications);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
     window.location.href = whatsappUrl;
   };
+
   const handleWhatsApp = () => {
     const phoneNumber = "9210760003"; // Your WhatsApp number
-    const specifications = `Hii, Bhupendra Sir`;
+    let specifications = `Hii, Bhupendra Sir`;
+    // Add inputedText if arg is Upgrade or Repair
+    if (arg === "Upgrade" || arg === "Repair") {
+      specifications += `\nDescription: \nWant to ${arg} -> ${inputedText}`;
+    }
     const message = encodeURIComponent(specifications);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
     window.location.href = whatsappUrl;
@@ -244,16 +256,27 @@ const Select = ({ arg }) => {
   const handleEmailClick = () => {
     const recipient = "sales@infosecmediasolutions.com";
     const subject = encodeURIComponent(`Want to ${arg}`);
-    const body = encodeURIComponent(
-      `Hello Bhupendra Sir,\n I want to ${arg} \nBrand: ${selectedBrand}\nProduct: ${selectedProduct}\nProcessor: ${selectedProcessor}\nStorage: ${selectedStorage}\nMemory: ${selectedMemory}`
+    let body = encodeURIComponent(
+      `Hello Bhupendra Sir,\nI want to ${arg}\nBrand: ${selectedBrand}\nProduct: ${selectedProduct}\nProcessor: ${selectedProcessor}\nStorage: ${selectedStorage}\nMemory: ${selectedMemory}\n`
     );
+
+    // Add inputedText if arg is Upgrade or Repair
+    if (arg === "Upgrade" || arg === "Repair") {
+      body += `Description:\n \nWant to ${arg} -> ${inputedText}\n`;
+    }
+
     window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
   };
+
 
   const handleEmail = () => {
     const recipient = "sales@infosecmediasolutions.com";
     const subject = encodeURIComponent("Connect");
-    const body = encodeURIComponent(`Hii, Bhupendra Sir`);
+    let body = encodeURIComponent(`Hii, Bhupendra Sir\n`);
+    // Add inputedText if arg is Upgrade or Repair
+    if (arg === "Upgrade" || arg === "Repair") {
+      body += `\nDescription:\n \nWant to ${arg} -> ${inputedText}\n`;
+    }
     window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
   };
 
@@ -319,15 +342,15 @@ const Select = ({ arg }) => {
   return (
     <div className="h-auto flex flex-col items-center p-4">
       <h1 className="text-2xl font-semibold text-center text-gray-800 mt-16 mb-4">
-        Select {arg !== "Buy" && arg !== "Rent" ? <>your</> : <></>} Product to {arg}
+        Select {arg !== "Buy" && arg !== "Rent" ? <>your</> : <></>} Product to{" "}
+        {arg}
       </h1>
       <hr className="h-2 w-2/4 border-gray-400 pb-2 mb-5" />
-
       {/* Brand Selection */}
       <div className="mb-4 flex md:flex-row flex-col">
         <button
           onClick={() => handleBrandSelect("Apple")}
-          className={`p-4 rounded mx-14 mt-3 ${
+          className={`p-4 rounded mx-14 mt-3 transform transition duration-300 hover:scale-125 hover:bg-gray-100 ease-in-out ${
             selectedBrand === "Apple"
               ? "bg-gray-300 text-white"
               : "bg-white border"
@@ -345,7 +368,7 @@ const Select = ({ arg }) => {
         </button>
         <button
           onClick={() => handleBrandSelect("Windows")}
-          className={`p-2 rounded mx-14 mt-3 ${
+          className={`p-2 rounded mx-14 mt-3 transform transition duration-300 hover:scale-125 hover:bg-gray-100 ease-in-out ${
             selectedBrand === "Windows"
               ? "bg-gray-300 text-white"
               : "bg-white border"
@@ -368,13 +391,13 @@ const Select = ({ arg }) => {
       </div>
       {/* Product Selection */}
       {selectedBrand && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4 ">
           {productsData[selectedBrand].map((product) => (
             <div
               key={product.name}
               onClick={() => handleProductSelect(product.name)}
-              className={`p-4 border rounded cursor-pointer ${
-                selectedProduct === product.name ? "bg-blue-100" : "bg-white"
+              className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out  ${
+                selectedProduct === product.name ? "bg-blue-100 " : "bg-white"
               }`}
             >
               {product.name}
@@ -387,10 +410,10 @@ const Select = ({ arg }) => {
       {selectedBrand === "Windows" && (
         <div className="mb-4">
           <h3 className="text-lg font-semibold mb-2">Select Product Type:</h3>
-          <div className="flex">
+          <div className="flex ">
             <button
               onClick={() => handleProductTypeSelect("Desktop")}
-              className={`p-2 rounded ${
+              className={`p-3 m-10 text-xl rounded transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
                 selectedProductType === "Desktop"
                   ? "bg-blue-500 text-white"
                   : "bg-white border"
@@ -400,7 +423,7 @@ const Select = ({ arg }) => {
             </button>
             <button
               onClick={() => handleProductTypeSelect("Laptop")}
-              className={`ml-2 p-2 rounded ${
+              className={`ml-2 p-3 m-10 text-xl rounded transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
                 selectedProductType === "Laptop"
                   ? "bg-blue-500 text-white"
                   : "bg-white border"
@@ -424,7 +447,7 @@ const Select = ({ arg }) => {
                   <div
                     key={index}
                     onClick={() => handleProcessorSelect(processor)}
-                    className={`p-4 border rounded cursor-pointer ${
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
                       selectedProcessor === processor
                         ? "bg-blue-100"
                         : "bg-white"
@@ -442,13 +465,13 @@ const Select = ({ arg }) => {
             <h3 className="text-lg font-semibold mb-2">
               Select Graphics Card:
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 ">
               {windowsData[selectedProductType].graphicsOptions.map(
                 (graphics, index) => (
                   <div
                     key={index}
                     onClick={() => handleGraphicsSelect(graphics)}
-                    className={`p-4 border rounded cursor-pointer ${
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
                       selectedGraphics === graphics ? "bg-blue-100" : "bg-white"
                     }`}
                   >
@@ -468,7 +491,7 @@ const Select = ({ arg }) => {
                   <div
                     key={index}
                     onClick={() => handleStorageSelect(storage)}
-                    className={`p-4 border rounded cursor-pointer ${
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
                       selectedStorage === storage ? "bg-blue-100" : "bg-white"
                     }`}
                   >
@@ -488,7 +511,7 @@ const Select = ({ arg }) => {
                   <div
                     key={index}
                     onClick={() => handleMemorySelect(memory)}
-                    className={`p-4 border rounded cursor-pointer ${
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
                       selectedMemory === memory ? "bg-blue-100" : "bg-white"
                     }`}
                   >
@@ -514,7 +537,7 @@ const Select = ({ arg }) => {
                   <div
                     key={index}
                     onClick={() => handleVariantSelect(variant)}
-                    className={`p-4 border rounded cursor-pointer mb-2 ${
+                    className={`p-4 border rounded cursor-pointer mb-2 transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
                       selectedVariant === variant ? "bg-blue-100" : "bg-white"
                     }`}
                   >
@@ -542,7 +565,7 @@ const Select = ({ arg }) => {
                 <div
                   key={index}
                   onClick={() => handleProcessorSelect(processor)}
-                  className={`p-4 border rounded cursor-pointer ${
+                  className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
                     selectedProcessor === processor ? "bg-blue-100" : "bg-white"
                   }`}
                 >
@@ -560,7 +583,7 @@ const Select = ({ arg }) => {
                 <div
                   key={index}
                   onClick={() => handleStorageSelect(storage)}
-                  className={`p-4 border rounded cursor-pointer ${
+                  className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
                     selectedStorage === storage ? "bg-blue-100" : "bg-white"
                   }`}
                 >
@@ -578,7 +601,7 @@ const Select = ({ arg }) => {
                 <div
                   key={index}
                   onClick={() => handleMemorySelect(memory)}
-                  className={`p-4 border rounded cursor-pointer ${
+                  className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
                     selectedMemory === memory ? "bg-blue-100" : "bg-white"
                   }`}
                 >
@@ -760,6 +783,25 @@ const Select = ({ arg }) => {
             </button>
           </div>
         </div>
+      )}
+      {arg !== "Upgrade" && arg !== "Repair" ? (
+        <></>
+      ) : (
+        <>
+          <div className="relative mt-10">
+            <div className="text-xl font-semibold mb-3">What to {arg} ??</div>
+            <textarea
+              className="border-2 border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500 w-full"
+              rows="4"
+              placeholder={`Provide description of component to be ${arg} ...`}
+              value={inputedText}
+              onChange={(e) => setInputedText(e.target.value)}
+            ></textarea>
+            <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+              {/* <!-- You can add an icon or any other element here if needed --> */}
+            </div>
+          </div>
+        </>
       )}
       {/* WhatsApp Widget */}
       {/* WhatsApp Button */}
