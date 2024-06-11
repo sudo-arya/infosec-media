@@ -69,7 +69,7 @@ const Navbar = ({ setActiveComponent }) => {
             className="text-white hover:text-gray-300 cursor-pointer nav-item"
             onClick={() => handleNavItemClick("Services")}
           >
-            Service & Upgrade
+            Upgrade
           </div>
           <div
             className="text-white hover:text-gray-300 cursor-pointer nav-item"

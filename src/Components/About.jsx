@@ -135,20 +135,20 @@ const About = ({ setActiveComponent }) => {
                 />
                 <div className="px-6 py-4">
                   <div className="font-bold text-xl mb-2">
-                    Service & Upgradation
+                    Upgradation
                   </div>
                   <p className="text-gray-700 text-base">
-                    Repair of Apple Macintosh Laptop <br />
+                    Upgrade of Apple Macintosh Laptop <br />
                     (MacBook Air/Pro) & Desktop (iMac/MacPro/Mac mini) <br />
                     is as easy as windows.
                   </p>
                 </div>
                 <div className="px-6 pt-1 pb-2">
                   <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    #service
+                    #upgrade
                   </span>
                   <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    #upgrade
+                    #make-it-new
                   </span>
                   {/* <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                 #tag3

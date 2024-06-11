@@ -214,7 +214,7 @@ const windowsData = {
   },
 };
 
-const Select = () => {
+const Select = ({ arg }) => {
   const [selectedBrand, setSelectedBrand] = useState("");
   const [selectedProductType, setSelectedProductType] = useState("");
   const [selectedProduct, setSelectedProduct] = useState("");
@@ -226,37 +226,36 @@ const Select = () => {
   const [selectedDisplay, setSelectedDisplay] = useState(""); // New state for selected display
   // Reset selectedProcessor in handleBrandSelect, handleProductSelect, handleVariantSelect
 
+  const handleWhatsAppClick = () => {
+    const phoneNumber = "9210760003"; // Your WhatsApp number
+    const specifications = `Hello Bhupendra Sir,\n I want to ${arg} \nBrand: ${selectedBrand}\nProduct: ${selectedProduct}\nProcessor: ${selectedProcessor}\nStorage: ${selectedStorage}\nMemory: ${selectedMemory}`;
+    const message = encodeURIComponent(specifications);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.location.href = whatsappUrl;
+  };
+  const handleWhatsApp = () => {
+    const phoneNumber = "9210760003"; // Your WhatsApp number
+    const specifications = `Hii, Bhupendra Sir`;
+    const message = encodeURIComponent(specifications);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.location.href = whatsappUrl;
+  };
 
-const handleWhatsAppClick = () => {
-  const phoneNumber = "9210760003"; // Your WhatsApp number
-  const specifications = `I want to Buy \nBrand: ${selectedBrand}\nProduct: ${selectedProduct}\nProcessor: ${selectedProcessor}\nStorage: ${selectedStorage}\nMemory: ${selectedMemory}`;
-  const message = encodeURIComponent(specifications);
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
-  window.location.href = whatsappUrl;
-};
-const handleWhatsApp = () => {
-  const phoneNumber = "9210760003"; // Your WhatsApp number
-  const specifications = `Hii, Bhupendra Sir`;
-  const message = encodeURIComponent(specifications);
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
-  window.location.href = whatsappUrl;
-};
-  
-const handleEmailClick = () => {
-  const recipient = "sales@infosecmediasolutions.com";
-  const subject = encodeURIComponent("Want to Buy");
-  const body = encodeURIComponent(
-    `I want to Buy \nBrand: ${selectedBrand}\nProduct: ${selectedProduct}\nProcessor: ${selectedProcessor}\nStorage: ${selectedStorage}\nMemory: ${selectedMemory}`
-  );
-  window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
-};
+  const handleEmailClick = () => {
+    const recipient = "sales@infosecmediasolutions.com";
+    const subject = encodeURIComponent(`Want to ${arg}`);
+    const body = encodeURIComponent(
+      `Hello Bhupendra Sir,\n I want to ${arg} \nBrand: ${selectedBrand}\nProduct: ${selectedProduct}\nProcessor: ${selectedProcessor}\nStorage: ${selectedStorage}\nMemory: ${selectedMemory}`
+    );
+    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+  };
 
-const handleEmail = () => {
-  const recipient = "sales@infosecmediasolutions.com";
-  const subject = encodeURIComponent("Connect");
-  const body = encodeURIComponent(`Hii, Bhupendra Sir`);
-  window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
-};
+  const handleEmail = () => {
+    const recipient = "sales@infosecmediasolutions.com";
+    const subject = encodeURIComponent("Connect");
+    const body = encodeURIComponent(`Hii, Bhupendra Sir`);
+    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+  };
 
   const handleProductTypeSelect = (productType) => {
     setSelectedProductType(productType);
@@ -320,7 +319,7 @@ const handleEmail = () => {
   return (
     <div className="h-auto flex flex-col items-center p-4">
       <h1 className="text-2xl font-semibold text-center text-gray-800 mt-16 mb-4">
-        Select your Product
+        Select {arg !== "Buy" && arg !== "Rent" ? <>your</> : <></>} Product to {arg}
       </h1>
       <hr className="h-2 w-2/4 border-gray-400 pb-2 mb-5" />
 
