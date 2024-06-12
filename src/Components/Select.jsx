@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { WhatsAppWidget } from "react-whatsapp-widget";
 import "react-whatsapp-widget/dist/index.css";
 
@@ -226,9 +226,28 @@ const Select = ({ arg }) => {
   const [selectedDisplay, setSelectedDisplay] = useState(""); // New state for selected display
   // Reset selectedProcessor in handleBrandSelect, handleProductSelect, handleVariantSelect
    const [inputedText, setInputedText] = useState("");
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  let mobileno = 9718627660;
+  let emailas = "sales@infosecmediasolutions.com";
+
+
+
+      useEffect(() => {
+        const handleResize = () => {
+          setIsSmallScreen(window.innerWidth <= 600); // Adjust the threshold as per your requirement
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        // Call the handleResize initially to set the initial state
+        handleResize();
+
+        // Cleanup event listener on unmount
+        return () => window.removeEventListener("resize", handleResize);
+      }, []);
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = "9210760003"; // Your WhatsApp number
+    const phoneNumber = `${mobileno}`; // Your WhatsApp number
     let specifications = `Hello Bhupendra Sir,\nI want to ${arg}\nBrand: ${selectedBrand}\nProduct: ${selectedProduct}\nProcessor: ${selectedProcessor}\nStorage: ${selectedStorage}\nMemory: ${selectedMemory}`;
 
     // Add inputedText if arg is Upgrade or Repair
@@ -242,7 +261,7 @@ const Select = ({ arg }) => {
   };
 
   const handleWhatsApp = () => {
-    const phoneNumber = "9210760003"; // Your WhatsApp number
+    const phoneNumber = `${mobileno}`; // Your WhatsApp number
     let specifications = `Hii, Bhupendra Sir`;
     // Add inputedText if arg is Upgrade or Repair
     if (arg === "Upgrade" || arg === "Repair") {
@@ -254,7 +273,7 @@ const Select = ({ arg }) => {
   };
 
   const handleEmailClick = () => {
-    const recipient = "sales@infosecmediasolutions.com";
+    const recipient = `${emailas}`;
     const subject = encodeURIComponent(`Want to ${arg}`);
     let body = encodeURIComponent(
       `Hello Bhupendra Sir,\nI want to ${arg}\nBrand: ${selectedBrand}\nProduct: ${selectedProduct}\nProcessor: ${selectedProcessor}\nStorage: ${selectedStorage}\nMemory: ${selectedMemory}\n`
@@ -270,7 +289,7 @@ const Select = ({ arg }) => {
 
 
   const handleEmail = () => {
-    const recipient = "sales@infosecmediasolutions.com";
+    const recipient = `${emailas}`;
     const subject = encodeURIComponent("Connect");
     let body = encodeURIComponent(`Hii, Bhupendra Sir\n`);
     // Add inputedText if arg is Upgrade or Repair
@@ -339,6 +358,25 @@ const Select = ({ arg }) => {
     setSelectedDisplay(display);
   };
 
+
+   const handlePhoneNumberClick = () => {
+     const phoneNumber = "9718627660"; // Replace this with your actual phone number
+     if (isSmallScreen) {
+       // Redirect to dialer on small screens
+       window.location.href = `tel:${phoneNumber}`;
+     } else {
+       // Copy to clipboard on large screens
+       navigator.clipboard
+         .writeText(phoneNumber)
+         .then(() => {
+           alert("Phone number copied to clipboard");
+         })
+         .catch(() => {
+           alert("Failed to copy phone number");
+         });
+     }
+   };
+
   return (
     <div className="h-auto flex flex-col items-center p-4">
       <h1 className="text-2xl font-semibold text-center text-gray-800 mt-16 mb-4">
@@ -352,7 +390,7 @@ const Select = ({ arg }) => {
           onClick={() => handleBrandSelect("Apple")}
           className={`p-4 rounded mx-14 mt-3 transform transition duration-300 hover:scale-125 hover:bg-gray-100 ease-in-out ${
             selectedBrand === "Apple"
-              ? "bg-gray-300 text-white"
+              ? "bg-gray-300 hover:bg-gray-300 text-white"
               : "bg-white border"
           }`}
         >
@@ -370,7 +408,7 @@ const Select = ({ arg }) => {
           onClick={() => handleBrandSelect("Windows")}
           className={`p-2 rounded mx-14 mt-3 transform transition duration-300 hover:scale-125 hover:bg-gray-100 ease-in-out ${
             selectedBrand === "Windows"
-              ? "bg-gray-300 text-white"
+              ? "bg-gray-300 hover:bg-gray-300 text-white"
               : "bg-white border"
           }`}
         >
@@ -397,7 +435,9 @@ const Select = ({ arg }) => {
               key={product.name}
               onClick={() => handleProductSelect(product.name)}
               className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out  ${
-                selectedProduct === product.name ? "bg-blue-100 " : "bg-white"
+                selectedProduct === product.name
+                  ? "bg-blue-100 hover:bg-blue-100 "
+                  : "bg-white"
               }`}
             >
               {product.name}
@@ -415,7 +455,7 @@ const Select = ({ arg }) => {
               onClick={() => handleProductTypeSelect("Desktop")}
               className={`p-3 m-10 text-xl rounded transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
                 selectedProductType === "Desktop"
-                  ? "bg-blue-500 text-white"
+                  ? "bg-blue-100 hover:bg-blue-100 text-black"
                   : "bg-white border"
               }`}
             >
@@ -425,7 +465,7 @@ const Select = ({ arg }) => {
               onClick={() => handleProductTypeSelect("Laptop")}
               className={`ml-2 p-3 m-10 text-xl rounded transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
                 selectedProductType === "Laptop"
-                  ? "bg-blue-500 text-white"
+                  ? "bg-blue-100 text-black hover:bg-blue-100"
                   : "bg-white border"
               }`}
             >
@@ -449,7 +489,7 @@ const Select = ({ arg }) => {
                     onClick={() => handleProcessorSelect(processor)}
                     className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
                       selectedProcessor === processor
-                        ? "bg-blue-100"
+                        ? "bg-blue-100 hover:bg-blue-100"
                         : "bg-white"
                     }`}
                   >
@@ -472,7 +512,9 @@ const Select = ({ arg }) => {
                     key={index}
                     onClick={() => handleGraphicsSelect(graphics)}
                     className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
-                      selectedGraphics === graphics ? "bg-blue-100" : "bg-white"
+                      selectedGraphics === graphics
+                        ? "bg-blue-100 hover:bg-blue-100"
+                        : "bg-white"
                     }`}
                   >
                     {graphics}
@@ -492,7 +534,9 @@ const Select = ({ arg }) => {
                     key={index}
                     onClick={() => handleStorageSelect(storage)}
                     className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
-                      selectedStorage === storage ? "bg-blue-100" : "bg-white"
+                      selectedStorage === storage
+                        ? "bg-blue-100 hover:bg-blue-100"
+                        : "bg-white"
                     }`}
                   >
                     {storage}
@@ -512,7 +556,9 @@ const Select = ({ arg }) => {
                     key={index}
                     onClick={() => handleMemorySelect(memory)}
                     className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
-                      selectedMemory === memory ? "bg-blue-100" : "bg-white"
+                      selectedMemory === memory
+                        ? "bg-blue-100 hover:bg-blue-100"
+                        : "bg-white"
                     }`}
                   >
                     {memory}
@@ -538,7 +584,9 @@ const Select = ({ arg }) => {
                     key={index}
                     onClick={() => handleVariantSelect(variant)}
                     className={`p-4 border rounded cursor-pointer mb-2 transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
-                      selectedVariant === variant ? "bg-blue-100" : "bg-white"
+                      selectedVariant === variant
+                        ? "bg-blue-100 hover:bg-blue-100"
+                        : "bg-white"
                     }`}
                   >
                     <div>{variant.model}</div>
@@ -566,7 +614,9 @@ const Select = ({ arg }) => {
                   key={index}
                   onClick={() => handleProcessorSelect(processor)}
                   className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
-                    selectedProcessor === processor ? "bg-blue-100" : "bg-white"
+                    selectedProcessor === processor
+                      ? "bg-blue-100 hover:bg-blue-100"
+                      : "bg-white"
                   }`}
                 >
                   {processor}
@@ -584,7 +634,9 @@ const Select = ({ arg }) => {
                   key={index}
                   onClick={() => handleStorageSelect(storage)}
                   className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
-                    selectedStorage === storage ? "bg-blue-100" : "bg-white"
+                    selectedStorage === storage
+                      ? "bg-blue-100 hover:bg-blue-100"
+                      : "bg-white"
                   }`}
                 >
                   {storage}
@@ -602,7 +654,9 @@ const Select = ({ arg }) => {
                   key={index}
                   onClick={() => handleMemorySelect(memory)}
                   className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
-                    selectedMemory === memory ? "bg-blue-100" : "bg-white"
+                    selectedMemory === memory
+                      ? "bg-blue-100 hover:bg-blue-100"
+                      : "bg-white"
                   }`}
                 >
                   {memory}
@@ -613,7 +667,7 @@ const Select = ({ arg }) => {
         </div>
       )}
       {selectedProcessor && selectedStorage && selectedMemory && (
-        <div className="mt-4 p-4 border rounded bg-white">
+        <div className="mt-4 p-8 border rounded bg-white">
           <h2 className="text-xl font-bold mb-2">Selected Configuration</h2>
           <div>Brand: {selectedBrand}</div>
           <div>Product: {selectedProduct}</div>
@@ -699,7 +753,7 @@ const Select = ({ arg }) => {
       )}
       {(selectedProduct === "Studio Display" ||
         selectedProduct === "Pro Display XDR") && (
-        <div className="mt-4 p-4 border rounded bg-white">
+        <div className="mt-4 p-8 border rounded bg-white">
           <h2 className="text-xl font-bold mb-2">Selected Product</h2>
           <div>Brand: {selectedBrand}</div>
           <div>Product: {selectedProduct}</div>
@@ -803,9 +857,33 @@ const Select = ({ arg }) => {
           </div>
         </>
       )}
-      {/* WhatsApp Widget */}
+
       {/* WhatsApp Button */}
       <div className="mb-4 flex md:flex-row flex-col items-stretch mt-9">
+        {/* call Widget */}
+        <button
+          onClick={handlePhoneNumberClick}
+          className=" mx-12 p-2 mt-6 bg-gray-800 hover:bg-gray-600 allproduct rounded-full text-white"
+        >
+          <div className="flex flex-row items-center px-1 h-full">
+            <div className=" font-semibold pl-3">Contact via </div>
+            <div className="px-3">
+              
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                style={{ fill: "white" }}
+                className="pr-2"
+                viewBox="0 0 24 24"
+                id="call"
+              >
+                <path d="M19.41,13c-.22,0-.45-.07-.67-.12a9.86,9.86,0,0,1-1.31-.39,2,2,0,0,0-2.48,1l-.22.46a13.17,13.17,0,0,1-2.67-2,13.17,13.17,0,0,1-2-2.67l.46-.21a2,2,0,0,0,1-2.48,10.47,10.47,0,0,1-.39-1.32c-.05-.22-.09-.45-.12-.67a3,3,0,0,0-3-2.49H5a3,3,0,0,0-2.24,1,3,3,0,0,0-.73,2.4,19.07,19.07,0,0,0,5.41,11,19.07,19.07,0,0,0,11,5.41,2.56,2.56,0,0,0,.39,0,3,3,0,0,0,2-.76,3,3,0,0,0,1-2.24v-3A3,3,0,0,0,19.41,13Zm.49,6a1,1,0,0,1-.33.74,1,1,0,0,1-.82.25,17.16,17.16,0,0,1-9.87-4.84A17.16,17.16,0,0,1,4,5.25a1,1,0,0,1,.25-.82A1,1,0,0,1,5,4.1h3a1,1,0,0,1,1,.78c0,.27.09.55.15.82a11,11,0,0,0,.46,1.54l-1.4.66a1,1,0,0,0-.52.56,1,1,0,0,0,0,.76,14.49,14.49,0,0,0,7,7,1,1,0,0,0,.76,0,1,1,0,0,0,.56-.52l.63-1.4a12.41,12.41,0,0,0,1.58.46c.26.06.54.11.81.15a1,1,0,0,1,.78,1ZM14,2c-.23,0-.47,0-.7,0a1,1,0,0,0,.17,2L14,4a6,6,0,0,1,6,6c0,.18,0,.35,0,.53a1,1,0,0,0,.91,1.08h.08a1,1,0,0,0,1-.91c0-.23,0-.47,0-.7A8,8,0,0,0,14,2Zm2,8a1,1,0,0,0,2,0,4,4,0,0,0-4-4,1,1,0,0,0,0,2A2,2,0,0,1,16,10Z"></path>
+              </svg>
+            </div>
+          </div>
+        </button>
+        {/* WhatsApp Button */}
         <button
           onClick={handleWhatsApp}
           className=" mx-12 p-2 mt-6 bg-gray-800 hover:bg-gray-600 allproduct rounded-full text-white"

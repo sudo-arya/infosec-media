@@ -96,37 +96,44 @@ const Navbar = ({ setActiveComponent }) => {
         <div className="md:hidden bg-gray-800 pt-3">
           <hr className="pb-2" />
           <div
-            className="text-white hover:text-gray-300 px-2 cursor-pointer"
+            className="text-white hover:text-gray-300 cursor-pointer px-2"
             onClick={() => handleNavItemClick("Home")}
           >
             Home
           </div>
           <div
-            className="text-white hover:text-gray-300  px-2 cursor-pointer"
+            className="text-white hover:text-gray-300 cursor-pointer px-2"
             onClick={() => handleNavItemClick("About")}
           >
             About Us
           </div>
           <div
-            className="text-white hover:text-gray-300  px-2 cursor-pointer"
-            onClick={() => handleNavItemClick("Services")}
-          >
-            Service
-          </div>
-          <div
-            className="text-white hover:text-gray-300  px-2 cursor-pointer"
-            onClick={() => handleNavItemClick("Rental")}
-          >
-            Rental Equipments
-          </div>
-          <div
-            className="text-white hover:text-gray-300  px-2 cursor-pointer"
+            className="text-white hover:text-gray-300 cursor-pointer px-2"
             onClick={() => handleNavItemClick("Products")}
           >
             Products
           </div>
           <div
-            className="text-white hover:text-gray-300  px-2 cursor-pointer"
+            className="text-white hover:text-gray-300 cursor-pointer px-2"
+            onClick={() => handleNavItemClick("Services")}
+          >
+            Upgrade
+          </div>
+          <div
+            className="text-white hover:text-gray-300 cursor-pointer px-2"
+            onClick={() => handleNavItemClick("Rental")}
+          >
+            Rental Equipments
+          </div>
+          <div
+            className="text-white hover:text-gray-300 cursor-pointer px-2"
+            onClick={() => handleNavItemClick("Repair")}
+          >
+            Repair
+          </div>
+
+          <div
+            className="text-white hover:text-gray-300 cursor-pointer px-2"
             onClick={() => handleNavItemClick("Contact")}
           >
             Contact
