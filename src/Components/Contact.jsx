@@ -127,16 +127,16 @@ const Contact = () => {
         Feel free to reach out with your query or suggestion. <br />
         We are here to answer any questions you might have for us.
       </p>
-      <div className="w-full justify-center flex md:flex-row ml-4 mr-4 mt-4">
-        <div className="w-6/12 p-3 ">
+      <div className="w-full justify-center flex md:flex-row flex-col ml-4 mr-4 mt-4">
+        <div className="md:w-6/12 md:p-3 ">
           <p className="text-gray-700 text-center font-semibold text-xl ">
             Contact Info
           </p>
           <div className="flex items-center justify-center">
             <hr className="h-2 w-2/4 border-gray-400 pb-1" />
           </div>
-          <div className="flex flex-col items-center justify-center mt-2">
-            <div className="mb-3">
+          <div className="flex md:flex-col flex-col items-center justify-center mt-2">
+            <div className="mb-3 md:flex-row flex-col flex items-center justify-center ">
               <button
                 onClick={handlePhoneNumberClick}
                 className="flex-grow m-2"
@@ -198,7 +198,7 @@ const Contact = () => {
                 </div>
               </button>
             </div>
-            <div>
+            <div className="mb-3 md:flex-row flex flex-col items-center justify-center">
               <button onClick={handleEmailClick2} className="flex-grow m-2">
                 <div className="max-w-full p-4 pb-5 sm:max-w-sm rounded overflow-hidden shadow-md bg-white service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
                   <p className="text-gray-700 text-center font-semibold text-xl mb-2">
@@ -406,7 +406,7 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <div className="w-4/12 bg-gray-100 rounded-3xl p-3">
+        <div className="md:w-4/12 bg-gray-100 rounded-3xl md:p-3">
           <p className="text-gray-700 text-center font-semibold text-xl ">
             Send Us a Message
           </p>
@@ -462,7 +462,7 @@ const Contact = () => {
               onClick={handleEmailClick}
               className="mx-4 p-2 mt-6 bg-gray-800 hover:bg-gray-600 allproduct rounded-full text-white"
             >
-              <div className="flex flex-row items-center px-1 h-full">
+              <div className="flex flex-row items-center justify-center px-1 h-full">
                 <div className="font-semibold pl-3">Contact via </div>
                 <div className="px-3">
                   <svg
@@ -484,7 +484,7 @@ const Contact = () => {
               onClick={handleWhatsAppClick}
               className=" mx-4 p-2 mt-6 bg-gray-800 hover:bg-gray-600 allproduct rounded-full text-white"
             >
-              <div className="flex flex-row items-center px-1 h-full">
+              <div className="flex flex-row items-center justify-center px-1 h-full">
                 <div className="font-semibold pl-3">Contact via </div>
                 <div className="px-3">
                   <svg
@@ -527,7 +527,7 @@ const Contact = () => {
         {/* Your content goes here */}
         &nbsp;
       </div>
-      
+
       <Map />
       <div className="list h-20">
         {/* Your content goes here */}
