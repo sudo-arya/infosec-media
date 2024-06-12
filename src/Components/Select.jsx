@@ -290,7 +290,7 @@ const Select = ({ arg }) => {
 
   const handleEmail = () => {
     const recipient = `${emailas}`;
-    const subject = encodeURIComponent("Connect");
+    const subject = encodeURIComponent("Enquiry");
     let body = encodeURIComponent(`Hii, Bhupendra Sir\n`);
     // Add inputedText if arg is Upgrade or Repair
     if (arg === "Upgrade" || arg === "Repair") {
