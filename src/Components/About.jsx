@@ -28,7 +28,7 @@ const About = ({ setActiveComponent }) => {
   return (
     <div className="min-h-screen flex-col justify-center items-center">
       {/* <div>About</div> */}
-      <h1 className="text-6xl font-bold text-center text-gray-800 mt-16 mb-6">
+      <h1 className="text-4xl font-bold text-center text-gray-800 mt-16 mb-4">
         About Us
       </h1>
       <div className="flex items-center justify-center">
@@ -36,7 +36,7 @@ const About = ({ setActiveComponent }) => {
       </div>
       <div>
         <div className="flex flex-col md:flex-row items-center justify-center">
-          <div className="h-4/6 mt-16">
+          <div className="h-4/6 mt-10">
             <img src="https://imgs.search.brave.com/anenpkivdXgdaU3WA1TEsPqEMErEo9azBu0SogtpvWo/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pc29y/ZXB1YmxpYy5jb20v/d3AtY29udGVudC91/cGxvYWRzLzIwMTgv/MTEvc2hvdHN0YXNo/XzAxMDEtMS0xMTAw/eDczNC5qcGc" />
           </div>
           <div className="pl-14 p-6 md:w-3/4  ">

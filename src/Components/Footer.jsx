@@ -35,8 +35,12 @@ const Footer = () => {
     }
   };
 
-  const handleEmailClick = () => {
-    const email = "test@gmail.com"; // Replace this with your email address
+  const handleEmailClick1 = () => {
+    const email = " bhupendra@infosecmediasolutions.com"; // Replace this with your email address
+    window.location.href = `mailto:${email}`;
+  };
+  const handleEmailClick2 = () => {
+    const email = "sales@infosecmediasolutions.com"; // Replace this with your email address
     window.location.href = `mailto:${email}`;
   };
 
@@ -139,7 +143,7 @@ const Footer = () => {
               </p>
             </button>
 
-            <button onClick={handleEmailClick}>
+            <button onClick={handleEmailClick1}>
               <p
                 className="text-gray-300 text-sm cursor-pointer nav-item"
                 style={{ display: "flex", alignItems: "center" }}
@@ -161,7 +165,7 @@ const Footer = () => {
                 <br />
               </p>
             </button>
-            <button onClick={handleEmailClick}>
+            <button onClick={handleEmailClick2}>
               <p
                 className="text-gray-300 text-sm cursor-pointer nav-item"
                 style={{ display: "flex", alignItems: "center" }}
