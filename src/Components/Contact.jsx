@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Map from "./Map";
 
 const Contact = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -521,12 +522,14 @@ const Contact = () => {
             </button>
           </div>
         </div>
-
-        {/* <div className="mt-4">
-          <p>Current Input Value: {inputValue}</p>
-        </div> */}
       </div>
-      <div className="list h-32">
+      <div className="list h-12">
+        {/* Your content goes here */}
+        &nbsp;
+      </div>
+      
+      <Map />
+      <div className="list h-20">
         {/* Your content goes here */}
         &nbsp;
       </div>
