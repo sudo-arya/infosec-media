@@ -135,6 +135,7 @@ const productsData = {
   Windows: [
     // Add other brands' products here...
   ],
+  
 };
 
 // Define the product data for Windows
@@ -214,6 +215,116 @@ const windowsData = {
   },
 };
 
+// Define the product data for Monitors, Audio, and Softwares
+const additionalData = {
+  Monitors: {
+    screenSizeOptions: [
+      "Dont Know Much",
+      "19 inch",
+      "21 inch",
+      "24 inch",
+      "27 inch",
+      "32 inch",
+      "34 inch",
+      "42 inch",
+    ],
+    resolutionOptions: [
+      "Dont Know Much",
+      "HD",
+      "Full HD",
+      "QHD",
+      "4K",
+      "5K",
+      "8K",
+    ],
+    panelTypeOptions: [
+      "Dont Know Much",
+      "TN",
+      "IPS",
+      "VA",
+      "OLED",
+      "QLED",
+    ],
+    refreshRateOptions: [
+      "Dont Know Much",
+      "60Hz",
+      "75Hz",
+      "120Hz",
+      "144Hz",
+      "165Hz",
+      "240Hz",
+      "360Hz",
+    ],
+  },
+  Audio: {
+    speakerTypeOptions: [
+      "Dont Know Much",
+      "2.0",
+      "2.1",
+      "5.1",
+      "7.1",
+      "Soundbar",
+    ],
+    headphoneTypeOptions: [
+      "Dont Know Much",
+      "Over-Ear",
+      "On-Ear",
+      "In-Ear",
+      "Wireless",
+      "Wired",
+      "Noise-Cancelling",
+    ],
+    microphoneTypeOptions: [
+      "Dont Know Much",
+      "Desktop",
+      "Lapel",
+      "Headset",
+      "USB",
+      "XLR",
+    ],
+  },
+  Softwares: {
+    operatingSystemOptions: [
+      "Dont Know Much",
+      "Windows 10 Home",
+      "Windows 10 Pro",
+      "Windows 11 Home",
+      "Windows 11 Pro",
+      "macOS",
+      "Linux",
+    ],
+    officeSuiteOptions: [
+      "Dont Know Much",
+      "Microsoft Office 2019",
+      "Microsoft Office 2021",
+      "Microsoft 365",
+      "Google Workspace",
+      "LibreOffice",
+    ],
+    antivirusOptions: [
+      "Dont Know Much",
+      "Norton",
+      "McAfee",
+      "Kaspersky",
+      "Bitdefender",
+      "Avast",
+      "Windows Defender",
+    ],
+    designSoftwareOptions: [
+      "Dont Know Much",
+      "Adobe Photoshop",
+      "Adobe Illustrator",
+      "CorelDRAW",
+      "Affinity Designer",
+      "Sketch",
+      "GIMP",
+    ],
+  },
+};
+
+// Merge additionalData into windowsData
+// Object.assign(windowsData, additionalData);
+
 const Select = ({ arg }) => {
   const [selectedBrand, setSelectedBrand] = useState("");
   const [selectedProductType, setSelectedProductType] = useState("");
@@ -248,7 +359,26 @@ const Select = ({ arg }) => {
 
   const handleWhatsAppClick = () => {
     const phoneNumber = `${mobileno}`; // Your WhatsApp number
-    let specifications = `Hello Bhupendra Sir,\nI want to ${arg}\nBrand: ${selectedBrand}\nProduct: ${selectedProduct}\nProcessor: ${selectedProcessor}\nStorage: ${selectedStorage}\nMemory: ${selectedMemory}`;
+    let specifications = `Hello Bhupendra Sir,\nI want to ${arg}\nBrand: ${selectedBrand}`;
+
+    // Append product-specific details based on selectedBrand
+    switch (selectedBrand) {
+      case "Apple":
+        specifications += `\nModel: ${selectedVariant.model}\nProduct: ${selectedProduct}\nProcessor: ${selectedProcessor}\nStorage: ${selectedStorage}\nMemory: ${selectedMemory}`;
+        break;
+      case "Windows":
+        specifications += `\nModel: ${selectedProductType}\nProcessor: ${selectedProcessor}\nStorage: ${selectedStorage}\nMemory: ${selectedMemory}`;
+        break;
+      case "Monitors":
+        specifications += `\nFor: ${selectedProductType}\nScreen Size: ${selectedProcessor}\nResolution: ${selectedGraphics}\nPanel: ${selectedStorage}\nRefresh Rate: ${selectedMemory}`;
+        break;
+      case "Audio":
+      case "Softwares":
+        specifications += `\nOS: ${selectedProcessor}\nOffice Suite: ${selectedGraphics}\nAntivirus: ${selectedStorage}\nDesign Software: ${selectedMemory}`;
+        break;
+      default:
+        break;
+    }
 
     // Add inputedText if arg is Upgrade or Repair
     if (arg === "Upgrade" || arg === "Repair") {
@@ -276,8 +406,27 @@ const Select = ({ arg }) => {
     const recipient = `${emailas}`;
     const subject = encodeURIComponent(`Want to ${arg}`);
     let body = encodeURIComponent(
-      `Hello Bhupendra Sir,\nI want to ${arg}\nBrand: ${selectedBrand}\nProduct: ${selectedProduct}\nProcessor: ${selectedProcessor}\nStorage: ${selectedStorage}\nMemory: ${selectedMemory}\n`
+      `Hello Bhupendra Sir,\nI want to ${arg}\nBrand: ${selectedBrand}`
     );
+
+    // Append product-specific details based on selectedBrand
+    switch (selectedBrand) {
+      case "Apple":
+        body += `\nModel: ${selectedVariant.model}\n\nProduct: ${selectedProduct}\n\nProcessor: ${selectedProcessor}\n\nStorage: ${selectedStorage}\n\nMemory: ${selectedMemory}`;
+        break;
+      case "Windows":
+        body += `\n\nModel: ${selectedProductType}\n\nProcessor: ${selectedProcessor}\n\nStorage: ${selectedStorage}\n\nMemory: ${selectedMemory}`;
+        break;
+      case "Monitors":
+        body += `\n\nFor: ${selectedProductType}\n\nScreen Size: ${selectedProcessor}\n\nResolution: ${selectedGraphics}\n\nPanel: ${selectedStorage}\n\nRefresh Rate: ${selectedMemory}`;
+        break;
+      case "Audio":
+      case "Softwares":
+        body += `\nOS: ${selectedProcessor}\n\nOffice Suite: ${selectedGraphics}\n\nAntivirus: ${selectedStorage}\n\nDesign Software: ${selectedMemory}`;
+        break;
+      default:
+        break;
+    }
 
     // Add inputedText if arg is Upgrade or Repair
     if (arg === "Upgrade" || arg === "Repair") {
@@ -426,9 +575,136 @@ const Select = ({ arg }) => {
             ></path>
           </svg>
         </button>
+
+        <button
+          onClick={() => handleBrandSelect("Monitors")}
+          className={`p-2 rounded mx-14 mt-3 transform transition duration-300 hover:scale-125 hover:bg-gray-100 ease-in-out ${
+            selectedBrand === "Monitors"
+              ? "bg-gray-300 hover:bg-gray-300 text-white"
+              : "bg-white border"
+          }`}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="160"
+            height="76"
+            viewBox="0 0 64 64"
+            id="monitor"
+          >
+            <path
+              fill="none"
+              stroke="#000"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-miterlimit="10"
+              stroke-width="2"
+              d="M60.8 11.2v33.6c0 1-.8 1.8-1.8 1.8H5c-1 0-1.8-.8-1.8-1.8V11.2c0-1 .8-1.8 1.8-1.8h54c1 0 1.8.8 1.8 1.8zM3.2 39.1h57.6M30.2 42.8h3.6M46.4 54.6H17.6h0c0-2 2.4-3.7 5.3-3.7h18.2c2.9 0 5.3 1.7 5.3 3.7h0zM27.1 46.6 25 50.9M39 50.9l-2.1-4.3"
+            ></path>
+          </svg>
+        </button>
+
+        <button
+          onClick={() => handleBrandSelect("Audio")}
+          className={`p-2 rounded mx-14 mt-3 transform transition duration-300 hover:scale-125 hover:bg-gray-100 ease-in-out ${
+            selectedBrand === "Audio"
+              ? "bg-gray-300 hover:bg-gray-300 text-white"
+              : "bg-white border"
+          }`}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            enable-background="new 0 0 512 512"
+            width="160"
+            height="76"
+            viewBox="0 0 512 512"
+            id="amplifier"
+          >
+            <path
+              d="M471,226c22.056,0,40-17.944,40-40V41c0-22.056-17.944-40-40-40H41C18.944,1,1,18.944,1,41v145c0,22.056,17.944,40,40,40
+			h10v20H41c-22.056,0-40,17.944-40,40v145c0,22.056,17.944,40,40,40h10v30c0,5.522,4.478,10,10,10h50c5.522,0,10-4.478,10-10v-30
+			h270v30c0,5.522,4.478,10,10,10h50c5.522,0,10-4.478,10-10v-30h10c22.056,0,40-17.944,40-40V286c0-22.056-17.944-40-40-40h-10v-20
+			H471z M21,41c0-11.028,8.972-20,20-20h430c11.028,0,20,8.972,20,20v125H21V41z M41,298.5c0-5.522,4.478-10,10-10h170
+			c5.522,0,10,4.478,10,10v80c0,5.522-4.478,10-10,10H51c-5.522,0-10-4.478-10-10V298.5z M71,246v-20h30v20H71z M341,358.5
+			c-5.522,0-10-4.478-10-10s4.478-10,10-10h10v-40c0-5.522,4.478-10,10-10s10,4.478,10,10v40h10c5.522,0,10,4.478,10,10
+			s-4.478,10-10,10h-10v20c0,5.522-4.478,10-10,10s-10-4.478-10-10v-20H341z M121,246v-20h270v20H121z M261,328.5
+			c-5.522,0-10-4.478-10-10s4.478-10,10-10h10v-10c0-5.522,4.478-10,10-10s10,4.478,10,10v10h10c5.522,0,10,4.478,10,10
+			s-4.478,10-10,10h-10v50c0,5.522-4.478,10-10,10s-10-4.478-10-10v-50H261z M101,491H71v-20h30V491z M441,491h-30v-20h30V491z
+			 M491,431c0,11.028-8.972,20-20,20H41c-11.028,0-20-8.972-20-20H491z M471,328.5c0,5.522-4.478,10-10,10h-10v40
+			c0,5.522-4.478,10-10,10s-10-4.478-10-10v-40h-10c-5.522,0-10-4.478-10-10s4.478-10,10-10h10v-20c0-5.522,4.478-10,10-10
+			s10,4.478,10,10v20h10C466.522,318.5,471,322.978,471,328.5z M411,246v-20h30v20H411z M41,206c-11.028,0-20-8.972-20-20h470
+			c0,11.028-8.972,20-20,20H41z"
+            ></path>
+            <rect width="150" height="60" x="61" y="308.5"></rect>
+            <path
+              d="M356,41H156c-5.522,0-10,4.478-10,10v85c0,5.522,4.478,10,10,10h200c5.522,0,10-4.478,10-10V51
+			C366,45.478,361.522,41,356,41z M346,126h-20v-15c0-5.522-4.478-10-10-10s-10,4.478-10,10v15h-20V91c0-5.522-4.478-10-10-10
+			s-10,4.478-10,10v35h-20v-15c0-5.522-4.478-10-10-10s-10,4.478-10,10v15h-20V91c0-5.522-4.478-10-10-10s-10,4.478-10,10v35h-20V61
+			h180V126z"
+            ></path>
+            <circle cx="83.5" cy="93.5" r="40"></circle>
+            <circle cx="428.5" cy="93.5" r="40"></circle>
+          </svg>
+        </button>
+        <button
+          onClick={() => handleBrandSelect("Softwares")}
+          className={`p-2 rounded mx-14 mt-3 transform transition duration-300 hover:scale-125 hover:bg-gray-100 ease-in-out ${
+            selectedBrand === "Softwares"
+              ? "bg-gray-300 hover:bg-gray-300 text-white"
+              : "bg-white border"
+          }`}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="160"
+            height="76"
+            viewBox="0 0 32 32"
+            id="software"
+          >
+            <path
+              fill="#0bf"
+              d="M21,11A10,10,0,1,0,31,21,10,10,0,0,0,21,11Zm0,13a3,3,0,1,1,3-3A3,3,0,0,1,21,24Z"
+            ></path>
+            <circle
+              cx="21"
+              cy="21"
+              r="10"
+              fill="none"
+              stroke="#000"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            ></circle>
+            <polyline
+              fill="none"
+              stroke="#000"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              points="6 1 23 5 23 8"
+            ></polyline>
+            <polyline
+              fill="none"
+              stroke="#000"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              points="14 29 6 31 1 29 1 2 6 1 6 31"
+            ></polyline>
+            <circle
+              cx="21"
+              cy="21"
+              r="3"
+              fill="none"
+              stroke="#000"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            ></circle>
+          </svg>
+        </button>
       </div>
       {/* Product Selection */}
-      {selectedBrand && (
+      {selectedBrand === "Apple" && (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4 ">
           {productsData[selectedBrand].map((product) => (
             <div
@@ -445,8 +721,7 @@ const Select = ({ arg }) => {
           ))}
         </div>
       )}
-      {/* Product Type Selection */}
-      {/* // Product Type Selection */}
+      {/* Product Type Selection for windows*/}
       {selectedBrand === "Windows" && (
         <div className="mb-4">
           <h3 className="text-lg font-semibold mb-2">Select Product Type:</h3>
@@ -474,8 +749,224 @@ const Select = ({ arg }) => {
           </div>
         </div>
       )}
+      {/* // Product Type Selection for monitors*/}
+      {selectedBrand === "Monitors" && (
+        <div className="mb-4">
+          <h3 className="text-lg font-semibold mb-2">Select Your Needs:</h3>
+          <div className="flex ">
+            <button
+              onClick={() => handleProductTypeSelect("Editing")}
+              className={`p-3 m-10 text-xl rounded transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                selectedProductType === "Editing"
+                  ? "bg-blue-100 hover:bg-blue-100 text-black"
+                  : "bg-white border"
+              }`}
+            >
+              Editing
+            </button>
+            <button
+              onClick={() => handleProductTypeSelect("Gaming")}
+              className={`ml-2 p-3 m-10 text-xl rounded transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                selectedProductType === "Gaming"
+                  ? "bg-blue-100 text-black hover:bg-blue-100"
+                  : "bg-white border"
+              }`}
+            >
+              Gaming
+            </button>
+          </div>
+        </div>
+      )}
+      {(selectedProductType === "Gaming" ||
+        selectedProductType === "Editing") && (
+        <div className="mt-4">
+          <h2 className="text-xl font-bold mb-2">Select Specifications:</h2>
+          <div className="mb-4">
+            <h3 className="text-lg font-semibold mb-2">Select Screen Size :</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {/* {windowsData[selectedProductType].processorOptions.map( */}
+              {additionalData[selectedBrand].screenSizeOptions.map(
+                (screenSize, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handleProcessorSelect(screenSize)}
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                      selectedProcessor === screenSize
+                        ? "bg-blue-100 hover:bg-blue-100"
+                        : "bg-white"
+                    }`}
+                  >
+                    {screenSize}
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+
+          <div className="mb-4">
+            <h3 className="text-lg font-semibold mb-2">Select Resolution:</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {/* {windowsData[selectedProductType].processorOptions.map( */}
+              {additionalData[selectedBrand].resolutionOptions.map(
+                (res, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handleGraphicsSelect(res)}
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                      selectedGraphics === res
+                        ? "bg-blue-100 hover:bg-blue-100"
+                        : "bg-white"
+                    }`}
+                  >
+                    {res}
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+          <div className="mb-4">
+            <h3 className="text-lg font-semibold mb-2">Select Panel Type:</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {/* {windowsData[selectedProductType].processorOptions.map( */}
+              {additionalData[selectedBrand].panelTypeOptions.map(
+                (panel, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handleStorageSelect(panel)}
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                      selectedStorage === panel
+                        ? "bg-blue-100 hover:bg-blue-100"
+                        : "bg-white"
+                    }`}
+                  >
+                    {panel}
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+          <div className="mb-4">
+            <h3 className="text-lg font-semibold mb-2">Select Refresh Rate:</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {/* {windowsData[selectedProductType].processorOptions.map( */}
+              {additionalData[selectedBrand].refreshRateOptions.map(
+                (rr, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handleMemorySelect(rr)}
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                      selectedMemory === rr
+                        ? "bg-blue-100 hover:bg-blue-100"
+                        : "bg-white"
+                    }`}
+                  >
+                    {rr}
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+      {selectedBrand === "Audio" && <div>hello</div>}
+      {selectedBrand === "Softwares" && (
+        <div className="mt-4">
+          <h2 className="text-xl font-bold mb-2">Select Softwares</h2>
+          <div className="mb-4">
+            <h3 className="text-lg font-semibold mb-2">
+              Select Operating System :
+            </h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {/* {windowsData[selectedProductType].processorOptions.map( */}
+              {additionalData[selectedBrand].operatingSystemOptions.map(
+                (os, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handleProcessorSelect(os)}
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                      selectedProcessor === os
+                        ? "bg-blue-100 hover:bg-blue-100"
+                        : "bg-white"
+                    }`}
+                  >
+                    {os}
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+
+          <div className="mb-4">
+            <h3 className="text-lg font-semibold mb-2">Select OfficeSuite:</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {/* {windowsData[selectedProductType].processorOptions.map( */}
+              {additionalData[selectedBrand].officeSuiteOptions.map(
+                (office, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handleGraphicsSelect(office)}
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                      selectedGraphics === office
+                        ? "bg-blue-100 hover:bg-blue-100"
+                        : "bg-white"
+                    }`}
+                  >
+                    {office}
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+          <div className="mb-4">
+            <h3 className="text-lg font-semibold mb-2">Select Antivirus:</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {/* {windowsData[selectedProductType].processorOptions.map( */}
+              {additionalData[selectedBrand].antivirusOptions.map(
+                (antivirus, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handleStorageSelect(antivirus)}
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                      selectedStorage === antivirus
+                        ? "bg-blue-100 hover:bg-blue-100"
+                        : "bg-white"
+                    }`}
+                  >
+                    {antivirus}
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+          <div className="mb-4">
+            <h3 className="text-lg font-semibold mb-2">
+              Select Design Software:
+            </h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {/* {windowsData[selectedProductType].processorOptions.map( */}
+              {additionalData[selectedBrand].designSoftwareOptions.map(
+                (design, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handleMemorySelect(design)}
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                      selectedMemory === design
+                        ? "bg-blue-100 hover:bg-blue-100"
+                        : "bg-white"
+                    }`}
+                  >
+                    {design}
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Configuration Options */}
-      {selectedProductType && (
+      {(selectedProductType === "Desktop" ||
+        selectedProductType === "Laptop") && (
         <div className="mt-4">
           <h2 className="text-xl font-bold mb-2">Select Specifications</h2>
           {/* Processor Options */}
@@ -669,17 +1160,55 @@ const Select = ({ arg }) => {
       {selectedProcessor && selectedStorage && selectedMemory && (
         <div className="mt-4 p-8 border rounded bg-white">
           <h2 className="text-xl font-bold mb-2">Selected Configuration</h2>
-          <div>Brand: {selectedBrand}</div>
-          <div>Product: {selectedProduct}</div>
+
           {selectedBrand === "Apple" && (
-            <div>Model: {selectedVariant.model}</div>
+            <div>
+              <div>Category: {selectedBrand}</div>
+              <div>Model: {selectedVariant.model}</div>
+              <div>Product: {selectedProduct}</div>
+              <div>Processor: {selectedProcessor}</div>
+              <div>Storage: {selectedStorage}</div>
+              <div>Memory: {selectedMemory}</div>
+            </div>
           )}
           {selectedBrand === "Windows" && (
-            <div>Model: {selectedProductType}</div>
+            <div>
+              <div>Category: {selectedBrand}</div>
+              <div>Model: {selectedProductType}</div>
+              <div>Processor: {selectedProcessor}</div>
+              <div>Storage: {selectedStorage}</div>
+              <div>Memory: {selectedMemory}</div>
+            </div>
           )}
-          <div>Processor: {selectedProcessor}</div>
-          <div>Storage: {selectedStorage}</div>
-          <div>Memory: {selectedMemory}</div>
+          {selectedBrand === "Monitors" && (
+            <div>
+              <div>Category: {selectedBrand}</div>
+              <div>For: {selectedProductType}</div>
+              <div>Screen Size: {selectedProcessor}</div>
+              <div>Resolution: {selectedGraphics}</div>
+              <div>Panel: {selectedStorage}</div>
+              <div>Refresh Rate: {selectedMemory}</div>
+            </div>
+          )}
+          {selectedBrand === "Audio" && (
+            <div>
+              <div>Category: {selectedBrand}</div>
+              <div>OS: {selectedProcessor}</div>
+              <div>Office Suite: {selectedGraphics}</div>
+              <div>Antivirus: {selectedStorage}</div>
+              <div>Design Software: {selectedMemory}</div>
+            </div>
+          )}
+          {selectedBrand === "Softwares" && (
+            <div>
+              <div>Category: {selectedBrand}</div>
+              <div>OS: {selectedProcessor}</div>
+              <div>Office Suite: {selectedGraphics}</div>
+              <div>Antivirus: {selectedStorage}</div>
+              <div>Design Software: {selectedMemory}</div>
+            </div>
+          )}
+
           <div className=" flex flex-col items-center justify-center">
             <button
               onClick={handleWhatsAppClick}
@@ -868,7 +1397,6 @@ const Select = ({ arg }) => {
           <div className="flex flex-row items-center px-1 h-full">
             <div className=" font-semibold pl-3">Contact via </div>
             <div className="px-3">
-              
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="40"
