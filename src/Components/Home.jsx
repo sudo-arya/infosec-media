@@ -116,9 +116,9 @@ const handleTouchStart = (e) => {
 };
 
 const handleTouchMove = (e) => {
-  if (touchStartX - e.touches[0].clientX < 1) {
+  if (touchStartX - e.touches[0].clientX < 0) {
     handleNext(); // Swipe left
-  } else if (touchStartX - e.touches[0].clientX > 1) {
+  } else if (touchStartX - e.touches[0].clientX > 0) {
     handlePrevious(); // Swipe right
   }
 };
