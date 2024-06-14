@@ -5,25 +5,25 @@ import imgrepair from "../Assets/repair.jpg";
 import imgupgrade from "../Assets/upgrade.jpg";
 
 const About = ({ setActiveComponent }) => {
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  // const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   const handleNavItemClick = (componentName) => {
     setActiveComponent(componentName);
   };
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsSmallScreen(window.innerWidth <= 600); // Adjust the threshold as per your requirement
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setIsSmallScreen(window.innerWidth <= 600); // Adjust the threshold as per your requirement
+  //   };
 
-    window.addEventListener("resize", handleResize);
+  //   window.addEventListener("resize", handleResize);
 
-    // Call the handleResize initially to set the initial state
-    handleResize();
+  //   // Call the handleResize initially to set the initial state
+  //   handleResize();
 
-    // Cleanup event listener on unmount
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  //   // Cleanup event listener on unmount
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
   return (
     <div className="min-h-screen flex-col justify-center items-center">
       {/* <div>About</div> */}
