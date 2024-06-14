@@ -91,13 +91,13 @@ useEffect(() => {
   return () => window.removeEventListener("resize", handleResize);
 }, []);
 
-// useEffect(() => {
-//   const interval = setInterval(() => {
-//     handleNext();
-//   }, 3000); // Change image every 3 seconds
+useEffect(() => {
+  const interval = setInterval(() => {
+    handleNext();
+  }, 3000); // Change image every 3 seconds
 
-//   return () => clearInterval(interval);
-// }, []);
+  return () => clearInterval(interval);
+}, []);
 
 const handlePrevious = () => {
   setCurrentIndex((prevIndex) =>
