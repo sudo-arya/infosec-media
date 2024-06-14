@@ -457,7 +457,7 @@ const Contact = () => {
               </div>
             </form>
           </div>
-          <div className="mb-4 flex md:flex-row flex-col items-stretch mt-2 justify-center">
+          <div className="mb-4 flex md:flex-row flex-col items-stretch mt-6 justify-center">
             <button
               onClick={handleEmailClick}
               className="mx-4 p-2 mt-6 bg-gray-800 hover:bg-gray-600 allproduct rounded-full text-white "
