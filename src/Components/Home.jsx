@@ -530,14 +530,42 @@ const Home = ({ setActiveComponent }) => {
           </button>
         </div>
       </div>
-
+      <div className=" flex item-center justify-center md:pt-6 pt-16 md:mt-20 pb-4">
+        <div class="animated-gradient w-full md:rounded-full rounded-3xl flex-col item-center justify-center">
+          <div className="text-white  flex item-center justify-center pt-8 md:text-4xl text-base text-center">
+            We Provide the Best Service in Industry
+          </div>
+          <div className="text-white flex items-center justify-center md:pt-5 pt-1">
+            <button
+              className="md:w-48 pt-3 pb-3 bg-gray-800 flex items-center justify-between px-4 rounded-full allproduct hover:bg-gray-600"
+              onClick={() => handleNavItemClick("Contact")}
+            >
+              <div className="flex items-center justify-between w-full">
+                <div className="ml-2">Contact Us Today</div>
+                <div className="">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    style={{ fill: "white" }}
+                    viewBox="0 0 32 32"
+                    id="arrow"
+                  >
+                    <path d="M4 15a1 1 0 0 0 1 1h19.586l-4.292 4.292a1 1 0 0 0 1.414 1.414l6-6a.99.99 0 0 0 .292-.702V15c0-.13-.026-.26-.078-.382a.99.99 0 0 0-.216-.324l-6-6a1 1 0 0 0-1.414 1.414L24.586 14H5a1 1 0 0 0-1 1z"></path>
+                  </svg>
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
       {/* Authorized Seller of  */}
-      <div>
-        <h1 className="text-2xl font-semibold text-center text-gray-800 mt-20 mb-4">
+      <div className="mt-20 md:mt-28">
+        <h1 className="text-2xl font-semibold text-center text-gray-800  mb-4">
           Authorized Seller for Brands
         </h1>
         <div className="flex items-center justify-center">
-          <hr className="h-2 w-2/4 border-gray-400 pb-4" />
+          <hr className="h-2 w-2/4 border-gray-400 " />
         </div>
         <div
           className={
@@ -741,17 +769,20 @@ const Home = ({ setActiveComponent }) => {
           </div>
         </div>
       </div>
-      <h1 className="text-2xl font-semibold text-center text-gray-800 md:mt-3 mt-20 mb-4">
-        Our Clients
-      </h1>
-      <div className="flex items-center justify-center">
-        <hr className="h-2 w-2/4 border-gray-400 pb-4" />
-      </div>
-      <div className="stats-section grid grid-cols-1 sm:grid-cols-4 gap-6 p-8">
-        <StatItem target={25} label="ALLIANCES WITH BRANDS" />
-        <StatItem target={400} label="PRODUCTS" />
-        <StatItem target={180} label="CLIENTS" />
-        <StatItem target={200} label="PROJECTS" />
+
+      <div className="mt-28 md:mt-2">
+        <h1 className="text-2xl font-semibold text-center text-gray-800 md:mt-3 mb-4">
+          Our Clients
+        </h1>
+        <div className="flex items-center justify-center">
+          <hr className="h-2 w-2/4 border-gray-400 pb-4" />
+        </div>
+        <div className="stats-section grid grid-cols-1 sm:grid-cols-4 gap-6 p-8">
+          <StatItem target={25} label="ALLIANCES WITH BRANDS" />
+          <StatItem target={400} label="PRODUCTS" />
+          <StatItem target={180} label="CLIENTS" />
+          <StatItem target={200} label="PROJECTS" />
+        </div>
       </div>
     </div>
   );
