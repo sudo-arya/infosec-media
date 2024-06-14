@@ -82,7 +82,7 @@ const Home = ({ setActiveComponent }) => {
 
 useEffect(() => {
   const handleResize = () => {
-    setIsSmallScreen(window.innerWidth <= 600); // Adjust the threshold as per your requirement
+    setIsSmallScreen(window.innerWidth <= 768); // Adjust the threshold as per your requirement
   };
 
   window.addEventListener("resize", handleResize);
@@ -116,9 +116,9 @@ const handleTouchStart = (e) => {
 };
 
 const handleTouchMove = (e) => {
-  if (touchStartX - e.touches[0].clientX > 50) {
+  if (touchStartX - e.touches[0].clientX > 10) {
     handleNext(); // Swipe left
-  } else if (touchStartX - e.touches[0].clientX < -50) {
+  } else if (touchStartX - e.touches[0].clientX < -10) {
     handlePrevious(); // Swipe right
   }
 };
