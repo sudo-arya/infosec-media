@@ -127,7 +127,7 @@ const Contact = () => {
         Feel free to reach out with your query or suggestion. <br />
         We are here to answer any questions you might have for us.
       </p>
-      <div className="w-full justify-center flex md:flex-row flex-col ml-4 mr-4 mt-4">
+      <div className="w-full justify-center flex md:flex-row flex-col  mt-4">
         <div className="md:w-6/12 md:p-3 ">
           <p className="text-gray-700 text-center font-semibold text-xl ">
             Contact Info

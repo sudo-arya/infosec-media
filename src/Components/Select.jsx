@@ -344,7 +344,7 @@ const Select = ({ arg }) => {
 
       useEffect(() => {
         const handleResize = () => {
-          setIsSmallScreen(window.innerWidth <= 600); // Adjust the threshold as per your requirement
+          setIsSmallScreen(window.innerWidth <= 768); // Adjust the threshold as per your requirement
         };
 
         window.addEventListener("resize", handleResize);
