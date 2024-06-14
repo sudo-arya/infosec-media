@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import imgpurchase from "../Assets/purchase.jpg";
-import imgnewmacbook from "../Assets/new-macbook.jpg";
 import imgrent from "../Assets/rent.jpg";
 import imgrepair from "../Assets/repair.jpg";
 import imgupgrade from "../Assets/upgrade.jpg";

@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-// import blackmagic from "../Assets/blackmagic-design-seeklogo.com.svg";
-// import { ReactComponent as MyIcon } from "../Assets/Promise Technology [blogovector.com].svg";
 import imgpurchase from "../Assets/purchase.jpg";
 import imgnewmacbook from "../Assets/new-macbook.jpg";
 import imgrent from "../Assets/rent.jpg";

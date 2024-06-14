@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { WhatsAppWidget } from "react-whatsapp-widget";
 import "react-whatsapp-widget/dist/index.css";
 
 
@@ -334,7 +333,7 @@ const Select = ({ arg }) => {
   const [selectedStorage, setSelectedStorage] = useState("");
   const [selectedMemory, setSelectedMemory] = useState("");
   const [selectedProcessor, setSelectedProcessor] = useState("");
-  const [selectedDisplay, setSelectedDisplay] = useState(""); // New state for selected display
+  // const [selectedDisplay, setSelectedDisplay] = useState(""); // New state for selected display
   // Reset selectedProcessor in handleBrandSelect, handleProductSelect, handleVariantSelect
    const [inputedText, setInputedText] = useState("");
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -494,7 +493,7 @@ const Select = ({ arg }) => {
     setSelectedGraphics("");
     setSelectedStorage("");
     setSelectedMemory("");
-    setSelectedDisplay(""); // Reset selectedDisplay
+    // setSelectedDisplay(""); // Reset selectedDisplay
     setSelectedProductType(""); // Reset selectedProductType for Windows
   };
 
@@ -505,7 +504,7 @@ const Select = ({ arg }) => {
     setSelectedGraphics("");
     setSelectedStorage("");
     setSelectedMemory("");
-    setSelectedDisplay(""); // Reset selectedDisplay
+    // setSelectedDisplay(""); // Reset selectedDisplay
     setSelectedVariant("");
 
   };
@@ -515,7 +514,7 @@ const Select = ({ arg }) => {
     setSelectedProcessor("");
     setSelectedStorage("");
     setSelectedMemory("");
-    setSelectedDisplay(""); // Reset selectedDisplay
+    // setSelectedDisplay(""); // Reset selectedDisplay
     
   };
 
@@ -535,10 +534,10 @@ const Select = ({ arg }) => {
     setSelectedMemory(memory);
   };
 
-  const handleDisplaySelect = (display) => {
-    // New handler for display selection
-    setSelectedDisplay(display);
-  };
+  // const handleDisplaySelect = (display) => {
+  //   // New handler for display selection
+  //   setSelectedDisplay(display);
+  // };
 
 
    const handlePhoneNumberClick = () => {
