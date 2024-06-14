@@ -138,7 +138,7 @@ const Home = ({ setActiveComponent }) => {
           className={
             isSmallScreen
               ? "absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-4 hover:bg-gray-500"
-              : "absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-80 hover:bg-gray-500"
+              : "absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 min-h-full hover:bg-gray-500"
           }
           onClick={handlePrevious}
         >
@@ -161,7 +161,7 @@ const Home = ({ setActiveComponent }) => {
           className={
             isSmallScreen
               ? "absolute right-0  top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-4 hover:bg-gray-500"
-              : "absolute right-0  top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-80 hover:bg-gray-500"
+              : "absolute right-0  top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 min-h-full hover:bg-gray-500"
           }
           onClick={handleNext}
         >

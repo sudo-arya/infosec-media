@@ -232,7 +232,7 @@ const About = ({ setActiveComponent }) => {
           </div>
           <div className="text-white flex items-center justify-center md:pt-5 pt-1">
             <button
-              className="md:w-1/6 pt-3 pb-3 bg-gray-800 flex items-center justify-between px-4 rounded-full allproduct hover:bg-gray-600"
+              className="md:w-48 pt-3 pb-3 bg-gray-800 flex items-center justify-between px-4 rounded-full allproduct hover:bg-gray-600"
               onClick={() => handleNavItemClick("Contact")}
             >
               <div className="flex items-center justify-between w-full">
