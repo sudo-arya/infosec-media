@@ -230,7 +230,7 @@ const About = ({ setActiveComponent }) => {
 
       <div className=" flex item-center justify-center pt-12 pb-4">
         <div class="animated-gradient w-full md:rounded-full rounded-3xl flex-col item-center justify-center">
-          <div className="text-white  flex item-center justify-center pt-8 md:text-4xl text-base text-center">
+          <div className="text-white  flex items-center justify-center pt-8  md:text-4xl text-base text-center">
             We Provide the Best Service in Industry
           </div>
           <div className="text-white flex items-center justify-center md:pt-5 pt-1">

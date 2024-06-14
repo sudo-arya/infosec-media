@@ -203,7 +203,7 @@ let touchStartX = 0;
           Products
         </h1>
         <div className="flex items-center justify-center">
-          <hr className="h-2 w-2/4 border-gray-400 pb-4" />
+          <hr className="h-2 w-2/4 border-gray-400 pb-6" />
         </div>
         {/* Left blur */}
         {/* <div className="absolute inset-y-0 left-0 w- bg-gradient-to-r from-white/80 to-transparent pointer-events-none"></div> */}
@@ -212,7 +212,7 @@ let touchStartX = 0;
 
         {/* Products cards starts */}
         {/*can add icon-grid2 */}
-        <div className="flex space-x-4 overflow-x-auto pb-4 rounded-lg">
+        <div className="flex space-x-4 overflow-x-auto pb-4 pt-4 rounded-lg">
           <div className=" w-52" style={{ backgroundColor: "white" }}>
             {/* Your content goes here */}
             &nbsp; &nbsp;
@@ -545,10 +545,10 @@ let touchStartX = 0;
       </div>
       <div className=" flex item-center justify-center md:pt-6 pt-16 md:mt-20 pb-4">
         <div class="animated-gradient w-full md:rounded-full rounded-3xl flex-col item-center justify-center">
-          <div className="text-white  flex item-center justify-center pt-8 md:text-4xl text-base text-center">
+          <div className="text-white  flex items-center justify-center pt-8 md:text-4xl text-base text-center">
             We Provide the Best Service in Industry
           </div>
-          <div className="text-white flex items-center justify-center md:pt-5 pt-1">
+          <div className="text-white flex items-center justify-center md:pt-5 h-18">
             <button
               className="md:w-48 pt-3 pb-3 bg-gray-800 flex items-center justify-between px-4 rounded-full allproduct hover:bg-gray-600"
               onClick={() => handleNavItemClick("Contact")}
