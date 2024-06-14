@@ -257,7 +257,7 @@ const About = ({ setActiveComponent }) => {
           </div>
         </div>
       </div>
-      <div className=" h-10" style={{ backgroundColor: "white" }}>
+      <div className=" h-6" style={{ backgroundColor: "white" }}>
         {/* Your content goes here */}
         &nbsp; &nbsp;
       </div>
