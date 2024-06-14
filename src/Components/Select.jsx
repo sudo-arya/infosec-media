@@ -359,12 +359,25 @@ const Select = ({ arg }) => {
 
   const handleWhatsAppClick = () => {
     const phoneNumber = `${mobileno}`; // Your WhatsApp number
-    let specifications = `Hello Bhupendra Sir,\nI want to ${arg}\nBrand: ${selectedBrand}`;
+    let specifications = `Hello Bhupendra Sir,\nI want to ${arg}\nCategory: ${selectedBrand}`;
 
     // Append product-specific details based on selectedBrand
     switch (selectedBrand) {
       case "Apple":
-        specifications += `\nModel: ${selectedVariant.model}\nProduct: ${selectedProduct}\nProcessor: ${selectedProcessor}\nStorage: ${selectedStorage}\nMemory: ${selectedMemory}`;
+        if (
+          selectedProduct === "Studio Display" ||
+          selectedProduct === "Pro Display XDR"
+        ) {
+          specifications += `\nProduct: ${selectedProduct}\nSize: ${
+            selectedProduct === "Studio Display" ? "27 inch" : "32 inch"
+          }\nResolution: ${
+            selectedProduct === "Studio Display" ? "5K" : "6K"
+          }\nBrightness: ${
+            selectedProduct === "Studio Display" ? "600 nits" : "1600 nits"
+          }`;
+        }else{
+          specifications += `\nModel: ${selectedVariant.model}\nProduct: ${selectedProduct}\nProcessor: ${selectedProcessor}\nStorage: ${selectedStorage}\nMemory: ${selectedMemory}`;
+        }
         break;
       case "Windows":
         specifications += `\nModel: ${selectedProductType}\nProcessor: ${selectedProcessor}\nStorage: ${selectedStorage}\nMemory: ${selectedMemory}`;
@@ -406,23 +419,39 @@ const Select = ({ arg }) => {
     const recipient = `${emailas}`;
     const subject = encodeURIComponent(`Want to ${arg}`);
     let body = encodeURIComponent(
-      `Hello Bhupendra Sir,\nI want to ${arg}\nBrand: ${selectedBrand}`
+      `Hello Bhupendra Sir,
+      I want to ${arg}
+      Category: ${selectedBrand}\n`
     );
 
     // Append product-specific details based on selectedBrand
     switch (selectedBrand) {
       case "Apple":
-        body += `\nModel: ${selectedVariant.model}\n\nProduct: ${selectedProduct}\n\nProcessor: ${selectedProcessor}\n\nStorage: ${selectedStorage}\n\nMemory: ${selectedMemory}`;
+        if (
+          selectedProduct === "Studio Display" ||
+          selectedProduct === "Pro Display XDR"
+        ) {
+          body += `%0D%0A Product: ${selectedProduct}%0D%0A Size: ${
+            selectedProduct === "Studio Display" ? "27 inch" : "32 inch"
+          }%0D%0A Resolution: ${
+            selectedProduct === "Studio Display" ? "5K" : "6K"
+          }%0D%0A Brightness: ${
+            selectedProduct === "Studio Display" ? "600 nits" : "1600 nits"
+          }`;
+        } else {
+          body += `%0D%0AModel: ${selectedVariant.model}%0D%0A Product: ${selectedProduct}%0D%0A Processor: ${selectedProcessor}%0D%0A Storage: ${selectedStorage}%0D%0A Memory: ${selectedMemory}`;
+        }
+        
         break;
       case "Windows":
-        body += `\n\nModel: ${selectedProductType}\n\nProcessor: ${selectedProcessor}\n\nStorage: ${selectedStorage}\n\nMemory: ${selectedMemory}`;
+        body += `Model: ${selectedProductType}%0D%0A Processor: ${selectedProcessor}%0D%0A Storage: ${selectedStorage}%0D%0A Memory: ${selectedMemory}`;
         break;
       case "Monitors":
-        body += `\n\nFor: ${selectedProductType}\n\nScreen Size: ${selectedProcessor}\n\nResolution: ${selectedGraphics}\n\nPanel: ${selectedStorage}\n\nRefresh Rate: ${selectedMemory}`;
+        body += `For: ${selectedProductType}%0D%0A Screen Size: ${selectedProcessor}%0D%0A Resolution: ${selectedGraphics}%0D%0A Panel: ${selectedStorage}%0D%0A Refresh Rate: ${selectedMemory}`;
         break;
       case "Audio":
       case "Softwares":
-        body += `\nOS: ${selectedProcessor}\n\nOffice Suite: ${selectedGraphics}\n\nAntivirus: ${selectedStorage}\n\nDesign Software: ${selectedMemory}`;
+        body += `OS: ${selectedProcessor}%0D%0A Office Suite: ${selectedGraphics}%0D%0A Antivirus: ${selectedStorage}%0D%0A Design Software: ${selectedMemory}`;
         break;
       default:
         break;
@@ -430,11 +459,12 @@ const Select = ({ arg }) => {
 
     // Add inputedText if arg is Upgrade or Repair
     if (arg === "Upgrade" || arg === "Repair") {
-      body += `Description:\n \nWant to ${arg} -> ${inputedText}\n`;
+      body += `%0D%0A%0D%0A Description:%0D%0A Want to ${arg} -> ${inputedText}`;
     }
 
     window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
   };
+
 
 
   const handleEmail = () => {
@@ -443,7 +473,7 @@ const Select = ({ arg }) => {
     let body = encodeURIComponent(`Hii, Bhupendra Sir\n`);
     // Add inputedText if arg is Upgrade or Repair
     if (arg === "Upgrade" || arg === "Repair") {
-      body += `\nDescription:\n \nWant to ${arg} -> ${inputedText}\n`;
+      body += `%0D%0ADescription:%0D%0A Want to ${arg} -> ${inputedText}%0D%0A`;
     }
     window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
   };
@@ -476,6 +506,8 @@ const Select = ({ arg }) => {
     setSelectedStorage("");
     setSelectedMemory("");
     setSelectedDisplay(""); // Reset selectedDisplay
+    setSelectedVariant("");
+
   };
 
   const handleVariantSelect = (variant) => {
@@ -484,6 +516,7 @@ const Select = ({ arg }) => {
     setSelectedStorage("");
     setSelectedMemory("");
     setSelectedDisplay(""); // Reset selectedDisplay
+    
   };
 
   const handleProcessorSelect = (processor) => {
@@ -532,12 +565,16 @@ const Select = ({ arg }) => {
         Select {arg !== "Buy" && arg !== "Rent" ? <>your</> : <></>} Product to{" "}
         {arg}
       </h1>
-      <hr className="h-2 w-2/4 border-gray-400 pb-2 mb-5" />
+      <hr className="h-2 w-2/4 border-gray-400 pb-2 mb-9" />
       {/* Brand Selection */}
-      <div className="mb-4 flex md:flex-row flex-col">
+      <div
+        className={
+          isSmallScreen ? "mb-4 flex icon-grid" : " mb-4 flex flex-row "
+        }
+      >
         <button
           onClick={() => handleBrandSelect("Apple")}
-          className={`p-4 rounded mx-14 mt-3 transform transition duration-300 hover:scale-125 hover:bg-gray-100 ease-in-out ${
+          className={`rounded md:mx-8 md:mt-3 transform transition duration-300 hover:scale-110 md:hover:scale-125 hover:bg-gray-100 ease-in-out ${
             selectedBrand === "Apple"
               ? "bg-gray-300 hover:bg-gray-300 text-white"
               : "bg-white border"
@@ -549,17 +586,20 @@ const Select = ({ arg }) => {
             id="apple"
             width="160"
             height="76"
+            className="my-4"
           >
             <path d="M97.905 67.885c.174 18.8 16.494 25.057 16.674 25.137-.138.44-2.607 8.916-8.597 17.669-5.178 7.568-10.553 15.108-19.018 15.266-8.318.152-10.993-4.934-20.504-4.934-9.508 0-12.479 4.776-20.354 5.086-8.172.31-14.395-8.185-19.616-15.724-10.668-15.424-18.821-43.585-7.874-62.594 5.438-9.44 15.158-15.417 25.707-15.571 8.024-.153 15.598 5.398 20.503 5.398 4.902 0 14.106-6.676 23.782-5.696 4.051.169 15.421 1.636 22.722 12.324-.587.365-13.566 7.921-13.425 23.639m-15.633-46.166c4.338-5.251 7.258-12.563 6.462-19.836-6.254.251-13.816 4.167-18.301 9.416-4.02 4.647-7.54 12.087-6.591 19.216 6.971.54 14.091-3.542 18.43-8.796"></path>
           </svg>
+          <span className="tooltip-text">Apple Devices</span>
         </button>
         <button
           onClick={() => handleBrandSelect("Windows")}
-          className={`p-2 rounded mx-14 mt-3 transform transition duration-300 hover:scale-125 hover:bg-gray-100 ease-in-out ${
+          className={`rounded md:mx-8 md:mt-3 transform transition duration-300 hover:scale-110 md:hover:scale-125 hover:bg-gray-100 ease-in-out ${
             selectedBrand === "Windows"
               ? "bg-gray-300 hover:bg-gray-300 text-white"
               : "bg-white border"
           }`}
+          title="Windows Devices"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -568,17 +608,19 @@ const Select = ({ arg }) => {
             width="160"
             height="76"
             viewBox="0 0 48 48"
+            className="my-4"
           >
             <path
               fill="#00b0ff"
               d="M20 25.026L5.011 25 5.012 37.744 20 39.818zM22 25.03L22 40.095 42.995 43 43 25.066zM20 8.256L5 10.38 5.014 23 20 23zM22 7.973L22 23 42.995 23 42.995 5z"
             ></path>
           </svg>
+          <span className="tooltip-text">Windows Devices</span>
         </button>
 
         <button
           onClick={() => handleBrandSelect("Monitors")}
-          className={`p-2 rounded mx-14 mt-3 transform transition duration-300 hover:scale-125 hover:bg-gray-100 ease-in-out ${
+          className={`rounded md:mx-8 md:mt-3 transform transition duration-300 hover:scale-110 md:hover:scale-125 hover:bg-gray-100 ease-in-out ${
             selectedBrand === "Monitors"
               ? "bg-gray-300 hover:bg-gray-300 text-white"
               : "bg-white border"
@@ -590,6 +632,7 @@ const Select = ({ arg }) => {
             height="76"
             viewBox="0 0 64 64"
             id="monitor"
+            className="my-4"
           >
             <path
               fill="none"
@@ -601,11 +644,12 @@ const Select = ({ arg }) => {
               d="M60.8 11.2v33.6c0 1-.8 1.8-1.8 1.8H5c-1 0-1.8-.8-1.8-1.8V11.2c0-1 .8-1.8 1.8-1.8h54c1 0 1.8.8 1.8 1.8zM3.2 39.1h57.6M30.2 42.8h3.6M46.4 54.6H17.6h0c0-2 2.4-3.7 5.3-3.7h18.2c2.9 0 5.3 1.7 5.3 3.7h0zM27.1 46.6 25 50.9M39 50.9l-2.1-4.3"
             ></path>
           </svg>
+          <span className="tooltip-text">Monitor</span>
         </button>
 
         <button
           onClick={() => handleBrandSelect("Audio")}
-          className={`p-2 rounded mx-14 mt-3 transform transition duration-300 hover:scale-125 hover:bg-gray-100 ease-in-out ${
+          className={` rounded md:mx-8 md:mt-3 transform transition duration-300 hover:scale-110 md:hover:scale-125 hover:bg-gray-100 ease-in-out ${
             selectedBrand === "Audio"
               ? "bg-gray-300 hover:bg-gray-300 text-white"
               : "bg-white border"
@@ -618,6 +662,7 @@ const Select = ({ arg }) => {
             height="76"
             viewBox="0 0 512 512"
             id="amplifier"
+            className="my-4"
           >
             <path
               d="M471,226c22.056,0,40-17.944,40-40V41c0-22.056-17.944-40-40-40H41C18.944,1,1,18.944,1,41v145c0,22.056,17.944,40,40,40
@@ -644,14 +689,16 @@ const Select = ({ arg }) => {
             <circle cx="83.5" cy="93.5" r="40"></circle>
             <circle cx="428.5" cy="93.5" r="40"></circle>
           </svg>
+          <span className="tooltip-text">Audio Devices</span>
         </button>
         <button
           onClick={() => handleBrandSelect("Softwares")}
-          className={`p-2 rounded mx-14 mt-3 transform transition duration-300 hover:scale-125 hover:bg-gray-100 ease-in-out ${
+          className={`rounded md:mx-8 md:mt-3 transform transition duration-300 hover:scale-110 md:hover:scale-125 hover:bg-gray-100 ease-in-out ${
             selectedBrand === "Softwares"
               ? "bg-gray-300 hover:bg-gray-300 text-white"
               : "bg-white border"
           }`}
+          
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -659,6 +706,7 @@ const Select = ({ arg }) => {
             height="76"
             viewBox="0 0 32 32"
             id="software"
+            className="my-4"
           >
             <path
               fill="#0bf"
@@ -701,6 +749,7 @@ const Select = ({ arg }) => {
               stroke-width="2"
             ></circle>
           </svg>
+          <span className="tooltip-text">Software</span>
         </button>
       </div>
       {/* Product Selection */}
@@ -1367,16 +1416,37 @@ const Select = ({ arg }) => {
           </div>
         </div>
       )}
-      {arg !== "Upgrade" && arg !== "Repair" ? (
+      {arg !== "Upgrade" ? (
         <></>
       ) : (
         <>
           <div className="relative mt-10">
             <div className="text-xl font-semibold mb-3">What to {arg} ??</div>
             <textarea
-              className="border-2 border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500 w-full"
+              className="border-2 border-gray-300 rounded-md px-6 py-2 focus:outline-none focus:border-blue-500 w-full"
               rows="4"
-              placeholder={`Provide description of component to be ${arg} ...`}
+              cols="36"
+              placeholder={`Tell what to ${arg} ...`}
+              value={inputedText}
+              onChange={(e) => setInputedText(e.target.value)}
+            ></textarea>
+            <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+              {/* <!-- You can add an icon or any other element here if needed --> */}
+            </div>
+          </div>
+        </>
+      )}
+      {arg !== "Repair" ? (
+        <></>
+      ) : (
+        <>
+          <div className="relative mt-10">
+            <div className="text-xl font-semibold mb-3">What to {arg} ??</div>
+            <textarea
+              className="border-2 border-gray-300 rounded-md px-6 py-2 focus:outline-none focus:border-blue-500 w-full"
+              rows="4"
+              cols="36"
+              placeholder={`Describe issue/problem to be ${arg} ...`}
               value={inputedText}
               onChange={(e) => setInputedText(e.target.value)}
             ></textarea>
@@ -1414,7 +1484,7 @@ const Select = ({ arg }) => {
         {/* WhatsApp Button */}
         <button
           onClick={handleWhatsApp}
-          className=" mx-12 p-2 mt-6 bg-gray-800 hover:bg-gray-600 allproduct rounded-full text-white"
+          className=" mx-12 p-2 md:mt-6 mt-2 bg-gray-800 hover:bg-gray-600 allproduct rounded-full text-white"
         >
           <div className="flex flex-row items-center px-1 h-full">
             <div className=" font-semibold pl-3">Contact via </div>
@@ -1455,7 +1525,7 @@ const Select = ({ arg }) => {
         {/* Add this button alongside the WhatsApp button */}
         <button
           onClick={handleEmail}
-          className=" mx-12 p-2 mt-6 bg-gray-800 hover:bg-gray-600 allproduct rounded-full text-white"
+          className=" mx-12 p-2 md:mt-6 mt-2 bg-gray-800 hover:bg-gray-600 allproduct rounded-full text-white"
         >
           <div className="flex flex-row items-center py-1 px-1 h-full">
             <div className=" font-semibold pl-3">Contact via </div>

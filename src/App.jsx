@@ -1,5 +1,5 @@
 // app.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Home from "./Components/Home";
 import About from "./Components/About";
@@ -14,6 +14,10 @@ import Footer from "./Components/Footer";
 
 function App() {
   const [activeComponent, setActiveComponent] = useState("Home");
+  // Scroll to top whenever activeComponent changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [activeComponent]);
 
   const renderComponent = () => {
     switch (activeComponent) {

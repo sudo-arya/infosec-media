@@ -178,3 +178,49 @@
   .overflow-x-auto::-webkit-scrollbar-thumb:hover {
     background: #555; 
   }
+
+
+/* Base tooltip styles */
+.tooltip-text {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  font-size: small;
+  border-radius: 6px;
+  padding: 2px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: -10%; /* Position the tooltip above the button */
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Show tooltip on hover */
+button:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Adjust tooltip for small screens */
+@media screen and (max-width: 600px) {
+  .tooltip-text {
+    visibility: visible;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  font-size: small;
+  border-radius: 6px;
+  padding: 2px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: -10%; /* Position the tooltip above the button */
+  left: 50%;
+  margin-left: -60px;
+  opacity: 1;
+  }
+}
