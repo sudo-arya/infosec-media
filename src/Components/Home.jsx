@@ -80,39 +80,50 @@ const Home = ({ setActiveComponent }) => {
 
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsSmallScreen(window.innerWidth <= 600); // Adjust the threshold as per your requirement
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    // Call the handleResize initially to set the initial state
-    handleResize();
-
-    // Cleanup event listener on unmount
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const handlePrevious = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
+useEffect(() => {
+  const handleResize = () => {
+    setIsSmallScreen(window.innerWidth <= 600); // Adjust the threshold as per your requirement
   };
 
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
+  window.addEventListener("resize", handleResize);
+  handleResize();
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      handleNext();
-    }, 3000); // Change image every 3 seconds
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
 
-    return () => clearInterval(interval); // Cleanup interval on component unmount
-  }, []);
+useEffect(() => {
+  const interval = setInterval(() => {
+    handleNext();
+  }, 3000); // Change image every 3 seconds
+
+  return () => clearInterval(interval);
+}, []);
+
+const handlePrevious = () => {
+  setCurrentIndex((prevIndex) =>
+    prevIndex === 0 ? images.length - 1 : prevIndex - 1
+  );
+};
+
+const handleNext = () => {
+  setCurrentIndex((prevIndex) =>
+    prevIndex === images.length - 1 ? 0 : prevIndex + 1
+  );
+};
+
+const handleTouchStart = (e) => {
+  touchStartX = e.touches[0].clientX;
+};
+
+const handleTouchMove = (e) => {
+  if (touchStartX - e.touches[0].clientX > 50) {
+    handleNext(); // Swipe left
+  } else if (touchStartX - e.touches[0].clientX < -50) {
+    handlePrevious(); // Swipe right
+  }
+};
+
+let touchStartX = 0;
 
   return (
     <div className="min-h-screen flex-col justify-center items-center">
@@ -123,6 +134,8 @@ const Home = ({ setActiveComponent }) => {
           <div
             className="whitespace-nowrap transition-transform duration-500 h-full"
             style={{ transform: `translateX(${-currentIndex * 100}%)` }}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
           >
             {images.map((image, index) => (
               <img
