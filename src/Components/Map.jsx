@@ -14,6 +14,9 @@ const Map = () => {
       iconAnchor: [16, 6],
     });
 
+    // Expose handleAddressClick to global scope
+    window.handleAddressClick = handleAddressClick;
+
     // Check if map has already been initialized
     if (!mapRef.current) {
       // Create map
@@ -28,17 +31,37 @@ const Map = () => {
 
       L.marker([28.62191892943327, 77.28403312689852], { icon: customIcon })
         .addTo(mapRef.current)
-        .bindPopup("Infosec Media Solutions")
+        .bindPopup(
+          '<div style="cursor: pointer; color: blue;" onclick="window.handleAddressClick()"><u>Infosec Media Solutions</u></div>'
+        )
         .openPopup();
     }
   }, []); // Only run once, after the initial render
 
+  const handleAddressClick = () => {
+    const address =
+      "C-107, 1st Floor, Pandav Nagar Complex Ganesh Nagar, New Delhi - 110092"; // Replace this with your actual address
+    const encodedAddress = encodeURIComponent(address);
+    window.open(
+      `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`,
+      "_blank"
+    );
+  };
+
   return (
-    <div
-      id="map"
-      style={{ width: "100", height: "400px", marginTop: "5px" }}
-      className="rounded-3xl md:mx-2 mx-6"
-    />
+    <div className="relative">
+      <div
+        id="map"
+        style={{ width: "100%", height: "400px", marginTop: "5px" }}
+        className="rounded-3xl md:mx-2 mx-6"
+      />
+      <div
+        className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-75 text-center p-2 cursor-pointer"
+        onClick={handleAddressClick}
+      >
+        C-107, 1st Floor, Pandav Nagar Complex Ganesh Nagar, New Delhi - 110092
+      </div>
+    </div>
   );
 };
 
