@@ -200,6 +200,7 @@
   background: #555; 
 }
 
+
 /* Animation for container and scrollbar thumb */
 .lets-move {
   display: flex;
@@ -211,6 +212,7 @@
   position: absolute;
   left: 50%; /* Adjust position as needed */
   transform: translateX(-50%);
+  animation: scroll-left-right 30s linear infinite;
   background: #888; /* Same as original thumb color */
 }
 
