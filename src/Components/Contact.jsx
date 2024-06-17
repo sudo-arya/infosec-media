@@ -70,7 +70,8 @@ const Contact = () => {
      window.location.href = "https://x.com/_infosecmedia";
    };
    const handleYoutube = () => {
-     window.location.href = "https://www.youtube.com/";
+     window.location.href =
+       "https://www.youtube.com/channel/UCT7rrtZm0qp-egKuQP2kCrQ";
    };
 
     const [inputValue, setInputValue] = useState("");
