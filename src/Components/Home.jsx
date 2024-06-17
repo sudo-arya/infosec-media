@@ -217,180 +217,181 @@ let touchStartX = 0;
             {/* Your content goes here */}
             &nbsp; &nbsp;
           </div>
+          
+            <button
+              className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
+              onClick={() => handleNavItemClick("Products")}
+            >
+              <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
+                <img
+                  className="w-full h-48 object-cover"
+                  src="https://media.istockphoto.com/id/1478610778/photo/hcmc-vietnam-macbook-pro-14-inches-m2.jpg?s=612x612&w=0&k=20&c=Rl05e5NYO0YS9DuvgeE4AUmjJw-FgD37_mpTCKVyeng="
+                  alt="Product"
+                />
+                <div className="px-6 py-4">
+                  <div className="font-bold text-xl mb-2">Macbook</div>
+                </div>
+                <div className="px-6 pt-1 pb-2">
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                    #tag1
+                  </span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                    #tag2
+                  </span>
+                </div>
+              </div>
+            </button>
 
-          <button
-            className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
-            onClick={() => handleNavItemClick("Products")}
-          >
-            <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
-              <img
-                className="w-full h-48 object-cover"
-                src="https://media.istockphoto.com/id/1478610778/photo/hcmc-vietnam-macbook-pro-14-inches-m2.jpg?s=612x612&w=0&k=20&c=Rl05e5NYO0YS9DuvgeE4AUmjJw-FgD37_mpTCKVyeng="
-                alt="Product"
-              />
-              <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">Macbook</div>
+            {/* Add more cards here */}
+            <button
+              className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
+              onClick={() => handleNavItemClick("Products")}
+            >
+              <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
+                <img
+                  className="w-full h-48 object-cover"
+                  src="https://imgs.search.brave.com/J0GhjQqcfssHBAIdRzup3Bducz5e2FwbvCa8AIXKkKk/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMudW5zcGxhc2gu/Y29tL3Bob3RvLTE1/NjAxMzE5MTQtMmU0/NjlhMGU4NjA3P3E9/ODAmdz0xMDAwJmF1/dG89Zm9ybWF0JmZp/dD1jcm9wJml4bGli/PXJiLTQuMC4zJml4/aWQ9TTN3eE1qQTNm/REI4TUh4elpXRnlZ/Mmg4TWpCOGZHbHRZ/V044Wlc1OE1IeDhN/SHg4ZkRBPQ.jpeg"
+                  alt="Product"
+                />
+                <div className="px-6 py-4">
+                  <div className="font-bold text-xl mb-2">iMac</div>
+                </div>
+                <div className="px-6 pt-1 pb-2">
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                    #tag1
+                  </span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                    #tag2
+                  </span>
+                </div>
               </div>
-              <div className="px-6 pt-1 pb-2">
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  #tag1
-                </span>
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  #tag2
-                </span>
+            </button>
+
+            <button
+              className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
+              onClick={() => handleNavItemClick("Products")}
+            >
+              <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
+                <img
+                  className="w-full h-48 object-cover"
+                  src="https://imgs.search.brave.com/m0-LyFUCWuY_HFOVKWSnfPci_fWdnzLq3cvgwGl1OHY/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMubWFjcnVtb3Jz/LmNvbS90L0stWWhI/LTMybjY2MW5QQ2Nf/WVU4dEVFdjlZQT0v/NDAweDAvYXJ0aWNs/ZS1uZXcvMjAyMy8w/Ni9NYWMtU3R1ZGlv/LURlc2suanBnP2xv/c3N5"
+                  alt="Product"
+                />
+                <div className="px-6 py-4">
+                  <div className="font-bold text-xl mb-2">Mac Studio</div>
+                </div>
+                <div className="px-6 pt-1 pb-2">
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                    #tag1
+                  </span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                    #tag2
+                  </span>
+                </div>
               </div>
+            </button>
+
+            <button
+              className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
+              onClick={() => handleNavItemClick("Products")}
+            >
+              <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
+                <img
+                  className="w-full h-48 object-cover"
+                  src="https://imgs.search.brave.com/-oPqJP5nurt4lK_eKQx2Ia15fGHTVzIyUs7ss4ya_Bw/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9waG90/b3M1LmFwcGxlaW5z/aWRlci5jb20vZ2Fs/bGVyeS8zMzkyMC02/MDM0NS1NYWMtUHJv/LVNJZGUteGwuanBn"
+                  alt="Product"
+                />
+                <div className="px-6 py-4">
+                  <div className="font-bold text-xl mb-2">Mac Pro</div>
+                </div>
+                <div className="px-6 pt-1 pb-2">
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                    #tag1
+                  </span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                    #tag2
+                  </span>
+                </div>
+              </div>
+            </button>
+
+            <button
+              className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
+              onClick={() => handleNavItemClick("Products")}
+            >
+              <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
+                <img
+                  className="w-full h-48 object-cover"
+                  src="https://media.istockphoto.com/id/1314343964/photo/top-end-system-unit-for-gaming-computer-close-up.jpg?s=612x612&w=0&k=20&c=d_xKRis8Ccy90gbqCjScpuAEVOvpQN0kdnBxA_H9zRs="
+                  alt="Product"
+                />
+                <div className="px-6 py-4">
+                  <div className="font-bold text-xl mb-2">PC & Workstation</div>
+                </div>
+                <div className="px-6 pt-1 pb-2">
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                    #tag1
+                  </span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                    #tag2
+                  </span>
+                </div>
+              </div>
+            </button>
+
+            <button
+              className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
+              onClick={() => handleNavItemClick("Products")}
+            >
+              <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
+                <img
+                  className="w-full h-48 object-cover"
+                  src="https://imgs.search.brave.com/ftc60KrdgBbri3SGYTLIrS7LlX6-jZCVRhRO78H5SWQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzFmL2E0/Lzk2LzFmYTQ5NjBk/YjVmY2NkMmE4NTEw/N2NmMjI5ZWM2MzQ3/LmpwZw"
+                  alt="Product"
+                />
+                <div className="px-6 py-4">
+                  <div className="font-bold text-xl mb-2">Audio Studio</div>
+                </div>
+                <div className="px-6 pt-1 pb-2">
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                    #tag1
+                  </span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                    #tag2
+                  </span>
+                </div>
+              </div>
+            </button>
+
+            <button
+              className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
+              onClick={() => handleNavItemClick("Products")}
+            >
+              <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
+                <img
+                  className="w-full h-48 object-cover"
+                  src="https://imgs.search.brave.com/A1rY5MKad083fQ0sbTbiopzDszLWqoBqw_as48gjk_A/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jbXMt/YXNzZXRzLnR1dHNw/bHVzLmNvbS9jZG4t/Y2dpL2ltYWdlL3dp/ZHRoPTg1MC91cGxv/YWRzL3VzZXJzLzE4/MDkvcG9zdHMvMzA4/MzUvaW1hZ2UtdXBs/b2FkL21vZGVybl93/b3Jrc3RhdGlvbl93/aXRoX2xhcHRvcF9h/bmRfZmxvd2Vycy5q/cGc"
+                  alt="Product"
+                />
+                <div className="px-6 py-4">
+                  <div className="font-bold text-xl mb-2">Softwares</div>
+                </div>
+                <div className="px-6 pt-1 pb-2">
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                    #tag1
+                  </span>
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                    #tag2
+                  </span>
+                </div>
+              </div>
+            </button>
+
+            <div className=" w-52" style={{ backgroundColor: "white" }}>
+              {/* Your content goes here */}
+              &nbsp; &nbsp;
             </div>
-          </button>
-
-          {/* Add more cards here */}
-          <button
-            className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
-            onClick={() => handleNavItemClick("Products")}
-          >
-            <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
-              <img
-                className="w-full h-48 object-cover"
-                src="https://imgs.search.brave.com/J0GhjQqcfssHBAIdRzup3Bducz5e2FwbvCa8AIXKkKk/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMudW5zcGxhc2gu/Y29tL3Bob3RvLTE1/NjAxMzE5MTQtMmU0/NjlhMGU4NjA3P3E9/ODAmdz0xMDAwJmF1/dG89Zm9ybWF0JmZp/dD1jcm9wJml4bGli/PXJiLTQuMC4zJml4/aWQ9TTN3eE1qQTNm/REI4TUh4elpXRnlZ/Mmg4TWpCOGZHbHRZ/V044Wlc1OE1IeDhN/SHg4ZkRBPQ.jpeg"
-                alt="Product"
-              />
-              <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">iMac</div>
-              </div>
-              <div className="px-6 pt-1 pb-2">
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  #tag1
-                </span>
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  #tag2
-                </span>
-              </div>
-            </div>
-          </button>
-
-          <button
-            className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
-            onClick={() => handleNavItemClick("Products")}
-          >
-            <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
-              <img
-                className="w-full h-48 object-cover"
-                src="https://imgs.search.brave.com/m0-LyFUCWuY_HFOVKWSnfPci_fWdnzLq3cvgwGl1OHY/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMubWFjcnVtb3Jz/LmNvbS90L0stWWhI/LTMybjY2MW5QQ2Nf/WVU4dEVFdjlZQT0v/NDAweDAvYXJ0aWNs/ZS1uZXcvMjAyMy8w/Ni9NYWMtU3R1ZGlv/LURlc2suanBnP2xv/c3N5"
-                alt="Product"
-              />
-              <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">Mac Studio</div>
-              </div>
-              <div className="px-6 pt-1 pb-2">
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  #tag1
-                </span>
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  #tag2
-                </span>
-              </div>
-            </div>
-          </button>
-
-          <button
-            className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
-            onClick={() => handleNavItemClick("Products")}
-          >
-            <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
-              <img
-                className="w-full h-48 object-cover"
-                src="https://imgs.search.brave.com/-oPqJP5nurt4lK_eKQx2Ia15fGHTVzIyUs7ss4ya_Bw/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9waG90/b3M1LmFwcGxlaW5z/aWRlci5jb20vZ2Fs/bGVyeS8zMzkyMC02/MDM0NS1NYWMtUHJv/LVNJZGUteGwuanBn"
-                alt="Product"
-              />
-              <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">Mac Pro</div>
-              </div>
-              <div className="px-6 pt-1 pb-2">
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  #tag1
-                </span>
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  #tag2
-                </span>
-              </div>
-            </div>
-          </button>
-
-          <button
-            className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
-            onClick={() => handleNavItemClick("Products")}
-          >
-            <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
-              <img
-                className="w-full h-48 object-cover"
-                src="https://media.istockphoto.com/id/1314343964/photo/top-end-system-unit-for-gaming-computer-close-up.jpg?s=612x612&w=0&k=20&c=d_xKRis8Ccy90gbqCjScpuAEVOvpQN0kdnBxA_H9zRs="
-                alt="Product"
-              />
-              <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">PC & Workstation</div>
-              </div>
-              <div className="px-6 pt-1 pb-2">
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  #tag1
-                </span>
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  #tag2
-                </span>
-              </div>
-            </div>
-          </button>
-
-          <button
-            className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
-            onClick={() => handleNavItemClick("Products")}
-          >
-            <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
-              <img
-                className="w-full h-48 object-cover"
-                src="https://imgs.search.brave.com/ftc60KrdgBbri3SGYTLIrS7LlX6-jZCVRhRO78H5SWQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzFmL2E0/Lzk2LzFmYTQ5NjBk/YjVmY2NkMmE4NTEw/N2NmMjI5ZWM2MzQ3/LmpwZw"
-                alt="Product"
-              />
-              <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">Audio Studio</div>
-              </div>
-              <div className="px-6 pt-1 pb-2">
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  #tag1
-                </span>
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  #tag2
-                </span>
-              </div>
-            </div>
-          </button>
-
-          <button
-            className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
-            onClick={() => handleNavItemClick("Products")}
-          >
-            <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
-              <img
-                className="w-full h-48 object-cover"
-                src="https://imgs.search.brave.com/A1rY5MKad083fQ0sbTbiopzDszLWqoBqw_as48gjk_A/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jbXMt/YXNzZXRzLnR1dHNw/bHVzLmNvbS9jZG4t/Y2dpL2ltYWdlL3dp/ZHRoPTg1MC91cGxv/YWRzL3VzZXJzLzE4/MDkvcG9zdHMvMzA4/MzUvaW1hZ2UtdXBs/b2FkL21vZGVybl93/b3Jrc3RhdGlvbl93/aXRoX2xhcHRvcF9h/bmRfZmxvd2Vycy5q/cGc"
-                alt="Product"
-              />
-              <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">Softwares</div>
-              </div>
-              <div className="px-6 pt-1 pb-2">
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  #tag1
-                </span>
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  #tag2
-                </span>
-              </div>
-            </div>
-          </button>
-
-          <div className=" w-52" style={{ backgroundColor: "white" }}>
-            {/* Your content goes here */}
-            &nbsp; &nbsp;
-          </div>
+          {/* here  */}
           {/* Right blur */}
           {/* <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-white/70 to-transparent pointer-events-none"></div> */}
         </div>

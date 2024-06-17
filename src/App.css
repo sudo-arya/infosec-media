@@ -165,38 +165,59 @@
   }
 }
 
-/* Custom scrollbar */
-  .overflow-x-auto::-webkit-scrollbar {
-    height: 8px; /* Adjust the height of the scrollbar */
-  }
-  .overflow-x-auto::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-  }
-  .overflow-x-auto::-webkit-scrollbar-thumb {
-    background: #888; 
-  }
-  .overflow-x-auto::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-  }
 
-  @keyframes scroll-left-right {
+  /* @keyframes scroll-left-right {
   0% {
     transform: translateX(0);
   }
   50% {
-    transform: translateX(calc(+5% + -40vw));
+    transform: translateX(calc(+5% + -34vw));
   }
   100% {
     transform: translateX(0);
   }
+} */
+
+/* Custom scrollbar */
+.overflow-x-auto {
+  overflow-x: auto; /* Ensure horizontal scrolling is enabled */
+  white-space: nowrap; /* Prevent wrapping of content */
 }
 
+.overflow-x-auto::-webkit-scrollbar {
+  height: 8px; /* Adjust the height of the scrollbar */
+}
 
+.overflow-x-auto::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+/* Animation for container and scrollbar thumb */
 .lets-move {
   display: flex;
   animation: scroll-left-right 30s linear infinite;
 }
 
+/* Adjust thumb position based on animation */
+.lets-move::-webkit-scrollbar-thumb {
+  position: absolute;
+  left: 50%; /* Adjust position as needed */
+  transform: translateX(-50%);
+  background: #888; /* Same as original thumb color */
+}
+
+/* Hover effect on thumb */
+.lets-move::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
 
 /* Base tooltip styles */
 .tooltip-text {
