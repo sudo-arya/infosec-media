@@ -219,7 +219,7 @@ let touchStartX = 0;
           </div>
 
           <button
-            className="transition duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
+            className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
             onClick={() => handleNavItemClick("Products")}
           >
             <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
@@ -244,7 +244,7 @@ let touchStartX = 0;
 
           {/* Add more cards here */}
           <button
-            className="transition duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
+            className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
             onClick={() => handleNavItemClick("Products")}
           >
             <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
@@ -268,7 +268,7 @@ let touchStartX = 0;
           </button>
 
           <button
-            className="transition duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
+            className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
             onClick={() => handleNavItemClick("Products")}
           >
             <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
@@ -292,7 +292,7 @@ let touchStartX = 0;
           </button>
 
           <button
-            className="transition duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
+            className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
             onClick={() => handleNavItemClick("Products")}
           >
             <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
@@ -316,7 +316,7 @@ let touchStartX = 0;
           </button>
 
           <button
-            className="transition duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
+            className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
             onClick={() => handleNavItemClick("Products")}
           >
             <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
@@ -340,7 +340,7 @@ let touchStartX = 0;
           </button>
 
           <button
-            className="transition duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
+            className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
             onClick={() => handleNavItemClick("Products")}
           >
             <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
@@ -364,7 +364,7 @@ let touchStartX = 0;
           </button>
 
           <button
-            className="transition duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
+            className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
             onClick={() => handleNavItemClick("Products")}
           >
             <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">

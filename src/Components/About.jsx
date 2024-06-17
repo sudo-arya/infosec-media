@@ -41,7 +41,7 @@ const About = ({ setActiveComponent }) => {
               alt="Our Story"
             />
           </div>
-          <div className="pl-14 p-6 md:w-3/4  ">
+          <div className="md:pl-14 p-6 md:w-3/4  ">
             <h1 className="text-3xl font-semibold text-center text-gray-800 mt-16 mb-2">
               Our Story
             </h1>
