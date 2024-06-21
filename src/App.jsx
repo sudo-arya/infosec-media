@@ -26,17 +26,17 @@ function App() {
       case "About":
         return <About setActiveComponent={setActiveComponent} />;
       case "Services":
-        return <Services />;
+        return <Services setActiveComponent={setActiveComponent} />;
       case "Repair":
-        return <Repair />;
+        return <Repair setActiveComponent={setActiveComponent} />;
       case "Select":
         return <Select setActiveComponent={setActiveComponent} />;
       case "Rental":
-        return <Rental />;
+        return <Rental setActiveComponent={setActiveComponent} />;
       case "Products":
-        return <Products />;
+        return <Products setActiveComponent={setActiveComponent} />;
       case "Contact":
-        return <Contact />;
+        return <Contact setActiveComponent={setActiveComponent} />;
       // Add cases for other components if needed
       default:
         return null;
@@ -44,11 +44,17 @@ function App() {
   };
 
   return (
-    <div>
-      <Navbar setActiveComponent={setActiveComponent} />
-      <div className="container mx-auto p-4">{renderComponent()}</div>
+    <div className="cs-5">
+      <Navbar
+        activeComponent={activeComponent}
+        setActiveComponent={setActiveComponent}
+      />
+      <div className="container mx-auto p-4 mt-0">{renderComponent()}</div>
       {/* {removed mx-auto p-4} */}
-      <Footer />
+      <Footer
+        activeComponent={activeComponent}
+        setActiveComponent={setActiveComponent}
+      />
     </div>
   );
 }

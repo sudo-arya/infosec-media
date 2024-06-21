@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "react-whatsapp-widget/dist/index.css";
 
-
 const productsData = {
   Apple: [
     {
@@ -134,7 +133,6 @@ const productsData = {
   Windows: [
     // Add other brands' products here...
   ],
-  
 };
 
 // Define the product data for Windows
@@ -236,14 +234,7 @@ const additionalData = {
       "5K",
       "8K",
     ],
-    panelTypeOptions: [
-      "Dont Know Much",
-      "TN",
-      "IPS",
-      "VA",
-      "OLED",
-      "QLED",
-    ],
+    panelTypeOptions: ["Dont Know Much", "TN", "IPS", "VA", "OLED", "QLED"],
     refreshRateOptions: [
       "Dont Know Much",
       "60Hz",
@@ -335,26 +326,24 @@ const Select = ({ arg }) => {
   const [selectedProcessor, setSelectedProcessor] = useState("");
   // const [selectedDisplay, setSelectedDisplay] = useState(""); // New state for selected display
   // Reset selectedProcessor in handleBrandSelect, handleProductSelect, handleVariantSelect
-   const [inputedText, setInputedText] = useState("");
+  const [inputedText, setInputedText] = useState("");
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   let mobileno = 9718627660;
   let emailas = "sales@infosecmediasolutions.com";
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 768); // Adjust the threshold as per your requirement
+    };
 
+    window.addEventListener("resize", handleResize);
 
-      useEffect(() => {
-        const handleResize = () => {
-          setIsSmallScreen(window.innerWidth <= 768); // Adjust the threshold as per your requirement
-        };
+    // Call the handleResize initially to set the initial state
+    handleResize();
 
-        window.addEventListener("resize", handleResize);
-
-        // Call the handleResize initially to set the initial state
-        handleResize();
-
-        // Cleanup event listener on unmount
-        return () => window.removeEventListener("resize", handleResize);
-      }, []);
+    // Cleanup event listener on unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleWhatsAppClick = () => {
     const phoneNumber = `${mobileno}`; // Your WhatsApp number
@@ -374,7 +363,7 @@ const Select = ({ arg }) => {
           }\nBrightness: ${
             selectedProduct === "Studio Display" ? "600 nits" : "1600 nits"
           }`;
-        }else{
+        } else {
           specifications += `\nModel: ${selectedVariant.model}\nProduct: ${selectedProduct}\nProcessor: ${selectedProcessor}\nStorage: ${selectedStorage}\nMemory: ${selectedMemory}`;
         }
         break;
@@ -440,7 +429,7 @@ const Select = ({ arg }) => {
         } else {
           body += `%0D%0AModel: ${selectedVariant.model}%0D%0A Product: ${selectedProduct}%0D%0A Processor: ${selectedProcessor}%0D%0A Storage: ${selectedStorage}%0D%0A Memory: ${selectedMemory}`;
         }
-        
+
         break;
       case "Windows":
         body += `Model: ${selectedProductType}%0D%0A Processor: ${selectedProcessor}%0D%0A Storage: ${selectedStorage}%0D%0A Memory: ${selectedMemory}`;
@@ -463,8 +452,6 @@ const Select = ({ arg }) => {
 
     window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
   };
-
-
 
   const handleEmail = () => {
     const recipient = `${emailas}`;
@@ -506,7 +493,6 @@ const Select = ({ arg }) => {
     setSelectedMemory("");
     // setSelectedDisplay(""); // Reset selectedDisplay
     setSelectedVariant("");
-
   };
 
   const handleVariantSelect = (variant) => {
@@ -515,7 +501,6 @@ const Select = ({ arg }) => {
     setSelectedStorage("");
     setSelectedMemory("");
     // setSelectedDisplay(""); // Reset selectedDisplay
-    
   };
 
   const handleProcessorSelect = (processor) => {
@@ -539,41 +524,41 @@ const Select = ({ arg }) => {
   //   setSelectedDisplay(display);
   // };
 
-
-   const handlePhoneNumberClick = () => {
-     const phoneNumber = "9718627660"; // Replace this with your actual phone number
-     if (isSmallScreen) {
-       // Redirect to dialer on small screens
-       window.location.href = `tel:${phoneNumber}`;
-     } else {
-       // Copy to clipboard on large screens
-       navigator.clipboard
-         .writeText(phoneNumber)
-         .then(() => {
-           alert("Phone number copied to clipboard");
-         })
-         .catch(() => {
-           alert("Failed to copy phone number");
-         });
-     }
-   };
+  const handlePhoneNumberClick = () => {
+    const phoneNumber = "9718627660"; // Replace this with your actual phone number
+    if (isSmallScreen) {
+      // Redirect to dialer on small screens
+      window.location.href = `tel:${phoneNumber}`;
+    } else {
+      // Copy to clipboard on large screens
+      navigator.clipboard
+        .writeText(phoneNumber)
+        .then(() => {
+          alert("Phone number copied to clipboard");
+        })
+        .catch(() => {
+          alert("Failed to copy phone number");
+        });
+    }
+  };
 
   return (
     <div className="h-auto flex flex-col items-center p-4">
-      <h1 className="text-2xl font-semibold text-center text-gray-800 mt-16 mb-4">
+      <h1 className="text-2xl font-semibold text-center text-cs3 mt-16 mb-4">
         Select {arg !== "Buy" && arg !== "Rent" ? <>your</> : <></>} Product to{" "}
         {arg}
       </h1>
-      <hr className="h-2 w-2/4 border-gray-400 pb-2 mb-9" />
+      <hr className="h-2 w-2/4 border-cs1 pb-2 mb-9" />
       {/* Brand Selection */}
       <div
         className={
-          isSmallScreen ? "mb-4 flex icon-grid" : " mb-4 flex flex-row "
+          isSmallScreen ? "mb-16 flex icon-grid" : " mb-14 flex flex-row "
         }
       >
         <button
+          id="apple"
           onClick={() => handleBrandSelect("Apple")}
-          className={`rounded md:mx-8 md:mt-3 transform transition duration-300 hover:scale-110 md:hover:scale-125 hover:bg-gray-100 ease-in-out ${
+          className={`rounded md:mx-8 md:mt-3 transform transition duration-300 hover:scale-110 md:hover:scale-125 selecter  hover:bg-cs1 ease-in-out ${
             selectedBrand === "Apple"
               ? "bg-gray-300 hover:bg-gray-300 text-white"
               : "bg-white border"
@@ -582,18 +567,19 @@ const Select = ({ arg }) => {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 128 128"
-            id="apple"
             width="160"
             height="76"
             className="my-4"
+            // style={{ fill: "#1B263B" }}
           >
             <path d="M97.905 67.885c.174 18.8 16.494 25.057 16.674 25.137-.138.44-2.607 8.916-8.597 17.669-5.178 7.568-10.553 15.108-19.018 15.266-8.318.152-10.993-4.934-20.504-4.934-9.508 0-12.479 4.776-20.354 5.086-8.172.31-14.395-8.185-19.616-15.724-10.668-15.424-18.821-43.585-7.874-62.594 5.438-9.44 15.158-15.417 25.707-15.571 8.024-.153 15.598 5.398 20.503 5.398 4.902 0 14.106-6.676 23.782-5.696 4.051.169 15.421 1.636 22.722 12.324-.587.365-13.566 7.921-13.425 23.639m-15.633-46.166c4.338-5.251 7.258-12.563 6.462-19.836-6.254.251-13.816 4.167-18.301 9.416-4.02 4.647-7.54 12.087-6.591 19.216 6.971.54 14.091-3.542 18.43-8.796"></path>
           </svg>
           <span className="tooltip-text">Apple Devices</span>
         </button>
         <button
+          id="windows"
           onClick={() => handleBrandSelect("Windows")}
-          className={`rounded md:mx-8 md:mt-3 transform transition duration-300 hover:scale-110 md:hover:scale-125 hover:bg-gray-100 ease-in-out ${
+          className={`rounded md:mx-8 md:mt-3 transform transition duration-300 hover:scale-110 md:hover:scale-125 hover:bg-cs1 ease-in-out ${
             selectedBrand === "Windows"
               ? "bg-gray-300 hover:bg-gray-300 text-white"
               : "bg-white border"
@@ -608,9 +594,11 @@ const Select = ({ arg }) => {
             height="76"
             viewBox="0 0 48 48"
             className="my-4"
+            // style={{ fill: "#1B263B" }}
           >
             <path
-              fill="#00b0ff"
+              // fill="#1B263B"
+              // fill="#00b0ff"
               d="M20 25.026L5.011 25 5.012 37.744 20 39.818zM22 25.03L22 40.095 42.995 43 43 25.066zM20 8.256L5 10.38 5.014 23 20 23zM22 7.973L22 23 42.995 23 42.995 5z"
             ></path>
           </svg>
@@ -618,8 +606,9 @@ const Select = ({ arg }) => {
         </button>
 
         <button
+          id="monitor"
           onClick={() => handleBrandSelect("Monitors")}
-          className={`rounded md:mx-8 md:mt-3 transform transition duration-300 hover:scale-110 md:hover:scale-125 hover:bg-gray-100 ease-in-out ${
+          className={`rounded md:mx-8 md:mt-3 transform transition duration-300 hover:scale-110 md:hover:scale-125 hover:bg-cs1 ease-in-out ${
             selectedBrand === "Monitors"
               ? "bg-gray-300 hover:bg-gray-300 text-white"
               : "bg-white border"
@@ -630,16 +619,15 @@ const Select = ({ arg }) => {
             width="160"
             height="76"
             viewBox="0 0 64 64"
-            id="monitor"
             className="my-4"
           >
             <path
               fill="none"
-              stroke="#000"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-miterlimit="10"
-              stroke-width="2"
+              // stroke="#ffffff"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeMiterlimit="10"
+              strokeWidth="2"
               d="M60.8 11.2v33.6c0 1-.8 1.8-1.8 1.8H5c-1 0-1.8-.8-1.8-1.8V11.2c0-1 .8-1.8 1.8-1.8h54c1 0 1.8.8 1.8 1.8zM3.2 39.1h57.6M30.2 42.8h3.6M46.4 54.6H17.6h0c0-2 2.4-3.7 5.3-3.7h18.2c2.9 0 5.3 1.7 5.3 3.7h0zM27.1 46.6 25 50.9M39 50.9l-2.1-4.3"
             ></path>
           </svg>
@@ -647,8 +635,9 @@ const Select = ({ arg }) => {
         </button>
 
         <button
+          id="audio"
           onClick={() => handleBrandSelect("Audio")}
-          className={` rounded md:mx-8 md:mt-3 transform transition duration-300 hover:scale-110 md:hover:scale-125 hover:bg-gray-100 ease-in-out ${
+          className={` rounded md:mx-8 md:mt-3 transform transition duration-300 hover:scale-110 md:hover:scale-125 hover:bg-cs1 ease-in-out ${
             selectedBrand === "Audio"
               ? "bg-gray-300 hover:bg-gray-300 text-white"
               : "bg-white border"
@@ -656,11 +645,10 @@ const Select = ({ arg }) => {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            enable-background="new 0 0 512 512"
+            enableBackground="new 0 0 512 512"
             width="160"
             height="76"
             viewBox="0 0 512 512"
-            id="amplifier"
             className="my-4"
           >
             <path
@@ -691,20 +679,19 @@ const Select = ({ arg }) => {
           <span className="tooltip-text">Audio Devices</span>
         </button>
         <button
+          id="software"
           onClick={() => handleBrandSelect("Softwares")}
-          className={`rounded md:mx-8 md:mt-3 transform transition duration-300 hover:scale-110 md:hover:scale-125 hover:bg-gray-100 ease-in-out ${
+          className={`rounded md:mx-8 md:mt-3 transform transition duration-300 hover:scale-110 md:hover:scale-125 hover:bg-cs1 ease-in-out ${
             selectedBrand === "Softwares"
               ? "bg-gray-300 hover:bg-gray-300 text-white"
               : "bg-white border"
           }`}
-          
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="160"
             height="76"
             viewBox="0 0 32 32"
-            id="software"
             className="my-4"
           >
             <path
@@ -716,25 +703,25 @@ const Select = ({ arg }) => {
               cy="21"
               r="10"
               fill="none"
-              stroke="#000"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              // stroke="#000"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
             ></circle>
             <polyline
               fill="none"
-              stroke="#000"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              // stroke="#000"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               points="6 1 23 5 23 8"
             ></polyline>
             <polyline
               fill="none"
-              stroke="#000"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              // stroke="#000"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               points="14 29 6 31 1 29 1 2 6 1 6 31"
             ></polyline>
             <circle
@@ -742,26 +729,27 @@ const Select = ({ arg }) => {
               cy="21"
               r="3"
               fill="none"
-              stroke="#000"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              // stroke="#000"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
             ></circle>
           </svg>
           <span className="tooltip-text">Software</span>
         </button>
       </div>
+
       {/* Product Selection */}
       {selectedBrand === "Apple" && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4 ">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4 ">
           {productsData[selectedBrand].map((product) => (
             <div
               key={product.name}
               onClick={() => handleProductSelect(product.name)}
-              className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out  ${
+              className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-cs1  hover:text-white ease-in-out  ${
                 selectedProduct === product.name
-                  ? "bg-blue-100 hover:bg-blue-100 "
-                  : "bg-white"
+                  ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
+                  : "bg-white border"
               }`}
             >
               {product.name}
@@ -772,23 +760,25 @@ const Select = ({ arg }) => {
       {/* Product Type Selection for windows*/}
       {selectedBrand === "Windows" && (
         <div className="mb-4">
-          <h3 className="text-lg font-semibold mb-2">Select Product Type:</h3>
+          <h3 className="text-lg font-semibold mb-2 text-cs3">
+            Select Product Type :-
+          </h3>
           <div className="flex ">
             <button
               onClick={() => handleProductTypeSelect("Desktop")}
-              className={`p-3 m-10 text-xl rounded transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+              className={`p-3 m-10 text-xl rounded transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out ${
                 selectedProductType === "Desktop"
-                  ? "bg-blue-100 hover:bg-blue-100 text-black"
-                  : "bg-white border"
+                  ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
+                  : "bg-white border "
               }`}
             >
               Desktop
             </button>
             <button
               onClick={() => handleProductTypeSelect("Laptop")}
-              className={`ml-2 p-3 m-10 text-xl rounded transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+              className={`ml-2 p-3 m-10 text-xl rounded transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out ${
                 selectedProductType === "Laptop"
-                  ? "bg-blue-100 text-black hover:bg-blue-100"
+                  ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
                   : "bg-white border"
               }`}
             >
@@ -800,13 +790,15 @@ const Select = ({ arg }) => {
       {/* // Product Type Selection for monitors*/}
       {selectedBrand === "Monitors" && (
         <div className="mb-4">
-          <h3 className="text-lg font-semibold mb-2">Select Your Needs:</h3>
+          <h3 className="text-lg font-semibold mb-2 text-cs3">
+            Select Your Needs:
+          </h3>
           <div className="flex ">
             <button
               onClick={() => handleProductTypeSelect("Editing")}
-              className={`p-3 m-10 text-xl rounded transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+              className={`p-3 m-10 text-xl rounded transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out ${
                 selectedProductType === "Editing"
-                  ? "bg-blue-100 hover:bg-blue-100 text-black"
+                  ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
                   : "bg-white border"
               }`}
             >
@@ -814,9 +806,9 @@ const Select = ({ arg }) => {
             </button>
             <button
               onClick={() => handleProductTypeSelect("Gaming")}
-              className={`ml-2 p-3 m-10 text-xl rounded transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+              className={`ml-2 p-3 m-10 text-xl rounded transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out ${
                 selectedProductType === "Gaming"
-                  ? "bg-blue-100 text-black hover:bg-blue-100"
+                  ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
                   : "bg-white border"
               }`}
             >
@@ -828,9 +820,13 @@ const Select = ({ arg }) => {
       {(selectedProductType === "Gaming" ||
         selectedProductType === "Editing") && (
         <div className="mt-4">
-          <h2 className="text-xl font-bold mb-2">Select Specifications:</h2>
+          <h2 className="text-xl font-bold mb-2 text-cs3">
+            Select Specifications:
+          </h2>
           <div className="mb-4">
-            <h3 className="text-lg font-semibold mb-2">Select Screen Size :</h3>
+            <h3 className="text-lg font-semibold mb-2 text-cs3">
+              Select Screen Size :
+            </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
               {/* {windowsData[selectedProductType].processorOptions.map( */}
               {additionalData[selectedBrand].screenSizeOptions.map(
@@ -838,10 +834,10 @@ const Select = ({ arg }) => {
                   <div
                     key={index}
                     onClick={() => handleProcessorSelect(screenSize)}
-                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out ${
                       selectedProcessor === screenSize
-                        ? "bg-blue-100 hover:bg-blue-100"
-                        : "bg-white"
+                        ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
+                        : "bg-white border"
                     }`}
                   >
                     {screenSize}
@@ -852,7 +848,9 @@ const Select = ({ arg }) => {
           </div>
 
           <div className="mb-4">
-            <h3 className="text-lg font-semibold mb-2">Select Resolution:</h3>
+            <h3 className="text-lg font-semibold mb-2 text-cs3">
+              Select Resolution:
+            </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
               {/* {windowsData[selectedProductType].processorOptions.map( */}
               {additionalData[selectedBrand].resolutionOptions.map(
@@ -860,10 +858,10 @@ const Select = ({ arg }) => {
                   <div
                     key={index}
                     onClick={() => handleGraphicsSelect(res)}
-                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out ${
                       selectedGraphics === res
-                        ? "bg-blue-100 hover:bg-blue-100"
-                        : "bg-white"
+                        ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
+                        : "bg-white border"
                     }`}
                   >
                     {res}
@@ -873,7 +871,9 @@ const Select = ({ arg }) => {
             </div>
           </div>
           <div className="mb-4">
-            <h3 className="text-lg font-semibold mb-2">Select Panel Type:</h3>
+            <h3 className="text-lg font-semibold mb-2 text-cs3">
+              Select Panel Type:
+            </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
               {/* {windowsData[selectedProductType].processorOptions.map( */}
               {additionalData[selectedBrand].panelTypeOptions.map(
@@ -881,10 +881,10 @@ const Select = ({ arg }) => {
                   <div
                     key={index}
                     onClick={() => handleStorageSelect(panel)}
-                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out ${
                       selectedStorage === panel
-                        ? "bg-blue-100 hover:bg-blue-100"
-                        : "bg-white"
+                        ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
+                        : "bg-white border"
                     }`}
                   >
                     {panel}
@@ -894,7 +894,9 @@ const Select = ({ arg }) => {
             </div>
           </div>
           <div className="mb-4">
-            <h3 className="text-lg font-semibold mb-2">Select Refresh Rate:</h3>
+            <h3 className="text-lg font-semibold mb-2 text-cs3">
+              Select Refresh Rate:
+            </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
               {/* {windowsData[selectedProductType].processorOptions.map( */}
               {additionalData[selectedBrand].refreshRateOptions.map(
@@ -902,10 +904,10 @@ const Select = ({ arg }) => {
                   <div
                     key={index}
                     onClick={() => handleMemorySelect(rr)}
-                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out ${
                       selectedMemory === rr
-                        ? "bg-blue-100 hover:bg-blue-100"
-                        : "bg-white"
+                        ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
+                        : "bg-white border"
                     }`}
                   >
                     {rr}
@@ -919,9 +921,11 @@ const Select = ({ arg }) => {
       {selectedBrand === "Audio" && <div>hello</div>}
       {selectedBrand === "Softwares" && (
         <div className="mt-4">
-          <h2 className="text-xl font-bold mb-2">Select Softwares</h2>
+          <h2 className="text-xl font-bold mb-2 text-cs3">
+            Select Software :-
+          </h2>
           <div className="mb-4">
-            <h3 className="text-lg font-semibold mb-2">
+            <h3 className="text-lg font-semibold mb-2  text-cs3">
               Select Operating System :
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
@@ -931,10 +935,10 @@ const Select = ({ arg }) => {
                   <div
                     key={index}
                     onClick={() => handleProcessorSelect(os)}
-                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out ${
                       selectedProcessor === os
-                        ? "bg-blue-100 hover:bg-blue-100"
-                        : "bg-white"
+                        ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
+                        : "bg-white border"
                     }`}
                   >
                     {os}
@@ -945,7 +949,9 @@ const Select = ({ arg }) => {
           </div>
 
           <div className="mb-4">
-            <h3 className="text-lg font-semibold mb-2">Select OfficeSuite:</h3>
+            <h3 className="text-lg font-semibold mb-2 text-cs3">
+              Select OfficeSuite:
+            </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
               {/* {windowsData[selectedProductType].processorOptions.map( */}
               {additionalData[selectedBrand].officeSuiteOptions.map(
@@ -953,10 +959,10 @@ const Select = ({ arg }) => {
                   <div
                     key={index}
                     onClick={() => handleGraphicsSelect(office)}
-                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out ${
                       selectedGraphics === office
-                        ? "bg-blue-100 hover:bg-blue-100"
-                        : "bg-white"
+                        ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
+                        : "bg-white border"
                     }`}
                   >
                     {office}
@@ -966,7 +972,9 @@ const Select = ({ arg }) => {
             </div>
           </div>
           <div className="mb-4">
-            <h3 className="text-lg font-semibold mb-2">Select Antivirus:</h3>
+            <h3 className="text-lg font-semibold mb-2 text-cs3">
+              Select Antivirus:
+            </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
               {/* {windowsData[selectedProductType].processorOptions.map( */}
               {additionalData[selectedBrand].antivirusOptions.map(
@@ -974,10 +982,10 @@ const Select = ({ arg }) => {
                   <div
                     key={index}
                     onClick={() => handleStorageSelect(antivirus)}
-                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out ${
                       selectedStorage === antivirus
-                        ? "bg-blue-100 hover:bg-blue-100"
-                        : "bg-white"
+                        ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
+                        : "bg-white border"
                     }`}
                   >
                     {antivirus}
@@ -987,7 +995,7 @@ const Select = ({ arg }) => {
             </div>
           </div>
           <div className="mb-4">
-            <h3 className="text-lg font-semibold mb-2">
+            <h3 className="text-lg font-semibold mb-2 text-cs3">
               Select Design Software:
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
@@ -997,10 +1005,10 @@ const Select = ({ arg }) => {
                   <div
                     key={index}
                     onClick={() => handleMemorySelect(design)}
-                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out ${
                       selectedMemory === design
-                        ? "bg-blue-100 hover:bg-blue-100"
-                        : "bg-white"
+                        ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
+                        : "bg-white border"
                     }`}
                   >
                     {design}
@@ -1016,7 +1024,9 @@ const Select = ({ arg }) => {
       {(selectedProductType === "Desktop" ||
         selectedProductType === "Laptop") && (
         <div className="mt-4">
-          <h2 className="text-xl font-bold mb-2">Select Specifications</h2>
+          <h2 className="text-xl font-bold mb-2 text-cs3">
+            Select Specifications
+          </h2>
           {/* Processor Options */}
           <div className="mb-4">
             <h3 className="text-lg font-semibold mb-2">Select Processor:</h3>
@@ -1026,10 +1036,10 @@ const Select = ({ arg }) => {
                   <div
                     key={index}
                     onClick={() => handleProcessorSelect(processor)}
-                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out ${
                       selectedProcessor === processor
-                        ? "bg-blue-100 hover:bg-blue-100"
-                        : "bg-white"
+                        ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
+                        : "bg-white border"
                     }`}
                   >
                     {processor}
@@ -1041,7 +1051,7 @@ const Select = ({ arg }) => {
 
           {/* Graphics Options */}
           <div className="mb-4">
-            <h3 className="text-lg font-semibold mb-2">
+            <h3 className="text-lg font-semibold mb-2 text-cs3">
               Select Graphics Card:
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 ">
@@ -1050,10 +1060,10 @@ const Select = ({ arg }) => {
                   <div
                     key={index}
                     onClick={() => handleGraphicsSelect(graphics)}
-                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out ${
                       selectedGraphics === graphics
-                        ? "bg-blue-100 hover:bg-blue-100"
-                        : "bg-white"
+                        ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
+                        : "bg-white border"
                     }`}
                   >
                     {graphics}
@@ -1065,17 +1075,19 @@ const Select = ({ arg }) => {
 
           {/* Storage Options */}
           <div className="mb-4">
-            <h3 className="text-lg font-semibold mb-2">Select Storage:</h3>
+            <h3 className="text-lg font-semibold mb-2 text-cs3">
+              Select Storage:
+            </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
               {windowsData[selectedProductType].storageOptions.map(
                 (storage, index) => (
                   <div
                     key={index}
                     onClick={() => handleStorageSelect(storage)}
-                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out ${
                       selectedStorage === storage
-                        ? "bg-blue-100 hover:bg-blue-100"
-                        : "bg-white"
+                        ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
+                        : "bg-white border"
                     }`}
                   >
                     {storage}
@@ -1087,17 +1099,19 @@ const Select = ({ arg }) => {
 
           {/* Memory Options */}
           <div className="mb-4">
-            <h3 className="text-lg font-semibold mb-2">Select Memory:</h3>
+            <h3 className="text-lg font-semibold mb-2 text-cs3">
+              Select Memory:
+            </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
               {windowsData[selectedProductType].memoryOptions.map(
                 (memory, index) => (
                   <div
                     key={index}
                     onClick={() => handleMemorySelect(memory)}
-                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out ${
                       selectedMemory === memory
-                        ? "bg-blue-100 hover:bg-blue-100"
-                        : "bg-white"
+                        ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
+                        : "bg-white border"
                     }`}
                   >
                     {memory}
@@ -1122,10 +1136,10 @@ const Select = ({ arg }) => {
                   <div
                     key={index}
                     onClick={() => handleVariantSelect(variant)}
-                    className={`p-4 border rounded cursor-pointer mb-2 transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                    className={`p-4 border rounded cursor-pointer mb-2 transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out ${
                       selectedVariant === variant
-                        ? "bg-blue-100 hover:bg-blue-100"
-                        : "bg-white"
+                        ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
+                        : "bg-white border "
                     }`}
                   >
                     <div>{variant.model}</div>
@@ -1146,16 +1160,18 @@ const Select = ({ arg }) => {
         <div className="mt-4">
           {/* Processor Options */}
           <div className="mb-4">
-            <h3 className="text-lg font-semibold mb-2">Select Processor:</h3>
+            <h3 className="text-lg font-semibold mb-2 text-cs3">
+              Select Processor:
+            </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
               {selectedVariant.processorOptions.map((processor, index) => (
                 <div
                   key={index}
                   onClick={() => handleProcessorSelect(processor)}
-                  className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                  className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out ${
                     selectedProcessor === processor
-                      ? "bg-blue-100 hover:bg-blue-100"
-                      : "bg-white"
+                      ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
+                      : "bg-white border"
                   }`}
                 >
                   {processor}
@@ -1166,16 +1182,18 @@ const Select = ({ arg }) => {
 
           {/* Storage Options */}
           <div className="mb-4">
-            <h3 className="text-lg font-semibold mb-2">Select Storage:</h3>
+            <h3 className="text-lg font-semibold mb-2 text-cs3">
+              Select Storage:
+            </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
               {selectedVariant.storageOptions.map((storage, index) => (
                 <div
                   key={index}
                   onClick={() => handleStorageSelect(storage)}
-                  className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                  className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out ${
                     selectedStorage === storage
-                      ? "bg-blue-100 hover:bg-blue-100"
-                      : "bg-white"
+                      ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
+                      : "bg-white border"
                   }`}
                 >
                   {storage}
@@ -1186,16 +1204,18 @@ const Select = ({ arg }) => {
 
           {/* Memory Options */}
           <div>
-            <h3 className="text-lg font-semibold mb-2">Select Memory:</h3>
+            <h3 className="text-lg font-semibold mb-2 text-cs3">
+              Select Memory:
+            </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
               {selectedVariant.memoryOptions.map((memory, index) => (
                 <div
                   key={index}
                   onClick={() => handleMemorySelect(memory)}
-                  className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-gray-100 ease-in-out ${
+                  className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out ${
                     selectedMemory === memory
-                      ? "bg-blue-100 hover:bg-blue-100"
-                      : "bg-white"
+                      ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
+                      : "bg-white border"
                   }`}
                 >
                   {memory}
@@ -1206,11 +1226,13 @@ const Select = ({ arg }) => {
         </div>
       )}
       {selectedProcessor && selectedStorage && selectedMemory && (
-        <div className="mt-4 p-8 border rounded bg-white">
-          <h2 className="text-xl font-bold mb-2">Selected Configuration</h2>
+        <div className="mt-4 p-8 border rounded-2xl bg-white">
+          <h2 className="text-xl font-bold mb-2 text-cs3">
+            <u> Selected Configuration</u>
+          </h2>
 
           {selectedBrand === "Apple" && (
-            <div>
+            <div className="">
               <div>Category: {selectedBrand}</div>
               <div>Model: {selectedVariant.model}</div>
               <div>Product: {selectedProduct}</div>
@@ -1292,9 +1314,9 @@ const Select = ({ arg }) => {
                     ></path>
                     <path
                       fill="#fff"
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     ></path>
                   </svg>
                 </div>
@@ -1380,9 +1402,9 @@ const Select = ({ arg }) => {
                     ></path>
                     <path
                       fill="#fff"
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     ></path>
                   </svg>
                 </div>
@@ -1420,7 +1442,9 @@ const Select = ({ arg }) => {
       ) : (
         <>
           <div className="relative mt-10">
-            <div className="text-xl font-semibold mb-3">What to {arg} ??</div>
+            <div className="text-xl text-cs3 font-semibold mb-3">
+              What to {arg} ??
+            </div>
             <textarea
               className="border-2 border-gray-300 rounded-md px-6 py-2 focus:outline-none focus:border-blue-500 w-full"
               rows="4"
@@ -1513,9 +1537,9 @@ const Select = ({ arg }) => {
                 ></path>
                 <path
                   fill="#fff"
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
             </div>
@@ -1545,13 +1569,12 @@ const Select = ({ arg }) => {
           </div>
         </button>
       </div>
-      <div className=" h-14" style={{ backgroundColor: "white" }}>
+      <div className=" h-14 bg-cs5">
         {/* Your content goes here */}
         &nbsp; &nbsp;
       </div>
     </div>
   );
 };
-
 
 export default Select;

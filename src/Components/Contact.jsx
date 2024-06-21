@@ -118,19 +118,19 @@ const Contact = () => {
   return (
     <div className="h-auto flex-col justify-center items-center">
       {/* <div>Contact</div> */}
-      <h1 className="text-3xl font-bold text-center text-gray-800 mt-16 mb-4">
+      <h1 className="text-3xl font-bold text-center text-cs3 mt-16 mb-4">
         Contact Details
       </h1>
       <div className="flex items-center justify-center">
-        <hr className="h-2 w-2/4 border-gray-400 pb-1" />
+        <hr className="h-2 w-2/4 border-cs4 pb-1" />
       </div>
-      <p className="flex items-center justify-satrt md:ml-60 ml-4 text-gray-500 font-semibold mt-6">
+      <p className="flex items-center justify-satrt md:ml-60 ml-4 text-cs2 font-semibold mt-6">
         Feel free to reach out with your query or suggestion. <br />
         We are here to answer any questions you might have for us.
       </p>
       <div className="w-full justify-center flex md:flex-row flex-col  mt-4">
         <div className="md:w-6/12 md:p-3 ">
-          <p className="text-gray-700 text-center font-semibold text-xl ">
+          <p className="text-cs3 text-center font-semibold text-xl ">
             Contact Info
           </p>
           <div className="flex items-center justify-center">
@@ -142,15 +142,16 @@ const Contact = () => {
                 onClick={handlePhoneNumberClick}
                 className="flex-grow m-2"
               >
-                <div className="max-w-full p-4 sm:max-w-sm rounded overflow-hidden shadow-md bg-white service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
-                  <p className="text-gray-700 text-center font-semibold text-xl ">
-                    Call Us
-                  </p>
+                <div
+                  id="call1"
+                  className="max-w-full p-4 sm:max-w-sm rounded-xl overflow-hidden text-cs1 shadow-md hover:text-white bg-white service transition duration-300 ease-in-out hover:bg-cs1"
+                >
+                  <p className=" text-center font-semibold text-xl ">Call Us</p>
                   <div className="flex items-center justify-center">
                     <hr className="h-2 w-2/4 border-gray-400 pb-1" />
                   </div>
                   <p
-                    className="text-black text-sm cursor-pointer nav-item"
+                    className=" text-sm cursor-pointer nav-item"
                     style={{ display: "flex", alignItems: "center" }}
                   >
                     <svg
@@ -160,7 +161,6 @@ const Contact = () => {
                       // style={{ fill: "white" }}
                       className="pr-2"
                       viewBox="0 0 24 24"
-                      id="call"
                     >
                       <path d="M19.41,13c-.22,0-.45-.07-.67-.12a9.86,9.86,0,0,1-1.31-.39,2,2,0,0,0-2.48,1l-.22.46a13.17,13.17,0,0,1-2.67-2,13.17,13.17,0,0,1-2-2.67l.46-.21a2,2,0,0,0,1-2.48,10.47,10.47,0,0,1-.39-1.32c-.05-.22-.09-.45-.12-.67a3,3,0,0,0-3-2.49H5a3,3,0,0,0-2.24,1,3,3,0,0,0-.73,2.4,19.07,19.07,0,0,0,5.41,11,19.07,19.07,0,0,0,11,5.41,2.56,2.56,0,0,0,.39,0,3,3,0,0,0,2-.76,3,3,0,0,0,1-2.24v-3A3,3,0,0,0,19.41,13Zm.49,6a1,1,0,0,1-.33.74,1,1,0,0,1-.82.25,17.16,17.16,0,0,1-9.87-4.84A17.16,17.16,0,0,1,4,5.25a1,1,0,0,1,.25-.82A1,1,0,0,1,5,4.1h3a1,1,0,0,1,1,.78c0,.27.09.55.15.82a11,11,0,0,0,.46,1.54l-1.4.66a1,1,0,0,0-.52.56,1,1,0,0,0,0,.76,14.49,14.49,0,0,0,7,7,1,1,0,0,0,.76,0,1,1,0,0,0,.56-.52l.63-1.4a12.41,12.41,0,0,0,1.58.46c.26.06.54.11.81.15a1,1,0,0,1,.78,1ZM14,2c-.23,0-.47,0-.7,0a1,1,0,0,0,.17,2L14,4a6,6,0,0,1,6,6c0,.18,0,.35,0,.53a1,1,0,0,0,.91,1.08h.08a1,1,0,0,0,1-.91c0-.23,0-.47,0-.7A8,8,0,0,0,14,2Zm2,8a1,1,0,0,0,2,0,4,4,0,0,0-4-4,1,1,0,0,0,0,2A2,2,0,0,1,16,10Z"></path>
                     </svg>
@@ -169,15 +169,16 @@ const Contact = () => {
                 </div>
               </button>
               <button onClick={handleEmailClick1} className="flex-grow m-2">
-                <div className="max-w-full p-4 sm:max-w-sm rounded overflow-hidden shadow-md bg-white service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
-                  <p className="text-gray-700 text-center font-semibold text-xl ">
-                    Mail Us
-                  </p>
+                <div
+                  id="email1"
+                  className="max-w-full p-4 sm:max-w-sm rounded-xl overflow-hidden text-cs1 hover:text-white shadow-md bg-white hover:bg-cs1 service transition duration-300 ease-in-out "
+                >
+                  <p className=" text-center font-semibold text-xl ">Mail Us</p>
                   <div className="flex items-center justify-center">
                     <hr className="h-2 w-2/4 border-gray-400 pb-1" />
                   </div>
                   <p
-                    className="text-black text-sm cursor-pointer nav-item"
+                    className=" text-sm cursor-pointer nav-item"
                     style={{ display: "flex", alignItems: "center" }}
                   >
                     <svg
@@ -187,7 +188,6 @@ const Contact = () => {
                       height="36"
                       // style={{ fill: "white" }}
                       className="pr-2"
-                      id="email"
                     >
                       <g>
                         <path d="M0 11.283V8a8 8 0 0 1 8-8h112a8 8 0 0 1 8 8v3.283l-64 40zm66.12 48.11a4.004 4.004 0 0 1-4.24 0L0 20.717V88a8 8 0 0 0 8 8h112a8 8 0 0 0 8-8V20.717z"></path>
@@ -201,15 +201,18 @@ const Contact = () => {
             </div>
             <div className="mb-3 md:flex-row flex flex-col items-center justify-center">
               <button onClick={handleEmailClick2} className="flex-grow m-2">
-                <div className="max-w-full p-4 pb-5 sm:max-w-sm rounded overflow-hidden shadow-md bg-white service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
-                  <p className="text-gray-700 text-center font-semibold text-xl mb-2">
+                <div
+                  id="email1"
+                  className="max-w-full p-4 pb-5 sm:max-w-sm rounded-xl overflow-hidden shadow-md bg-white hover:bg-cs1 text-cs1 hover:text-white service transition duration-300 ease-in-out"
+                >
+                  <p className=" text-center font-semibold text-xl mb-2">
                     For Sales related query
                   </p>
                   <div className="flex items-center justify-center">
                     <hr className="h-2 w-2/4 border-gray-400 pb-1 " />
                   </div>
                   <p
-                    className="text-black text-sm cursor-pointer nav-item pt-3"
+                    className=" text-sm cursor-pointer nav-item pt-3"
                     style={{ display: "flex", alignItems: "center" }}
                   >
                     <svg
@@ -219,7 +222,6 @@ const Contact = () => {
                       height="36"
                       // style={{ fill: "white" }}
                       className="pr-2"
-                      id="email"
                     >
                       <g>
                         <path d="M0 11.283V8a8 8 0 0 1 8-8h112a8 8 0 0 1 8 8v3.283l-64 40zm66.12 48.11a4.004 4.004 0 0 1-4.24 0L0 20.717V88a8 8 0 0 0 8 8h112a8 8 0 0 0 8-8V20.717z"></path>
@@ -232,21 +234,21 @@ const Contact = () => {
               </button>
 
               <button onClick={handleAddressClick} className="flex-grow m-2">
-                <div className="max-w-full p-4 sm:max-w-sm rounded overflow-hidden shadow-md bg-white service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
-                  <p className="text-gray-700 text-center font-semibold text-xl ">
-                    Office
-                  </p>
+                <div
+                  id="address1"
+                  className="max-w-full p-4 sm:max-w-sm rounded-xl overflow-hidden shadow-md bg-white hover:bg-cs1 text-cs1 hover:text-white service transition duration-300 ease-in-out"
+                >
+                  <p className="text-center font-semibold text-xl ">Office</p>
                   <div className="flex items-center justify-center">
                     <hr className="h-2 w-2/4 border-gray-400 pb-1" />
                   </div>
                   <p
-                    className="text-black text-sm cursor-pointer nav-item"
+                    className="text-sm cursor-pointer nav-item"
                     style={{ display: "flex", alignItems: "center" }}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 64 64"
-                      id="address"
                       width="60"
                       height="60"
                       // style={{ fill: "white" }}
@@ -268,11 +270,11 @@ const Contact = () => {
             </div>
           </div>
           <div className="md:mb-0 mb-10">
-            <p className="text-gray-700 text-center font-semibold text-xl mt-8">
+            <p className="text-cs3 text-center font-semibold text-xl mt-8">
               Follow Us
             </p>
             <div className="flex items-center justify-center">
-              <hr className="h-2 w-2/4 border-gray-400 pb-1" />
+              <hr className="h-2 w-2/4 border-cs4 pb-1" />
             </div>
 
             <div className="flex flex-col items-center justify-center mt-2">
@@ -319,9 +321,9 @@ const Contact = () => {
                     ></path>
                     <path
                       fill="#FAFAFA"
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M13.5 8H11V6c0-.552.448-.5 1-.5h1V3h-2a3 3 0 0 0-3 3v2H6v2.5h2V16h3v-5.5h1.5l1-2.5z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     ></path>
                   </svg>
                 </button>
@@ -345,8 +347,8 @@ const Contact = () => {
                         r="129.502"
                         gradientUnits="userSpaceOnUse"
                       >
-                        <stop offset=".09" stop-color="#fa8f21"></stop>
-                        <stop offset=".78" stop-color="#d82d7e"></stop>
+                        <stop offset=".09" stopColor="#fa8f21"></stop>
+                        <stop offset=".78" stopColor="#d82d7e"></stop>
                       </radialGradient>
                       <radialGradient
                         id="b"
@@ -357,10 +359,10 @@ const Contact = () => {
                       >
                         <stop
                           offset=".64"
-                          stop-color="#8c3aaa"
-                          stop-opacity="0"
+                          stopColor="#8c3aaa"
+                          stopOpacity="0"
                         ></stop>
-                        <stop offset="1" stop-color="#8c3aaa"></stop>
+                        <stop offset="1" stopColor="#8c3aaa"></stop>
                       </radialGradient>
                     </defs>
                     <path
@@ -391,7 +393,7 @@ const Contact = () => {
                     viewBox="0 0 512 512"
                     id="twitter"
                   >
-                    <g clip-path="url(#clip0_84_15697)">
+                    <g clipPath="url(#clip0_84_15697)">
                       <rect width="512" height="512" fill="#000" rx="60"></rect>
                       <path
                         fill="#fff"
@@ -409,12 +411,12 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <div className="md:w-4/12 bg-gray-100 rounded-3xl md:p-3 p-3">
-          <p className="text-gray-700 text-center font-semibold text-2xl md:mt-2 mt-4 ">
+        <div className="md:w-4/12 bg-white rounded-3xl md:p-3 p-3">
+          <p className="text-cs3 text-center font-semibold text-2xl md:mt-2 mt-4 ">
             Send Us a Message
           </p>
           <div className="flex items-center justify-center">
-            <hr className="h-2 w-2/4 border-gray-400 pb-1" />
+            <hr className="h-2 w-2/4 border-cs4 pb-1" />
           </div>
           <div className="mx-8 mt-4">
             <form className="space-y-4">
@@ -424,7 +426,7 @@ const Contact = () => {
                   id="name"
                   value={inputValue}
                   onChange={handleInputChange}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="mt-1 block w-full px-3 py-2 border border-cs1 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   placeholder="Name"
                 />
               </div>
@@ -434,7 +436,7 @@ const Contact = () => {
                   id="email"
                   value={emailValue}
                   onChange={handleEmailChange}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="mt-1 block w-full px-3 py-2 border border-cs1 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   placeholder="Email"
                 />
               </div>
@@ -444,7 +446,7 @@ const Contact = () => {
                   id="subject"
                   value={subjectValue}
                   onChange={handleSubjectChange}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="mt-1 block w-full px-3 py-2 border border-cs1 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   placeholder="Subject"
                 />
               </div>
@@ -454,7 +456,7 @@ const Contact = () => {
                   rows="4"
                   value={messageValue}
                   onChange={handleMessageChange}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="mt-1 block w-full px-3 py-2 border border-cs1 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   placeholder="message ..."
                 ></textarea>
               </div>

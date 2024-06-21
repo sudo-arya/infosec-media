@@ -53,11 +53,12 @@ const Map = () => {
       <div
         id="map"
         style={{ width: "100%", height: "400px", marginTop: "5px" }}
-        className="rounded-3xl md:mx-2 mx-6"
+        className="rounded-3xl md:mx-2 mx-auto"
       />
       <div
-        className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-75 text-center p-2 cursor-pointer"
+        className="absolute bottom-0 left-0 right-0 bg-cs5 bg-opacity-75 text-center p-2 cursor-pointer md:visible hidden"
         onClick={handleAddressClick}
+        
       >
         C-107, 1st Floor, Pandav Nagar Complex Ganesh Nagar, New Delhi - 110092
       </div>

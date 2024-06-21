@@ -4,7 +4,8 @@ import imgnewmacbook from "../Assets/new-macbook.jpg";
 import imgrent from "../Assets/rent.jpg";
 import imgrepair from "../Assets/repair.jpg";
 import imgupgrade from "../Assets/upgrade.jpg";
-
+import owcLogo from "../Assets/owc.png";
+import promiseLogo from "../Assets/promise.png";
 
 const images = [
   `${imgnewmacbook}`,
@@ -56,15 +57,15 @@ const StatItem = ({ target, label }) => {
   }, [target]);
 
   return (
-    <div className="stat-item text-center p-4">
+    <div className="stat-item flex-col text-center p-4 cs-5 ">
       <div
         ref={numberRef}
         data-target={target}
-        className="number text-4xl font-bold text-gray-600"
+        className="number text-4xl font-bold text-cs3 "
       >
         0
       </div>
-      <p className="text-gray-500 mt-2">{label}</p>
+      <p className="text-cs3 font-medium label mt-2">{label}</p>
     </div>
   );
 };
@@ -72,67 +73,65 @@ const StatItem = ({ target, label }) => {
 const Home = ({ setActiveComponent }) => {
   const handleNavItemClick = (componentName) => {
     setActiveComponent(componentName);
-    
   };
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-useEffect(() => {
-  const handleResize = () => {
-    setIsSmallScreen(window.innerWidth <= 768); // Adjust the threshold as per your requirement
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 768); // Adjust the threshold as per your requirement
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleNext();
+    }, 3000); // Change image every 3 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const handlePrevious = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
   };
 
-  window.addEventListener("resize", handleResize);
-  handleResize();
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
 
-  return () => window.removeEventListener("resize", handleResize);
-}, []);
+  const handleTouchStart = (e) => {
+    touchStartX = e.touches[0].clientX;
+  };
 
-useEffect(() => {
-  const interval = setInterval(() => {
-    handleNext();
-  }, 3000); // Change image every 3 seconds
+  const handleTouchMove = (e) => {
+    if (touchStartX - e.touches[0].clientX < 0) {
+      handleNext(); // Swipe left
+    } else if (touchStartX - e.touches[0].clientX > 0) {
+      handlePrevious(); // Swipe right
+    }
+  };
 
-  return () => clearInterval(interval);
-}, []);
-
-const handlePrevious = () => {
-  setCurrentIndex((prevIndex) =>
-    prevIndex === 0 ? images.length - 1 : prevIndex - 1
-  );
-};
-
-const handleNext = () => {
-  setCurrentIndex((prevIndex) =>
-    prevIndex === images.length - 1 ? 0 : prevIndex + 1
-  );
-};
-
-const handleTouchStart = (e) => {
-  touchStartX = e.touches[0].clientX;
-};
-
-const handleTouchMove = (e) => {
-  if (touchStartX - e.touches[0].clientX < 0) {
-    handleNext(); // Swipe left
-  } else if (touchStartX - e.touches[0].clientX > 0) {
-    handlePrevious(); // Swipe right
-  }
-};
-
-let touchStartX = 0;
+  let touchStartX = 0;
 
   return (
-    <div className="min-h-screen flex-col justify-center items-center">
+    <div className="min-h-screen flex-col justify-center items-center cs-5">
       {/* <div>home</div> */}
       <div className="relative w-full mx-auto  mt-0" style={{ height: "69vh" }}>
         {/* {add w-screen for full width} */}
-        <div className="overflow-hidden relative h-full">
+        <div className="overflow-hidden relative h-full ">
           <div
-            className="whitespace-nowrap transition-transform duration-500 h-full"
+            className="whitespace-nowrap transition-transform duration-500 h-full rounded-xl"
             style={{ transform: `translateX(${-currentIndex * 100}%)` }}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
@@ -142,7 +141,7 @@ let touchStartX = 0;
                 key={index}
                 src={image}
                 alt={`Slide ${index + 1}`}
-                className="inline-block w-full h-full object-cover object-center"
+                className="inline-block w-full h-full object-cover object-center rounded-3xl"
               />
             ))}
           </div>
@@ -150,20 +149,13 @@ let touchStartX = 0;
         <button
           className={
             isSmallScreen
-              ? "absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-4 hover:bg-gray-500"
-              : "absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 min-h-full hover:bg-gray-500"
+              ? "absolute left-0 top-1/2 transform -translate-y-1/2 bg-cs3 text-white p-4 rounded-full"
+              : "absolute -left-5 top-1/2 transform -translate-y-1/2 bg-cs1 text-white px-3 p-4 w-14 hover:bg-cs3 rounded-full transition duration-300 hover:scale-105 ease-in-out hover:text-cs1 hover:w-12 "
           }
+          id="arrow"
           onClick={handlePrevious}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="11"
-            height="20"
-            id="arrow"
-            style={{
-              fill: "white",
-            }}
-          >
+          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="20">
             <path
               fillRule="evenodd"
               d="M10.634.292a1.063 1.063 0 0 0-1.464 0L.607 8.556a1.95 1.95 0 0 0 0 2.827l8.625 8.325c.4.385 1.048.39 1.454.01a.975.975 0 0 0 .01-1.425l-7.893-7.617a.975.975 0 0 1 0-1.414l7.83-7.557a.974.974 0 0 0 0-1.413"
@@ -173,20 +165,18 @@ let touchStartX = 0;
         <button
           className={
             isSmallScreen
-              ? "absolute right-0  top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-4 hover:bg-gray-500"
-              : "absolute right-0  top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 min-h-full hover:bg-gray-500"
+              ? "absolute right-0  top-1/2 transform -translate-y-1/2 bg-cs3 text-white p-4 rounded-full"
+              : "absolute -right-5  top-1/2 transform -translate-y-1/2 bg-cs1 text-white px-3 p-4 w-14 hover:bg-cs3 rounded-full transition duration-300 hover:scale-105 ease-in-out hover:text-cs1 hover:w-10 flex-row"
           }
+          id="arrowrev"
           onClick={handleNext}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="11"
             height="20"
-            id="arrow"
-            style={{
-              transform: "rotate(180deg)",
-              fill: "white",
-            }}
+            transform="rotate(180, 5, 0)"
+            className=""
           >
             <path
               fillRule="evenodd"
@@ -195,15 +185,15 @@ let touchStartX = 0;
           </svg>
         </button>
       </div>
-      <h1 className="text-4xl font-bold text-center text-gray-800 mt-16 mb-4">
+      <h1 className="text-4xl font-bold text-center text-cs4 mt-8 mb-4">
         The Single Source for All Your IT Needs
       </h1>
       <div className="container mx-auto px-4 relative">
-        <h1 className="text-2xl font-semibold text-center text-gray-800 mt-20 mb-4">
+        <h1 className="text-2xl font-semibold text-center text-cs3 mt-16 mb-4">
           Products
         </h1>
         <div className="flex items-center justify-center">
-          <hr className="h-2 w-2/4 border-gray-400 pb-6" />
+          <hr className="h-2 w-2/4 border-cs3 pb-6" />
         </div>
         {/* Left blur */}
         {/* <div className="absolute inset-y-0 left-0 w- bg-gradient-to-r from-white/80 to-transparent pointer-events-none"></div> */}
@@ -213,184 +203,190 @@ let touchStartX = 0;
         {/* Products cards starts */}
         {/*can add icon-grid2 */}
         <div className="flex space-x-4 overflow-x-auto pb-4 pt-4 rounded-lg">
-          <div className=" w-52" style={{ backgroundColor: "white" }}>
+          <div className="cs-5 w-52">
             {/* Your content goes here */}
             &nbsp; &nbsp;
           </div>
-          
-            <button
-              className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
-              onClick={() => handleNavItemClick("Products")}
-            >
-              <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
-                <img
-                  className="w-full h-48 object-cover"
-                  src="https://media.istockphoto.com/id/1478610778/photo/hcmc-vietnam-macbook-pro-14-inches-m2.jpg?s=612x612&w=0&k=20&c=Rl05e5NYO0YS9DuvgeE4AUmjJw-FgD37_mpTCKVyeng="
-                  alt="Product"
-                />
-                <div className="px-6 py-4">
-                  <div className="font-bold text-xl mb-2">Macbook</div>
-                </div>
-                <div className="px-6 pt-1 pb-2">
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    #tag1
-                  </span>
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    #tag2
-                  </span>
-                </div>
-              </div>
-            </button>
 
-            {/* Add more cards here */}
-            <button
-              className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
-              onClick={() => handleNavItemClick("Products")}
-            >
-              <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
-                <img
-                  className="w-full h-48 object-cover"
-                  src="https://imgs.search.brave.com/J0GhjQqcfssHBAIdRzup3Bducz5e2FwbvCa8AIXKkKk/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMudW5zcGxhc2gu/Y29tL3Bob3RvLTE1/NjAxMzE5MTQtMmU0/NjlhMGU4NjA3P3E9/ODAmdz0xMDAwJmF1/dG89Zm9ybWF0JmZp/dD1jcm9wJml4bGli/PXJiLTQuMC4zJml4/aWQ9TTN3eE1qQTNm/REI4TUh4elpXRnlZ/Mmg4TWpCOGZHbHRZ/V044Wlc1OE1IeDhN/SHg4ZkRBPQ.jpeg"
-                  alt="Product"
-                />
-                <div className="px-6 py-4">
-                  <div className="font-bold text-xl mb-2">iMac</div>
-                </div>
-                <div className="px-6 pt-1 pb-2">
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    #tag1
-                  </span>
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    #tag2
-                  </span>
-                </div>
+          <button
+            className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
+            onClick={() => handleNavItemClick("Products")}
+          >
+            <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
+              <img
+                className="w-full h-48 object-cover"
+                src="https://media.istockphoto.com/id/1478610778/photo/hcmc-vietnam-macbook-pro-14-inches-m2.jpg?s=612x612&w=0&k=20&c=Rl05e5NYO0YS9DuvgeE4AUmjJw-FgD37_mpTCKVyeng="
+                alt="Product"
+              />
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl text-cs2 mb-2">Macbook</div>
               </div>
-            </button>
-
-            <button
-              className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
-              onClick={() => handleNavItemClick("Products")}
-            >
-              <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
-                <img
-                  className="w-full h-48 object-cover"
-                  src="https://imgs.search.brave.com/m0-LyFUCWuY_HFOVKWSnfPci_fWdnzLq3cvgwGl1OHY/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMubWFjcnVtb3Jz/LmNvbS90L0stWWhI/LTMybjY2MW5QQ2Nf/WVU4dEVFdjlZQT0v/NDAweDAvYXJ0aWNs/ZS1uZXcvMjAyMy8w/Ni9NYWMtU3R1ZGlv/LURlc2suanBnP2xv/c3N5"
-                  alt="Product"
-                />
-                <div className="px-6 py-4">
-                  <div className="font-bold text-xl mb-2">Mac Studio</div>
-                </div>
-                <div className="px-6 pt-1 pb-2">
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    #tag1
-                  </span>
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    #tag2
-                  </span>
-                </div>
+              <div className="px-6 pt-1 pb-2">
+                <span className="inline-block bg-cs4 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
+                  #tag1
+                </span>
+                <span className="inline-block bg-cs4 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
+                  #tag2
+                </span>
               </div>
-            </button>
-
-            <button
-              className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
-              onClick={() => handleNavItemClick("Products")}
-            >
-              <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
-                <img
-                  className="w-full h-48 object-cover"
-                  src="https://imgs.search.brave.com/-oPqJP5nurt4lK_eKQx2Ia15fGHTVzIyUs7ss4ya_Bw/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9waG90/b3M1LmFwcGxlaW5z/aWRlci5jb20vZ2Fs/bGVyeS8zMzkyMC02/MDM0NS1NYWMtUHJv/LVNJZGUteGwuanBn"
-                  alt="Product"
-                />
-                <div className="px-6 py-4">
-                  <div className="font-bold text-xl mb-2">Mac Pro</div>
-                </div>
-                <div className="px-6 pt-1 pb-2">
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    #tag1
-                  </span>
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    #tag2
-                  </span>
-                </div>
-              </div>
-            </button>
-
-            <button
-              className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
-              onClick={() => handleNavItemClick("Products")}
-            >
-              <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
-                <img
-                  className="w-full h-48 object-cover"
-                  src="https://media.istockphoto.com/id/1314343964/photo/top-end-system-unit-for-gaming-computer-close-up.jpg?s=612x612&w=0&k=20&c=d_xKRis8Ccy90gbqCjScpuAEVOvpQN0kdnBxA_H9zRs="
-                  alt="Product"
-                />
-                <div className="px-6 py-4">
-                  <div className="font-bold text-xl mb-2">PC & Workstation</div>
-                </div>
-                <div className="px-6 pt-1 pb-2">
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    #tag1
-                  </span>
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    #tag2
-                  </span>
-                </div>
-              </div>
-            </button>
-
-            <button
-              className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
-              onClick={() => handleNavItemClick("Products")}
-            >
-              <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
-                <img
-                  className="w-full h-48 object-cover"
-                  src="https://imgs.search.brave.com/ftc60KrdgBbri3SGYTLIrS7LlX6-jZCVRhRO78H5SWQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzFmL2E0/Lzk2LzFmYTQ5NjBk/YjVmY2NkMmE4NTEw/N2NmMjI5ZWM2MzQ3/LmpwZw"
-                  alt="Product"
-                />
-                <div className="px-6 py-4">
-                  <div className="font-bold text-xl mb-2">Audio Studio</div>
-                </div>
-                <div className="px-6 pt-1 pb-2">
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    #tag1
-                  </span>
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    #tag2
-                  </span>
-                </div>
-              </div>
-            </button>
-
-            <button
-              className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
-              onClick={() => handleNavItemClick("Products")}
-            >
-              <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
-                <img
-                  className="w-full h-48 object-cover"
-                  src="https://imgs.search.brave.com/A1rY5MKad083fQ0sbTbiopzDszLWqoBqw_as48gjk_A/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jbXMt/YXNzZXRzLnR1dHNw/bHVzLmNvbS9jZG4t/Y2dpL2ltYWdlL3dp/ZHRoPTg1MC91cGxv/YWRzL3VzZXJzLzE4/MDkvcG9zdHMvMzA4/MzUvaW1hZ2UtdXBs/b2FkL21vZGVybl93/b3Jrc3RhdGlvbl93/aXRoX2xhcHRvcF9h/bmRfZmxvd2Vycy5q/cGc"
-                  alt="Product"
-                />
-                <div className="px-6 py-4">
-                  <div className="font-bold text-xl mb-2">Softwares</div>
-                </div>
-                <div className="px-6 pt-1 pb-2">
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    #tag1
-                  </span>
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                    #tag2
-                  </span>
-                </div>
-              </div>
-            </button>
-
-            <div className=" w-52" style={{ backgroundColor: "white" }}>
-              {/* Your content goes here */}
-              &nbsp; &nbsp;
             </div>
+          </button>
+
+          {/* Add more cards here */}
+          <button
+            className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
+            onClick={() => handleNavItemClick("Products")}
+          >
+            <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
+              <img
+                className="w-full h-48 object-cover"
+                src="https://imgs.search.brave.com/J0GhjQqcfssHBAIdRzup3Bducz5e2FwbvCa8AIXKkKk/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMudW5zcGxhc2gu/Y29tL3Bob3RvLTE1/NjAxMzE5MTQtMmU0/NjlhMGU4NjA3P3E9/ODAmdz0xMDAwJmF1/dG89Zm9ybWF0JmZp/dD1jcm9wJml4bGli/PXJiLTQuMC4zJml4/aWQ9TTN3eE1qQTNm/REI4TUh4elpXRnlZ/Mmg4TWpCOGZHbHRZ/V044Wlc1OE1IeDhN/SHg4ZkRBPQ.jpeg"
+                alt="Product"
+              />
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl text-cs2 mb-2">iMac</div>
+              </div>
+              <div className="px-6 pt-1 pb-2">
+                <span className="inline-block bg-cs4 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
+                  #tag1
+                </span>
+                <span className="inline-block bg-cs4 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
+                  #tag2
+                </span>
+              </div>
+            </div>
+          </button>
+
+          <button
+            className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
+            onClick={() => handleNavItemClick("Products")}
+          >
+            <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
+              <img
+                className="w-full h-48 object-cover"
+                src="https://imgs.search.brave.com/m0-LyFUCWuY_HFOVKWSnfPci_fWdnzLq3cvgwGl1OHY/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMubWFjcnVtb3Jz/LmNvbS90L0stWWhI/LTMybjY2MW5QQ2Nf/WVU4dEVFdjlZQT0v/NDAweDAvYXJ0aWNs/ZS1uZXcvMjAyMy8w/Ni9NYWMtU3R1ZGlv/LURlc2suanBnP2xv/c3N5"
+                alt="Product"
+              />
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2 text-cs2">
+                  Mac Studio
+                </div>
+              </div>
+              <div className="px-6 pt-1 pb-2">
+                <span className="inline-block bg-cs4 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
+                  #tag1
+                </span>
+                <span className="inline-block bg-cs4 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
+                  #tag2
+                </span>
+              </div>
+            </div>
+          </button>
+
+          <button
+            className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
+            onClick={() => handleNavItemClick("Products")}
+          >
+            <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
+              <img
+                className="w-full h-48 object-cover"
+                src="https://imgs.search.brave.com/-oPqJP5nurt4lK_eKQx2Ia15fGHTVzIyUs7ss4ya_Bw/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9waG90/b3M1LmFwcGxlaW5z/aWRlci5jb20vZ2Fs/bGVyeS8zMzkyMC02/MDM0NS1NYWMtUHJv/LVNJZGUteGwuanBn"
+                alt="Product"
+              />
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2 text-cs2">Mac Pro</div>
+              </div>
+              <div className="px-6 pt-1 pb-2">
+                <span className="inline-block bg-cs4 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
+                  #tag1
+                </span>
+                <span className="inline-block bg-cs4 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
+                  #tag2
+                </span>
+              </div>
+            </div>
+          </button>
+
+          <button
+            className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
+            onClick={() => handleNavItemClick("Products")}
+          >
+            <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
+              <img
+                className="w-full h-48 object-cover"
+                src="https://media.istockphoto.com/id/1314343964/photo/top-end-system-unit-for-gaming-computer-close-up.jpg?s=612x612&w=0&k=20&c=d_xKRis8Ccy90gbqCjScpuAEVOvpQN0kdnBxA_H9zRs="
+                alt="Product"
+              />
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2 text-cs2">
+                  PC & Workstation
+                </div>
+              </div>
+              <div className="px-6 pt-1 pb-2">
+                <span className="inline-block bg-cs4 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
+                  #tag1
+                </span>
+                <span className="inline-block bg-cs4 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
+                  #tag2
+                </span>
+              </div>
+            </div>
+          </button>
+
+          <button
+            className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
+            onClick={() => handleNavItemClick("Products")}
+          >
+            <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
+              <img
+                className="w-full h-48 object-cover"
+                src="https://imgs.search.brave.com/ftc60KrdgBbri3SGYTLIrS7LlX6-jZCVRhRO78H5SWQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzFmL2E0/Lzk2LzFmYTQ5NjBk/YjVmY2NkMmE4NTEw/N2NmMjI5ZWM2MzQ3/LmpwZw"
+                alt="Product"
+              />
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2 text-cs2">
+                  Audio Studio
+                </div>
+              </div>
+              <div className="px-6 pt-1 pb-2">
+                <span className="inline-block bg-cs4 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
+                  #tag1
+                </span>
+                <span className="inline-block bg-cs4 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
+                  #tag2
+                </span>
+              </div>
+            </div>
+          </button>
+
+          <button
+            className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
+            onClick={() => handleNavItemClick("Products")}
+          >
+            <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
+              <img
+                className="w-full h-48 object-cover"
+                src="https://imgs.search.brave.com/A1rY5MKad083fQ0sbTbiopzDszLWqoBqw_as48gjk_A/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jbXMt/YXNzZXRzLnR1dHNw/bHVzLmNvbS9jZG4t/Y2dpL2ltYWdlL3dp/ZHRoPTg1MC91cGxv/YWRzL3VzZXJzLzE4/MDkvcG9zdHMvMzA4/MzUvaW1hZ2UtdXBs/b2FkL21vZGVybl93/b3Jrc3RhdGlvbl93/aXRoX2xhcHRvcF9h/bmRfZmxvd2Vycy5q/cGc"
+                alt="Product"
+              />
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2 text-cs2">Softwares</div>
+              </div>
+              <div className="px-6 pt-1 pb-2">
+                <span className="inline-block bg-cs4 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
+                  #tag1
+                </span>
+                <span className="inline-block bg-cs4 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
+                  #tag2
+                </span>
+              </div>
+            </div>
+          </button>
+
+          <div className="cs-5 w-52">
+            {/* Your content goes here */}
+            &nbsp; &nbsp;
+          </div>
           {/* here  */}
           {/* Right blur */}
           {/* <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-white/70 to-transparent pointer-events-none"></div> */}
@@ -398,7 +394,7 @@ let touchStartX = 0;
         {/* Redirect button */}
         <div className="flex items-center justify-center pt-6">
           <button
-            className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-600 allproduct"
+            className="px-4 py-2 bg-cs1 text-white font-bold rounded hover:bg-cs4 hover:text-cs2 transform transition duration-300 hover:scale-150 ease-in-out"
             onClick={() => handleNavItemClick("Products")}
           >
             View All Products
@@ -407,12 +403,12 @@ let touchStartX = 0;
       </div>
 
       {/* Services  */}
-      <div className="bg-gray-100">
-        <h1 className="text-2xl font-semibold text-center text-gray-800 mt-20 pt-6 mb-4">
+      <div className="bg-cs1 rounded-xl pl-4 pr-4 pb-4">
+        <h1 className="text-2xl font-semibold text-center text-cs4 mt-20 pt-6 mb-4">
           Services
         </h1>
         <div className="flex items-center justify-center">
-          <hr className="h-2 w-2/4 border-gray-400 pb-4" />
+          <hr className="h-2 w-2/4 border-cs5 pb-4" />
         </div>
 
         {/* Services list */}
@@ -421,24 +417,26 @@ let touchStartX = 0;
             onClick={() => handleNavItemClick("Products")}
             className="flex-grow"
           >
-            <div className="max-w-full sm:max-w-sm rounded overflow-hidden shadow-lg bg-white service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
+            <div className="max-w-full sm:max-w-sm rounded-xl overflow-hidden shadow-lg bg-cs5 service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
               <img
                 className="w-full h-48 object-cover"
                 src={imgpurchase}
                 alt="Product"
               />
               <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">Purchase With Us</div>
-                <p className="text-gray-700 text-base">
+                <div className="font-bold text-xl text-cs3 mb-2">
+                  Purchase With Us
+                </div>
+                <p className="text-cs1 text-base">
                   Apple Macintosh & PC (windows) computers are available with us
                   for high-end Graphics & Editing purposes.
                 </p>
               </div>
               <div className="px-6 pt-1 pb-2">
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                <span className="inline-block bg-cs1 rounded-full px-3 py-1 text-sm font-semibold text-cs5 mr-2 mb-2">
                   #buy
                 </span>
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                <span className="inline-block  bg-cs1 rounded-full px-3 py-1 text-sm font-semibold text-cs5 mr-2 mb-2">
                   #purchase
                 </span>
                 {/* <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
@@ -452,25 +450,27 @@ let touchStartX = 0;
             onClick={() => handleNavItemClick("Services")}
             className="flex-grow"
           >
-            <div className="max-w-full sm:max-w-sm rounded overflow-hidden shadow-lg bg-white service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
+            <div className="max-w-full sm:max-w-sm rounded-xl overflow-hidden shadow-lg bg-cs5 service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
               <img
                 className="w-full h-48 object-cover"
                 src={imgupgrade}
                 alt="Product"
               />
               <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">Upgradation</div>
-                <p className="text-gray-700 text-base">
+                <div className="font-bold text-xl  text-cs3 mb-2">
+                  Upgradation
+                </div>
+                <p className="text-cs1 text-base">
                   Upgrade of Apple Macintosh Laptop <br />
                   (MacBook Air/Pro) & Desktop (iMac/MacPro/Mac mini) <br />
                   is as easy as windows.
                 </p>
               </div>
               <div className="px-6 pt-1 pb-2">
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                <span className="inline-block bg-cs1 rounded-full px-3 py-1 text-sm font-semibold text-cs5 mr-2 mb-2">
                   #upgrade
                 </span>
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                <span className="inline-block bg-cs1 rounded-full px-3 py-1 text-sm font-semibold text-cs5 mr-2 mb-2">
                   #make-it-new
                 </span>
                 {/* <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
@@ -484,24 +484,26 @@ let touchStartX = 0;
             onClick={() => handleNavItemClick("Rental")}
             className="flex-grow"
           >
-            <div className="max-w-full sm:max-w-sm rounded overflow-hidden shadow-lg bg-white service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
+            <div className="max-w-full sm:max-w-sm rounded-xl overflow-hidden shadow-lg bg-cs5 service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
               <img
                 className="w-full h-48 object-cover"
                 src={imgrent}
                 alt="Product"
               />
               <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">Rent Device</div>
-                <p className="text-gray-700 text-base">
+                <div className="font-bold text-cs3 text-xl mb-2">
+                  Rent Device
+                </div>
+                <p className="text-cs1 text-base">
                   Apple Macintosh & PC (windows) computers are available with us
                   for high-end Graphics & Editing purposes.
                 </p>
               </div>
               <div className="px-6 pt-1 pb-2">
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                <span className="inline-block bg-cs1 rounded-full px-3 py-1 text-sm font-semibold text-cs5 mr-2 mb-2">
                   #rent
                 </span>
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                <span className="inline-block bg-cs1 rounded-full px-3 py-1 text-sm font-semibold text-cs5 mr-2 mb-2">
                   #low-cost
                 </span>
                 {/* <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
@@ -515,25 +517,28 @@ let touchStartX = 0;
             onClick={() => handleNavItemClick("Repair")}
             className="flex-grow"
           >
-            <div className="max-w-full sm:max-w-sm rounded overflow-hidden shadow-lg bg-white service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
+            <div className="max-w-full sm:max-w-sm rounded-xl overflow-hidden shadow-lg bg-cs5 service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
               <img
                 className="w-full h-48 object-cover"
                 src={imgrepair}
                 alt="Product"
               />
               <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2"> Repair Services</div>
-                <p className="text-gray-700 text-base">
+                <div className="font-bold text-cs3 text-xl mb-2">
+                  {" "}
+                  Repair Services
+                </div>
+                <p className="text-cs1 text-base">
                   Swift, affordable repairs for all your devices. From hardware
                   fixes to software solutions, trust us to keep your devices
                   running smoothly.
                 </p>
               </div>
               <div className="px-6 pt-1 pb-2">
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                <span className="inline-block bg-cs1 rounded-full px-3 py-1 text-sm font-semibold text-cs5 mr-2 mb-2">
                   #repair
                 </span>
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                <span className="inline-block bg-cs1 rounded-full px-3 py-1 text-sm font-semibold text-cs5 mr-2 mb-2">
                   #quick-fix
                 </span>
                 {/* <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
@@ -544,14 +549,18 @@ let touchStartX = 0;
           </button>
         </div>
       </div>
+
+
+
+
       <div className=" flex item-center justify-center md:pt-6 pt-16 md:mt-20 pb-4">
-        <div class="animated-gradient w-full md:rounded-full rounded-3xl flex-col item-center justify-center">
+        <div className="animated-gradient w-full md:rounded-full rounded-3xl flex-col item-center justify-center">
           <div className="text-white  flex items-center justify-center pt-8 md:text-4xl text-base text-center">
             We Provide the Best Service in Industry
           </div>
           <div className="text-white flex items-center justify-center md:pt-5 h-18">
             <button
-              className="md:w-48 pt-3 pb-3 bg-gray-800 flex items-center justify-between px-4 rounded-full allproduct hover:bg-gray-600"
+              className="md:w-48 pt-3 pb-3 bg-cs1 flex font-semibold items-center justify-between px-4 rounded-full allproduct hover:bg-cs4 "
               onClick={() => handleNavItemClick("Contact")}
             >
               <div className="flex items-center justify-between w-full">
@@ -575,11 +584,11 @@ let touchStartX = 0;
       </div>
       {/* Authorized Seller of  */}
       <div className="mt-20 md:mt-28">
-        <h1 className="text-2xl font-semibold text-center text-gray-800  mb-4">
+        <h1 className="text-2xl font-semibold text-center text-cs3  mb-4">
           Authorized Seller for Brands
         </h1>
         <div className="flex items-center justify-center">
-          <hr className="h-2 w-2/4 border-gray-400 " />
+          <hr className="h-2 w-2/4 border-cs4 " />
         </div>
         <div
           className={
@@ -605,8 +614,8 @@ let touchStartX = 0;
               width="160"
               viewBox="0 0 192.756 192.756"
             >
-              <g fill-rule="evenodd" clip-rule="evenodd">
-                <path fill="#fff" d="M0 0h192.756v192.756H0V0z" />
+              <g fillRule="evenodd" clipRule="evenodd">
+                <path fill="#E0E1DD" d="M0 0h192.756v192.756H0V0z" />
                 <path
                   d="M2.834 96.378c0-21.826 41.882-39.52 93.544-39.52 51.663 0 93.543 17.694 93.543 39.52 0 21.825-41.881 39.521-93.543 39.521-51.662-.001-93.544-17.696-93.544-39.521z"
                   fill="#1b3771"
@@ -650,9 +659,10 @@ let touchStartX = 0;
           <div>
             <img
               alt="OWC Logo"
-              class="image square"
-              src="https://m.media-amazon.com/images/S/abs-image-upload-na/2/AmazonStores/ATVPDKIKX0DER/aa5ad236525b57dd39311a3dccf400a0.w400.h400._CR0%2C0%2C400%2C400_SX100_.jpg"
-              srcset="https://m.media-amazon.com/images/S/abs-image-upload-na/2/AmazonStores/ATVPDKIKX0DER/aa5ad236525b57dd39311a3dccf400a0.w400.h400._CR0%2C0%2C400%2C400_SX56_.jpg 56w, https://m.media-amazon.com/images/S/abs-image-upload-na/2/AmazonStores/ATVPDKIKX0DER/aa5ad236525b57dd39311a3dccf400a0.w400.h400._CR0%2C0%2C400%2C400_SX86_.jpg 86w, https://m.media-amazon.com/images/S/abs-image-upload-na/2/AmazonStores/ATVPDKIKX0DER/aa5ad236525b57dd39311a3dccf400a0.w400.h400._CR0%2C0%2C400%2C400_SX100_.jpg 100w, https://m.media-amazon.com/images/S/abs-image-upload-na/2/AmazonStores/ATVPDKIKX0DER/aa5ad236525b57dd39311a3dccf400a0.w400.h400._CR0%2C0%2C400%2C400_SX128_.jpg 128w, https://m.media-amazon.com/images/S/abs-image-upload-na/2/AmazonStores/ATVPDKIKX0DER/aa5ad236525b57dd39311a3dccf400a0.w400.h400._CR0%2C0%2C400%2C400_SX200_.jpg 200w, https://m.media-amazon.com/images/S/abs-image-upload-na/2/AmazonStores/ATVPDKIKX0DER/aa5ad236525b57dd39311a3dccf400a0.w400.h400._CR0%2C0%2C400%2C400_SX400_.jpg 400w"
+              className="image square"
+              src={owcLogo}
+              // src="https://m.media-amazon.com/images/S/abs-image-upload-na/2/AmazonStores/ATVPDKIKX0DER/aa5ad236525b57dd39311a3dccf400a0.w400.h400._CR0%2C0%2C400%2C400_SX100_.jpg"
+              // srcset="https://m.media-amazon.com/images/S/abs-image-upload-na/2/AmazonStores/ATVPDKIKX0DER/aa5ad236525b57dd39311a3dccf400a0.w400.h400._CR0%2C0%2C400%2C400_SX56_.jpg 56w, https://m.media-amazon.com/images/S/abs-image-upload-na/2/AmazonStores/ATVPDKIKX0DER/aa5ad236525b57dd39311a3dccf400a0.w400.h400._CR0%2C0%2C400%2C400_SX86_.jpg 86w, https://m.media-amazon.com/images/S/abs-image-upload-na/2/AmazonStores/ATVPDKIKX0DER/aa5ad236525b57dd39311a3dccf400a0.w400.h400._CR0%2C0%2C400%2C400_SX100_.jpg 100w, https://m.media-amazon.com/images/S/abs-image-upload-na/2/AmazonStores/ATVPDKIKX0DER/aa5ad236525b57dd39311a3dccf400a0.w400.h400._CR0%2C0%2C400%2C400_SX128_.jpg 128w, https://m.media-amazon.com/images/S/abs-image-upload-na/2/AmazonStores/ATVPDKIKX0DER/aa5ad236525b57dd39311a3dccf400a0.w400.h400._CR0%2C0%2C400%2C400_SX200_.jpg 200w, https://m.media-amazon.com/images/S/abs-image-upload-na/2/AmazonStores/ATVPDKIKX0DER/aa5ad236525b57dd39311a3dccf400a0.w400.h400._CR0%2C0%2C400%2C400_SX400_.jpg 400w"
               width="120"
               data-feature="cf"
               data-testid="image"
@@ -740,7 +750,8 @@ let touchStartX = 0;
           </div>
           <div>
             <img
-              src="//image.pitchbook.com/gg4UmDnXSQlcJHeBwny1U32egKX1567122055164_200x200"
+              src={promiseLogo}
+              // src="//image.pitchbook.com/gg4UmDnXSQlcJHeBwny1U32egKX1567122055164_200x200"
               alt="Promise Technology"
             />
             {/* suuuiii */}
@@ -785,13 +796,13 @@ let touchStartX = 0;
       </div>
 
       <div className="mt-28 md:mt-2">
-        <h1 className="text-2xl font-semibold text-center text-gray-800 md:mt-3 mb-4">
+        <h1 className="text-2xl font-semibold text-center text-cs3 md:mt-3 mb-4">
           Our Clients
         </h1>
         <div className="flex items-center justify-center">
-          <hr className="h-2 w-2/4 border-gray-400 pb-4" />
+          <hr className="h-2 w-2/4 border-cs4 pb-4" />
         </div>
-        <div className="stats-section grid grid-cols-1 sm:grid-cols-4 gap-6 p-8">
+        <div className="stats-section grid grid-cols-1 sm:grid-cols-4 gap-6 p-8 cs-5">
           <StatItem target={25} label="ALLIANCES WITH BRANDS" />
           <StatItem target={400} label="PRODUCTS" />
           <StatItem target={180} label="CLIENTS" />

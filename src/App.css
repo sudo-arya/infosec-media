@@ -88,7 +88,7 @@
 }
 
 .stat-item {
-  border: 1px solid #e5e7eb; 
+  border: 1px solid #778DA9; 
   /* Tailwind's gray-200 color */
   border-radius: 0.5rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -97,6 +97,25 @@
 
 .stat-item:hover {
   transform: translateY(-10px);
+  color:  #1B263B; 
+}
+
+.number {
+  transition: color 0.3s ease;
+}
+.label {
+  transition: color 0.3s ease;
+}
+
+.stat-item:hover .number {
+  color:  #1B263B; 
+  /* color: #ea580c;  */
+  /* Tailwind's orange-500 color */
+}
+.stat-item:hover .label {
+  color:  #1B263B; 
+  /* color: #ea580c;  */
+  /* Tailwind's orange-500 color */
 }
 
 .service {
@@ -131,15 +150,148 @@
 
 
 
-.number {
-  transition: color 0.3s ease;
+#arrow {
+  fill: #E0E1DD;
+  transition: fill 0.3s ease; /* Optional: smooth transition */
 }
 
-.stat-item:hover .number {
-  color: gray; 
-  /* color: #ea580c;  */
-  /* Tailwind's orange-500 color */
+#arrow:hover {
+  fill: #0D1B2A; /* Change this color to your desired hover color */
 }
+
+#monitor:hover {
+  stroke: #FFFFFF; /* Change this color to your desired hover color*/
+}
+#monitor {
+  stroke: #0D1B2A; /* Change this color to your desired hover color*/
+  
+}
+#apple:hover {
+  stroke: #FFFFFF; /* Change this color to your desired hover color*/
+  fill: #FFFFFF;
+}
+#apple {
+  stroke: #0D1B2A; /* Change this color to your desired hover color*/
+  fill: #0D1B2A; /* Change this color to your desired hover color*/
+  
+}
+#windows:hover{
+  stroke: #FFFFFF; /* Change this color to your desired hover color*/
+    fill: #FFFFFF;
+
+}
+#windows {
+  stroke: #0D1B2A; /* Change this color to your desired hover color*/
+    fill: #0D1B2A; /* Change this color to your desired hover color*/
+
+  
+}
+#audio:hover{
+  stroke: #FFFFFF; /* Change this color to your desired hover color*/
+    fill: #FFFFFF;
+
+}
+#audio {
+  stroke: #0D1B2A; /* Change this color to your desired hover color*/
+    fill: #0D1B2A; /* Change this color to your desired hover color*/
+
+  
+}
+#software:hover{
+  stroke: #FFFFFF; /* Change this color to your desired hover color*/
+    fill: #FFFFFF;
+
+}
+#software {
+  stroke: #0D1B2A; /* Change this color to your desired hover color*/
+    fill: #0D1B2A; /* Change this color to your desired hover color*/
+
+  
+}
+#call1:hover{
+  stroke: #FFFFFF; /* Change this color to your desired hover color*/
+    fill: #FFFFFF;
+
+}
+#call1 {
+  stroke: #0D1B2A; /* Change this color to your desired hover color*/
+    fill: #0D1B2A; /* Change this color to your desired hover color*/
+}
+#email1:hover{
+  stroke: #FFFFFF; /* Change this color to your desired hover color*/
+    fill: #FFFFFF;
+
+}
+#email1 {
+  stroke: #0D1B2A; /* Change this color to your desired hover color*/
+    fill: #0D1B2A; /* Change this color to your desired hover color*/
+}
+#address1:hover{
+  stroke: #FFFFFF; /* Change this color to your desired hover color*/
+    fill: #FFFFFF;
+
+}
+#address1 {
+  stroke: #0D1B2A; /* Change this color to your desired hover color*/
+    fill: #0D1B2A; /* Change this color to your desired hover color*/
+}
+#address2{
+  stroke: #FFFFFF; /* Change this color to your desired hover color*/
+    fill: #FFFFFF;
+
+}
+#address2:hover {
+  stroke: #0D1B2A; /* Change this color to your desired hover color*/
+    fill: #0D1B2A; /* Change this color to your desired hover color*/
+}
+#call2{
+  stroke: #FFFFFF; /* Change this color to your desired hover color*/
+    fill: #FFFFFF;
+
+}
+#call2:hover {
+  stroke: #0D1B2A; /* Change this color to your desired hover color*/
+    fill: #0D1B2A; /* Change this color to your desired hover color*/
+}
+#email2{
+  stroke: #FFFFFF; /* Change this color to your desired hover color*/
+    fill: #FFFFFF;
+
+}
+#email2:hover {
+  stroke: #0D1B2A; /* Change this color to your desired hover color*/
+    fill: #0D1B2A; /* Change this color to your desired hover color*/
+}
+
+/* App.css */
+.monitor-clicked {
+  stroke: #0D1B2A; /* Change this color to your desired click color */
+}
+
+
+
+
+#arrowrev {
+  fill: #E0E1DD;
+  transition: fill 0.3s ease; /* Optional: smooth transition */
+  /* transform: rotate(180deg); */
+}
+
+#arrowrev:hover {
+  fill: #0D1B2A; /* Change this color to your desired hover color */
+}
+
+@media (max-width: 600px) {
+  #arrow,
+  #arrow:hover,
+  #arrowrev,
+  #arrowrev:hover {
+    fill: #FFFFFF; /* Change fill to white for small screens */
+    
+  }
+}
+
+
 
 
 
@@ -178,6 +330,47 @@
   }
 } */
 
+
+/* Custom scrollbar for the entire webpage */
+body::-webkit-scrollbar {
+  width: 12px; /* Adjust the width of the vertical scrollbar */
+  height: 8px; /* Adjust the height of the horizontal scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: #f0f2ef; 
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #415A77; 
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #0D1B2A; 
+}
+
+/* Optional: Ensure this styling applies to all scrollable elements as well */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #f0f2ef;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #415A77;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #0D1B2A;
+}
+
+
+
+
+
 /* Custom scrollbar */
 .overflow-x-auto {
   overflow-x: auto; /* Ensure horizontal scrolling is enabled */
@@ -189,15 +382,15 @@
 }
 
 .overflow-x-auto::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f0f2ef; 
 }
 
 .overflow-x-auto::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #415A77; 
 }
 
 .overflow-x-auto::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #0D1B2A; 
 }
 
 
@@ -247,7 +440,7 @@ button:hover .tooltip-text {
 }
 
 /* Adjust tooltip for small screens */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   .tooltip-text {
     visibility: visible;
   width: 120px;
@@ -265,3 +458,28 @@ button:hover .tooltip-text {
   opacity: 1;
   }
 }
+
+
+
+.cs-1 {
+    background-color: #0D1B2A;
+}
+.cs-2 {
+    background-color: #1B263B;
+}
+.cs-3 {
+    background-color: #415A77;
+}
+/* .cs-3 {
+    background-color: #fdfcdc;
+} */
+.cs-4 {
+    background-color: #778DA9;
+}
+.cs-5 {
+    background-color: #E0E1DD;
+}
+.cs-6 {
+    background-color: #f07167;
+}
+
