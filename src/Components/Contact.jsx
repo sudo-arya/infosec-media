@@ -138,11 +138,11 @@ const Contact = () => {
       </p>
       <div className="w-full justify-center flex md:flex-row flex-col  mt-4">
         <div className="md:w-6/12 md:p-3 ">
-          <p className="text-cs3 text-center font-semibold text-xl ">
-            Contact Info
+          <p className="text-cs3 text-center font-semibold text-xl mb-4">
+            {/* Contact Info */}
           </p>
           <div className="flex items-center justify-center">
-            <hr className="h-2 w-2/4 border-gray-400 pb-1" />
+            <hr className="h-2 w-2/4 border-gray-400 pb-1 mb-6" />
           </div>
           <div className="flex md:flex-col flex-col items-center justify-center mt-2">
             <div className="mb-3 md:flex-row flex-col flex items-center justify-center ">
