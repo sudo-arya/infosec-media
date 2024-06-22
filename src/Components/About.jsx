@@ -29,14 +29,14 @@ const About = ({ setActiveComponent }) => {
     <div className="min-h-screen flex-col justify-center items-center">
       {/* <div>About</div> */}
       <h1 className="text-4xl font-bold text-center text-cs3 mt-8 mb-2">
-        About Us
+        Our Story
       </h1>
       <div className="flex items-center justify-center">
         <hr className="h-2 w-2/4 border-cs4 pb-1" />
       </div>
       <div>
         <div className="flex flex-col md:flex-row items-center justify-center">
-          <div className="h-4/6 mt-8">
+          <div className="h-4/6 mt-6">
             <img
               src="https://imgs.search.brave.com/anenpkivdXgdaU3WA1TEsPqEMErEo9azBu0SogtpvWo/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pc29y/ZXB1YmxpYy5jb20v/d3AtY29udGVudC91/cGxvYWRzLzIwMTgv/MTEvc2hvdHN0YXNo/XzAxMDEtMS0xMTAw/eDczNC5qcGc"
               alt="Our Story"
@@ -44,15 +44,15 @@ const About = ({ setActiveComponent }) => {
             />
           </div>
           <div className="md:pl-14 p-4 md:w-3/4  ">
-            <h1 className="text-3xl font-semibold text-center text-cs3 mt-4 mb-2">
-              Our Story
+            <h1 className="text-3xl font-semibold text-center text-cs3 mt-12 mb-2">
+              {/* Our Story */}
             </h1>
 
             <div className="flex items-center justify-center">
-              <hr className="h-2 w-3/4 border-cs4 mb-4" />
+              {/* <hr className="h-2 w-3/4 border-cs4 mb-4" /> */}
             </div>
             <div className=" justify-center">
-              <p className="text-cs1 text-base">
+              <p className="text-cs1 text-base ">
                 We, Infosec Media are already in Sale & service business for
                 more than 15 years.
               </p>

@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import sidewayLogos from "../Assets/Infosec media solutions logo final files/Infosec media solutions sideway.png";
+import sidewayLogos from "../Assets/Infosec media solutions logo final files/Infosec media solutions logo  AI liner.svg";
 
 const Navbar = ({ activeComponent, setActiveComponent }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,7 +47,7 @@ const Navbar = ({ activeComponent, setActiveComponent }) => {
             src={sidewayLogos}
             // width="160px"
             alt="logo"
-            className={isSmallScreen ? " w-32 ml-2" : "w-40"}
+            className={isSmallScreen ? " w-40 ml-2" : "w-48"}
           />
         </div>
         <div className="md:hidden">

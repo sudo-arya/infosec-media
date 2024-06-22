@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import fullLogo from "../Assets/Infosec media solutions logo final files/Infosec media solutions logo  3D.png";
+import fullLogo1 from "../Assets/Infosec media solutions logo final files/Infosec media solutions logo new 1.svg";
 // import fullLogo from "../Assets/Infosec media solutions logo final files/Infosec media solutions logo  3D.png";
 
 const Footer = ({ setActiveComponent }) => {
@@ -104,12 +104,13 @@ const Footer = ({ setActiveComponent }) => {
               </div>
               <div className="flex  items-center justify-center">
                 <img
-                  src={fullLogo}
+                  src={fullLogo1}
                   width="160"
                   height="160"
                   alt="logo"
                   className="flex items-center justify-center py-2"
                 />
+                
               </div>
               <div className="flex items-center justify-center content-center">
                 <p
