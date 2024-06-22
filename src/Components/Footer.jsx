@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import fullLogo from "../Assets/Infosec media solutions logo final files/Infosec media solutions logo  3D.png";
+// import fullLogo from "../Assets/Infosec media solutions logo final files/Infosec media solutions logo  3D.png";
 
 const Footer = ({ setActiveComponent }) => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -63,10 +64,11 @@ const Footer = ({ setActiveComponent }) => {
     <div>
       <div>
         {isSmallScreen && (
-          <div>
-            <div className="text-white flex items-center justify-center md:pt-5 pt-1 pb-6">
+          <div className="">
+            <div className="text-white flex-col flex items-center btn-back justify-center">
+              {/* <div className="bg-cs2 w-full p-5"></div> */}
               <button
-                className="md:w-48 pt-3 pb-3 bg-cs1 flex font-semibold items-center justify-between px-4 rounded-full allproduct hover:bg-cs4 "
+                className="md:w-48 pt-3 pb-3 bg-cs1 flex font-semibold items-center justify-between px-4 rounded-full allproduct  hover:bg-cs4 "
                 onClick={() => handleNavItemClick("Contact")}
               >
                 <div className="flex items-center justify-between w-full">
@@ -240,7 +242,7 @@ const Footer = ({ setActiveComponent }) => {
         {/* &nbsp; */}
         {/* </div> */}
         {isSmallScreen && (
-          <div className="max-w-full sm:max-w-sm rounded overflow-hidden space-x-4 mx-auto flex items-center justify-center p-4">
+          <div className="max-w-full sm:max-w-sm rounded overflow-hidden space-x-4 mx-auto flex items-center justify-center p-4 pt-8">
             <button onClick={handleAddressClick} id="address2">
               <p
                 className="text-cs5 hover:text-cs1 hover:bg-cs4 rounded-xl text-base font-medium cursor-pointer nav-item px-4 flex-col"
@@ -270,18 +272,18 @@ const Footer = ({ setActiveComponent }) => {
                     <path id="a" d="M.06 64V.04H64V64z"></path>
                   </defs>
                   <g fill="none" fillRule="evenodd">
-                    <mask id="b" fill="#fff"></mask>
+                    <mask id="b" fill="#1B263B"></mask>
                     <path
-                      fill="#B85756"
+                      fill="#1B263B"
                       d="M64 32c0 17.673-14.327 32-32 32C14.327 64 0 49.673 0 32 0 14.327 14.327 0 32 0c17.673 0 32 14.327 32 32"
                       mask="url(#b)"
                     ></path>
                     <path
-                      fill="#974D4C"
+                      fill="#1B263B"
                       d="M43.605 46.272 32.602 40.77a1.341 1.341 0 0 0-1.204 0l-11.003 5.502L32 20.161l11.605 26.111"
                     ></path>
                     <path
-                      fill="#974D4C"
+                      fill="#1B263B"
                       d="M17.641 50.501a1.347 1.347 0 0 1-1.231-1.894l14.36-32.308a1.346 1.346 0 0 1 2.46 0l14.36 32.308a1.347 1.347 0 0 1-1.833 1.751L32 43.48l-13.757 6.878a1.339 1.339 0 0 1-.602.143M32 40.628c.206 0 .413.047.602.142l11.003 5.502L32 20.161 20.395 46.272l11.003-5.502c.189-.095.396-.142.602-.142"
                     ></path>
                     <path

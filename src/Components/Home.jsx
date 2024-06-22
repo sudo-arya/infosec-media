@@ -127,35 +127,39 @@ const Home = ({ setActiveComponent }) => {
   return (
     <div className="min-h-screen flex-col justify-center items-center cs-5">
       {/* <div>home</div> */}
-      <div className="relative w-full mx-auto  mt-0" style={{ height: "69vh" }}>
-        {/* {add w-screen for full width} */}
+      {/* image carousel */}
+      <div className="relative w-full mx-auto mt-0" style={{ height: "69vh" }}>
         <div className="overflow-hidden relative h-full ">
-          <div
-            className="whitespace-nowrap transition-transform duration-500 h-full rounded-xl"
-            style={{ transform: `translateX(${-currentIndex * 100}%)` }}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-          >
+          <div className="relative h-full w-full">
             {images.map((image, index) => (
               <img
                 key={index}
                 src={image}
                 alt={`Slide ${index + 1}`}
-                className="inline-block w-full h-full object-cover object-center rounded-3xl"
+                className={`absolute top-0 left-0 w-full h-full object-cover object-center rounded-3xl transition ${
+                  index === currentIndex ? "opacity-100" : "opacity-0"
+                }`}
+                style={{ transitionDuration: "1s" }} // Adjust transition duration as needed
               />
             ))}
           </div>
         </div>
+        {/* <div className="md:h-10 bg-white"> &nbsp;</div> */}
         <button
           className={
             isSmallScreen
-              ? "absolute left-0 top-1/2 transform -translate-y-1/2 bg-cs3 text-white p-4 rounded-full"
-              : "absolute -left-5 top-1/2 transform -translate-y-1/2 bg-cs1 text-white px-3 p-4 w-14 hover:bg-cs3 rounded-full transition duration-300 hover:scale-105 ease-in-out hover:text-cs1 hover:w-12 "
+              ? "absolute left-0 bottom-1/2 transform translate-y-full bg-cs3 text-white p-4 rounded-full"
+              : "absolute -left-5 bottom-1/2 transform translate-y-full bg-cs1 text-white px-3 p-4 w-14 hover:bg-cs3 rounded-full transition duration-300 hover:scale-105 ease-in-out hover:text-cs1 hover:w-12 "
           }
           id="arrow"
           onClick={handlePrevious}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="20">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="40"
+            viewBox="0 0 11 20"
+          >
             <path
               fillRule="evenodd"
               d="M10.634.292a1.063 1.063 0 0 0-1.464 0L.607 8.556a1.95 1.95 0 0 0 0 2.827l8.625 8.325c.4.385 1.048.39 1.454.01a.975.975 0 0 0 .01-1.425l-7.893-7.617a.975.975 0 0 1 0-1.414l7.83-7.557a.974.974 0 0 0 0-1.413"
@@ -163,19 +167,21 @@ const Home = ({ setActiveComponent }) => {
           </svg>
         </button>
         <button
+          style={{ transform: "rotate(180deg)" }}
           className={
             isSmallScreen
-              ? "absolute right-0  top-1/2 transform -translate-y-1/2 bg-cs3 text-white p-4 rounded-full"
-              : "absolute -right-5  top-1/2 transform -translate-y-1/2 bg-cs1 text-white px-3 p-4 w-14 hover:bg-cs3 rounded-full transition duration-300 hover:scale-105 ease-in-out hover:text-cs1 hover:w-10 flex-row"
+              ? "absolute right-0 top-1/2 transform -translate-y-1/2 bg-cs3 text-white p-4 rounded-full"
+              : "absolute -right-5 top-1/2 transform  bg-cs1 text-white px-3 p-4 w-14 hover:bg-cs3 rounded-full transition duration-300 hover:scale-105 ease-in-out hover:text-cs1 hover:w-12 flex-row"
           }
           id="arrowrev"
           onClick={handleNext}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="11"
-            height="20"
-            transform="rotate(180, 5, 0)"
+            width="22"
+            height="40"
+            viewBox="0 0 11 20"
+            // transform="rotate(180, 1.5, 0)"
             className=""
           >
             <path
@@ -185,6 +191,7 @@ const Home = ({ setActiveComponent }) => {
           </svg>
         </button>
       </div>
+
       <h1 className="text-4xl font-bold text-center text-cs4 mt-8 mb-4">
         The Single Source for All Your IT Needs
       </h1>
@@ -394,7 +401,8 @@ const Home = ({ setActiveComponent }) => {
         {/* Redirect button */}
         <div className="flex items-center justify-center pt-6">
           <button
-            className="px-4 py-2 bg-cs1 text-white font-bold rounded hover:bg-cs4 hover:text-cs2 transform transition duration-300 hover:scale-150 ease-in-out"
+            className="custom-button"
+            // className="px-4 py-2 transform transition-transform transition-colors ease-in-out bg-cs1 text-white font-bold rounded hover:bg-cs4 hover:text-cs2 duration-500 hover:scale-150"
             onClick={() => handleNavItemClick("Products")}
           >
             View All Products
@@ -550,21 +558,20 @@ const Home = ({ setActiveComponent }) => {
         </div>
       </div>
 
-
-
+      {/* contact us card  */}
 
       <div className=" flex item-center justify-center md:pt-6 pt-16 md:mt-20 pb-4">
-        <div className="animated-gradient w-full md:rounded-full rounded-3xl flex-col item-center justify-center">
-          <div className="text-white  flex items-center justify-center pt-8 md:text-4xl text-base text-center">
+        <div className="animated-gradient w-5/6 md:rounded-full rounded-3xl flex-col item-center justify-center md:h-28 h-20">
+          <div className="text-white  flex items-center justify-center pt-6 md:text-4xl text-base text-center">
             We Provide the Best Service in Industry
           </div>
           <div className="text-white flex items-center justify-center md:pt-5 h-18">
             <button
-              className="md:w-48 pt-3 pb-3 bg-cs1 flex font-semibold items-center justify-between px-4 rounded-full allproduct hover:bg-cs4 "
+              className="md:w-48 pt-3 pb-3 bg-cs1 flex font-semibold items-center justify-between px-4 rounded-full allproduct hover:bg-cs4"
               onClick={() => handleNavItemClick("Contact")}
             >
               <div className="flex items-center justify-between w-full">
-                <div className="ml-2">Contact Us Today</div>
+                <div className="ml-2 flex-nowrap">Contact Us Today</div>
                 <div className="">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -582,6 +589,7 @@ const Home = ({ setActiveComponent }) => {
           </div>
         </div>
       </div>
+
       {/* Authorized Seller of  */}
       <div className="mt-20 md:mt-28">
         <h1 className="text-2xl font-semibold text-center text-cs3  mb-4">
@@ -597,11 +605,11 @@ const Home = ({ setActiveComponent }) => {
               : "flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-14 p-4 items-center justify-center icon-grid3 pb-12"
           }
         >
-          <div>
+          <div className="flex items-center justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 128 128"
-              id="apple"
+              id="apple1"
               width="160"
               height="72"
             >

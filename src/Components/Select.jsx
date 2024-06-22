@@ -1376,7 +1376,7 @@ const Select = ({ arg }) => {
                 <div className=" font-semibold pl-3">
                   Send Specification via{" "}
                 </div>
-                <div className="px-3">
+                <div className="px-3"> 
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     x="0px"

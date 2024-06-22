@@ -13,6 +13,30 @@
   }
 }
 
+.transition {
+  transition: opacity 0.5s ease-in-out;
+}
+
+
+
+/* Base button styling */
+/* Adding transition duration variable for easy tweaking */
+.custom-button {
+  
+  padding: 0.5rem 1rem;
+  background-color: #0D1B2A;
+  color: white;
+  font-weight: bold;
+  border-radius: 0.25rem;
+  --transition-duration: 300ms;
+  transition: transform var(--transition-duration) ease-in-out, background-color var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
+}
+
+.custom-button:hover {
+  background-color: #778DA9;
+  color: #1B263B;
+  transform: scale(1.25);
+}
 
 .vertical-line {
         border-left: 1px solid white; /* Adjust the color and width as needed */
@@ -153,58 +177,77 @@
 #arrow {
   fill: #E0E1DD;
   transition: fill 0.3s ease; /* Optional: smooth transition */
+  --transition-duration: 300ms;
+  transition: transform var(--transition-duration) ease-in-out, background-color var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
 }
 
 #arrow:hover {
   fill: #0D1B2A; /* Change this color to your desired hover color */
+  
 }
 
 #monitor:hover {
   stroke: #FFFFFF; /* Change this color to your desired hover color*/
+  transform: scale(1.25);
+  
 }
 #monitor {
   stroke: #0D1B2A; /* Change this color to your desired hover color*/
+  --transition-duration: 300ms;
+  transition: transform var(--transition-duration) ease-in-out, background-color var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
   
 }
 #apple:hover {
   stroke: #FFFFFF; /* Change this color to your desired hover color*/
   fill: #FFFFFF;
+  transform: scale(1.25);
 }
 #apple {
   stroke: #0D1B2A; /* Change this color to your desired hover color*/
   fill: #0D1B2A; /* Change this color to your desired hover color*/
+  --transition-duration: 300ms;
+  transition: transform var(--transition-duration) ease-in-out, background-color var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
   
 }
 #windows:hover{
   stroke: #FFFFFF; /* Change this color to your desired hover color*/
     fill: #FFFFFF;
+    transform: scale(1.25);
 
 }
 #windows {
   stroke: #0D1B2A; /* Change this color to your desired hover color*/
     fill: #0D1B2A; /* Change this color to your desired hover color*/
+    --transition-duration: 300ms;
+  transition: transform var(--transition-duration) ease-in-out, background-color var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
 
   
 }
 #audio:hover{
   stroke: #FFFFFF; /* Change this color to your desired hover color*/
     fill: #FFFFFF;
+    transform: scale(1.25);
 
 }
 #audio {
   stroke: #0D1B2A; /* Change this color to your desired hover color*/
     fill: #0D1B2A; /* Change this color to your desired hover color*/
+    --transition-duration: 300ms;
+  transition: transform var(--transition-duration) ease-in-out, background-color var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
 
   
 }
 #software:hover{
   stroke: #FFFFFF; /* Change this color to your desired hover color*/
     fill: #FFFFFF;
+    transform: scale(1.25);
 
 }
 #software {
   stroke: #0D1B2A; /* Change this color to your desired hover color*/
     fill: #0D1B2A; /* Change this color to your desired hover color*/
+    --transition-duration: 300ms;
+  transition: transform var(--transition-duration) ease-in-out, background-color var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
 
   
 }
@@ -216,6 +259,8 @@
 #call1 {
   stroke: #0D1B2A; /* Change this color to your desired hover color*/
     fill: #0D1B2A; /* Change this color to your desired hover color*/
+    --transition-duration: 300ms;
+  transition: transform var(--transition-duration) ease-in-out, background-color var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
 }
 #email1:hover{
   stroke: #FFFFFF; /* Change this color to your desired hover color*/
@@ -225,6 +270,8 @@
 #email1 {
   stroke: #0D1B2A; /* Change this color to your desired hover color*/
     fill: #0D1B2A; /* Change this color to your desired hover color*/
+    --transition-duration: 300ms;
+  transition: transform var(--transition-duration) ease-in-out, background-color var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
 }
 #address1:hover{
   stroke: #FFFFFF; /* Change this color to your desired hover color*/
@@ -234,10 +281,14 @@
 #address1 {
   stroke: #0D1B2A; /* Change this color to your desired hover color*/
     fill: #0D1B2A; /* Change this color to your desired hover color*/
+    --transition-duration: 300ms;
+  transition: transform var(--transition-duration) ease-in-out, background-color var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
 }
 #address2{
   stroke: #FFFFFF; /* Change this color to your desired hover color*/
     fill: #FFFFFF;
+    --transition-duration: 300ms;
+  transition: transform var(--transition-duration) ease-in-out, background-color var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
 
 }
 #address2:hover {
@@ -247,6 +298,8 @@
 #call2{
   stroke: #FFFFFF; /* Change this color to your desired hover color*/
     fill: #FFFFFF;
+    --transition-duration: 300ms;
+  transition: transform var(--transition-duration) ease-in-out, background-color var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
 
 }
 #call2:hover {
@@ -256,11 +309,22 @@
 #email2{
   stroke: #FFFFFF; /* Change this color to your desired hover color*/
     fill: #FFFFFF;
+    --transition-duration: 300ms;
+  transition: transform var(--transition-duration) ease-in-out, background-color var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
 
 }
 #email2:hover {
   stroke: #0D1B2A; /* Change this color to your desired hover color*/
     fill: #0D1B2A; /* Change this color to your desired hover color*/
+}
+.handler{
+ 
+    --transition-duration: 300ms;
+  transition: transform var(--transition-duration) ease-in-out, background-color var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
+
+}
+.handler:hover {
+  transform: scale(1.5);
 }
 
 /* App.css */
@@ -269,12 +333,17 @@
 }
 
 
-
+.btn-back{
+  background:#1B263B;
+  height: 0px;
+}
 
 #arrowrev {
   fill: #E0E1DD;
   transition: fill 0.3s ease; /* Optional: smooth transition */
   /* transform: rotate(180deg); */
+  --transition-duration: 300ms;
+  transition: transform var(--transition-duration) ease-in-out, background-color var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
 }
 
 #arrowrev:hover {
@@ -297,8 +366,8 @@
 
 /* styles.css */
 .animated-gradient {
-  width:60vw;
-  height: 12vh;
+  /* width:60vw; */
+  /* height: 12vh; */
    /* Full viewport height */
   background: linear-gradient(270deg, #ff6ec4, #7873f5, #55efc4, #ff6ec4);
   background-size: 600% 600%;
@@ -342,11 +411,11 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background: #415A77; 
+  background: #0D1B2A; 
 }
 
 body::-webkit-scrollbar-thumb:hover {
-  background: #0D1B2A; 
+  background: #415A77; 
 }
 
 /* Optional: Ensure this styling applies to all scrollable elements as well */

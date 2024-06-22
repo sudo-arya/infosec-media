@@ -28,7 +28,7 @@ const About = ({ setActiveComponent }) => {
   return (
     <div className="min-h-screen flex-col justify-center items-center">
       {/* <div>About</div> */}
-      <h1 className="text-4xl font-bold text-center text-cs3 mt-16 mb-4">
+      <h1 className="text-4xl font-bold text-center text-cs3 mt-8 mb-2">
         About Us
       </h1>
       <div className="flex items-center justify-center">
@@ -36,20 +36,20 @@ const About = ({ setActiveComponent }) => {
       </div>
       <div>
         <div className="flex flex-col md:flex-row items-center justify-center">
-          <div className="h-4/6 mt-16">
+          <div className="h-4/6 mt-8">
             <img
               src="https://imgs.search.brave.com/anenpkivdXgdaU3WA1TEsPqEMErEo9azBu0SogtpvWo/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pc29y/ZXB1YmxpYy5jb20v/d3AtY29udGVudC91/cGxvYWRzLzIwMTgv/MTEvc2hvdHN0YXNo/XzAxMDEtMS0xMTAw/eDczNC5qcGc"
               alt="Our Story"
               className="rounded-3xl"
             />
           </div>
-          <div className="md:pl-14 p-6 md:w-3/4  ">
-            <h1 className="text-3xl font-semibold text-center text-cs3 mt-16 mb-2">
+          <div className="md:pl-14 p-4 md:w-3/4  ">
+            <h1 className="text-3xl font-semibold text-center text-cs3 mt-4 mb-2">
               Our Story
             </h1>
 
             <div className="flex items-center justify-center">
-              <hr className="h-2 w-3/4 border-cs4 pb-8" />
+              <hr className="h-2 w-3/4 border-cs4 mb-4" />
             </div>
             <div className=" justify-center">
               <p className="text-cs1 text-base">
@@ -85,6 +85,36 @@ const About = ({ setActiveComponent }) => {
               </p>
               <br />
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div className=" flex item-center justify-center md:pt-6 pt-8 md:mt-8 pb-4">
+        <div className="animated-gradient w-5/6 md:rounded-full rounded-3xl flex-col item-center justify-center md:h-28 h-20">
+          <div className="text-white  flex items-center justify-center pt-6 md:text-4xl text-base text-center">
+            We Provide the Best Service in Industry
+          </div>
+          <div className="text-white flex items-center justify-center md:pt-5 h-18">
+            <button
+              className="md:w-48 pt-3 pb-3 bg-cs1 flex font-semibold items-center justify-between px-4 rounded-full allproduct hover:bg-cs4"
+              onClick={() => handleNavItemClick("Contact")}
+            >
+              <div className="flex items-center justify-between w-full">
+                <div className="ml-2 flex-nowrap">Contact Us Today</div>
+                <div className="">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    style={{ fill: "white" }}
+                    viewBox="0 0 32 32"
+                    id="arrow"
+                  >
+                    <path d="M4 15a1 1 0 0 0 1 1h19.586l-4.292 4.292a1 1 0 0 0 1.414 1.414l6-6a.99.99 0 0 0 .292-.702V15c0-.13-.026-.26-.078-.382a.99.99 0 0 0-.216-.324l-6-6a1 1 0 0 0-1.414 1.414L24.586 14H5a1 1 0 0 0-1 1z"></path>
+                  </svg>
+                </div>
+              </div>
+            </button>
           </div>
         </div>
       </div>
@@ -239,7 +269,7 @@ const About = ({ setActiveComponent }) => {
         </div>
       </div>
 
-      <div className=" flex item-center justify-center pt-12 pb-4">
+      {/* <div className=" flex item-center justify-center pt-12 pb-4">
         <div className="animated-gradient w-full md:rounded-full rounded-3xl flex-col item-center justify-center">
           <div className="text-white  flex items-center justify-center pt-8  md:text-4xl text-base text-center">
             We Provide the Best Service in Industry
@@ -267,7 +297,8 @@ const About = ({ setActiveComponent }) => {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
+
       <div className=" h-6 bg-cs5">
         {/* Your content goes here */}
         &nbsp; &nbsp;

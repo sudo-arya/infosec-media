@@ -60,19 +60,27 @@ const Contact = () => {
 
 
    const handleFacebook = () => {
-     window.location.href =
-       "https://www.facebook.com/profile.php?id=61561061845957";
+     window.open(
+       "https://www.facebook.com/profile.php?id=61561061845957",
+       "_blank"
+     );
    };
+
    const handleInsta = () => {
-     window.location.href = "https://www.instagram.com/_infosecmedia/";
+     window.open("https://www.instagram.com/_infosecmedia/", "_blank");
    };
+
    const handleX = () => {
-     window.location.href = "https://x.com/_infosecmedia";
+     window.open("https://x.com/_infosecmedia", "_blank");
    };
+
    const handleYoutube = () => {
-     window.location.href =
-       "https://www.youtube.com/channel/UCT7rrtZm0qp-egKuQP2kCrQ";
+     window.open(
+       "https://www.youtube.com/channel/UCT7rrtZm0qp-egKuQP2kCrQ",
+       "_blank"
+     );
    };
+
 
     const [inputValue, setInputValue] = useState("");
     const [emailValue, setEmailValue] = useState("");
@@ -118,7 +126,7 @@ const Contact = () => {
   return (
     <div className="h-auto flex-col justify-center items-center">
       {/* <div>Contact</div> */}
-      <h1 className="text-3xl font-bold text-center text-cs3 mt-16 mb-4">
+      <h1 className="text-3xl font-bold text-center text-cs3 mt-8 mb-4">
         Contact Details
       </h1>
       <div className="flex items-center justify-center">
@@ -281,7 +289,7 @@ const Contact = () => {
               <div>
                 <button
                   onClick={handleYoutube}
-                  className="pt-3 pl-3 pr-2 pb-3 transform transition duration-300 hover:scale-150 ease-in-out"
+                  className="pt-3 pl-3 pr-2 pb-3 transform transition duration-300 hover:scale-150 ease-in-out handler"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -307,7 +315,7 @@ const Contact = () => {
 
                 <button
                   onClick={handleFacebook}
-                  className="p-3 transform transition duration-300 hover:scale-150 ease-in-out"
+                  className="p-3 transform transition duration-300 hover:scale-150 ease-in-out handler"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -330,7 +338,7 @@ const Contact = () => {
 
                 <button
                   onClick={handleInsta}
-                  className="p-3 transform transition duration-300 hover:scale-150 ease-in-out"
+                  className="p-3 transform transition duration-300 hover:scale-150 ease-in-out handler"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -383,7 +391,7 @@ const Contact = () => {
 
                 <button
                   onClick={handleX}
-                  className="p-3 transform transition duration-300 hover:scale-150 ease-in-out"
+                  className="p-3 transform transition duration-300 hover:scale-150 ease-in-out handler"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
