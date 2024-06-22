@@ -130,7 +130,11 @@ const Home = ({ setActiveComponent }) => {
       {/* image carousel */}
       <div className="relative w-full mx-auto mt-0" style={{ height: "69vh" }}>
         <div className="overflow-hidden relative h-full ">
-          <div className="relative h-full w-full">
+          <div
+            className="relative h-full w-full"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+          >
             {images.map((image, index) => (
               <img
                 key={index}
