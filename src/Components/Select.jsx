@@ -1,5 +1,25 @@
 import React, { useState, useEffect } from "react";
 import "react-whatsapp-widget/dist/index.css";
+import windowslogo from "../Assets/softwares logo/windows.svg";
+import affinitylogo from "../Assets/softwares logo/affinity-designer.svg";
+import bitdefenderlogo from "../Assets/softwares logo/bitdefender.svg";
+import gimplogo from "../Assets/softwares logo/gimp.svg";
+import googlelogo from "../Assets/softwares logo/google.svg";
+import illustratorlogo from "../Assets/softwares logo/illustrator.svg";
+import macoslogo from "../Assets/softwares logo/macos.svg";
+import microsoft365logo from "../Assets/softwares logo/microsoft-365.svg";
+import photoshoplogo from "../Assets/softwares logo/photoshop.svg";
+import sketchlogo from "../Assets/softwares logo/sketch.svg";
+import ubuntulogo from "../Assets/softwares logo/ubuntu.svg";
+import microsoftofficelogo from "../Assets/softwares logo/microsoft-office.svg";
+import coreldrawlogo from "../Assets/softwares logo/coreldraw.svg";
+import mcafeelogo from "../Assets/softwares logo/mcafee.svg"
+import avastlogo from "../Assets/softwares logo/avast.svg"
+import defenderlogo from "../Assets/softwares logo/Windows_Defender-Logo.wine.svg"
+import nortonlogo from "../Assets/softwares logo/norton.svg";
+import kaperskylogo from "../Assets/softwares logo/Kaspersky.svg"
+import libreofficelogo from "../Assets/softwares logo/LibreOffice.svg"
+// import logo from "../Assets/softwares logo"
 
 const productsData = {
   Apple: [
@@ -275,41 +295,49 @@ const additionalData = {
   },
   Softwares: {
     operatingSystemOptions: [
-      "Dont Know Much",
-      "Windows 10 Home",
-      "Windows 10 Pro",
-      "Windows 11 Home",
-      "Windows 11 Pro",
+      "Windows",
       "macOS",
       "Linux",
-    ],
-    officeSuiteOptions: [
-      "Dont Know Much",
-      "Microsoft Office 2019",
-      "Microsoft Office 2021",
-      "Microsoft 365",
-      "Google Workspace",
-      "LibreOffice",
-    ],
-    antivirusOptions: [
-      "Dont Know Much",
-      "Norton",
-      "McAfee",
-      "Kaspersky",
-      "Bitdefender",
-      "Avast",
-      "Windows Defender",
-    ],
-    designSoftwareOptions: [
-      "Dont Know Much",
       "Adobe Photoshop",
       "Adobe Illustrator",
       "CorelDRAW",
       "Affinity Designer",
       "Sketch",
       "GIMP",
+      "Norton",
+      "McAfee",
+      "Kaspersky",
+      "Bitdefender",
+      "Avast",
+      "Windows Defender",
+      "Microsoft Office",
+      "Microsoft 365",
+      "Google Workspace",
+      "LibreOffice",
     ],
   },
+};
+
+const softwareImages = {
+  "Windows ": windowslogo,
+  macOS: macoslogo,
+  Linux: ubuntulogo,
+  "Adobe Photoshop": photoshoplogo,
+  "Adobe Illustrator": illustratorlogo,
+  CorelDRAW: coreldrawlogo,
+  "Affinity Designer": affinitylogo,
+  Sketch: sketchlogo,
+  GIMP: gimplogo,
+  Norton: nortonlogo,
+  McAfee: mcafeelogo,
+  Kaspersky: kaperskylogo,
+  Bitdefender: bitdefenderlogo,
+  Avast: avastlogo,
+  "Windows Defender": defenderlogo,
+  "Microsoft Office": microsoftofficelogo,
+  "Microsoft 365": microsoft365logo,
+  "Google Workspace": googlelogo,
+  LibreOffice: libreofficelogo,
 };
 
 // Merge additionalData into windowsData
@@ -330,6 +358,7 @@ const Select = ({ arg }) => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   let mobileno = 9718627660;
   let emailas = "sales@infosecmediasolutions.com";
+  const [selectedSoftwares, setSelectedSoftwares] = useState([]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -375,7 +404,9 @@ const Select = ({ arg }) => {
         break;
       case "Audio":
       case "Softwares":
-        specifications += `\nOS: ${selectedProcessor}\nOffice Suite: ${selectedGraphics}\nAntivirus: ${selectedStorage}\nDesign Software: ${selectedMemory}`;
+         specifications += `\nSelected Softwares:\n${selectedSoftwares.join(
+           "\n"
+         )}`;
         break;
       default:
         break;
@@ -439,11 +470,14 @@ const Select = ({ arg }) => {
         break;
       case "Audio":
       case "Softwares":
-        body += `OS: ${selectedProcessor}%0D%0A Office Suite: ${selectedGraphics}%0D%0A Antivirus: ${selectedStorage}%0D%0A Design Software: ${selectedMemory}`;
+        body += `%0D%0ASelected Softwares:%0D%0A${selectedSoftwares.join(
+          "%0D%0A"
+        )}`;
         break;
       default:
         break;
     }
+     
 
     // Add inputedText if arg is Upgrade or Repair
     if (arg === "Upgrade" || arg === "Repair") {
@@ -480,6 +514,7 @@ const Select = ({ arg }) => {
     setSelectedGraphics("");
     setSelectedStorage("");
     setSelectedMemory("");
+    setSelectedSoftwares("");
     // setSelectedDisplay(""); // Reset selectedDisplay
     setSelectedProductType(""); // Reset selectedProductType for Windows
   };
@@ -501,6 +536,14 @@ const Select = ({ arg }) => {
     setSelectedStorage("");
     setSelectedMemory("");
     // setSelectedDisplay(""); // Reset selectedDisplay
+  };
+
+  const handleSoftwareSelect = (software) => {
+    setSelectedSoftwares((prevSelected) =>
+      prevSelected.includes(software)
+        ? prevSelected.filter((s) => s !== software)
+        : [...prevSelected, software]
+    );
   };
 
   const handleProcessorSelect = (processor) => {
@@ -919,18 +962,16 @@ const Select = ({ arg }) => {
         </div>
       )}
       {selectedBrand === "Audio" && <div>hello</div>}
-      {selectedBrand === "Softwares" && (
+
+      {/* {selectedBrand === "Softwares" && (
         <div className="mt-4">
           <h2 className="text-xl font-bold mb-2 text-cs3">
             Select Software :-
           </h2>
           <div className="mb-4">
-            <h3 className="text-lg font-semibold mb-2  text-cs3">
-              Select Operating System :
-            </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
               {/* {windowsData[selectedProductType].processorOptions.map( */}
-              {additionalData[selectedBrand].operatingSystemOptions.map(
+      {/* {additionalData[selectedBrand].operatingSystemOptions.map(
                 (os, index) => (
                   <div
                     key={index}
@@ -947,78 +988,8 @@ const Select = ({ arg }) => {
               )}
             </div>
           </div>
-
-          <div className="mb-4">
-            <h3 className="text-lg font-semibold mb-2 text-cs3">
-              Select OfficeSuite:
-            </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-              {/* {windowsData[selectedProductType].processorOptions.map( */}
-              {additionalData[selectedBrand].officeSuiteOptions.map(
-                (office, index) => (
-                  <div
-                    key={index}
-                    onClick={() => handleGraphicsSelect(office)}
-                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out ${
-                      selectedGraphics === office
-                        ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
-                        : "bg-white border"
-                    }`}
-                  >
-                    {office}
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-          <div className="mb-4">
-            <h3 className="text-lg font-semibold mb-2 text-cs3">
-              Select Antivirus:
-            </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-              {/* {windowsData[selectedProductType].processorOptions.map( */}
-              {additionalData[selectedBrand].antivirusOptions.map(
-                (antivirus, index) => (
-                  <div
-                    key={index}
-                    onClick={() => handleStorageSelect(antivirus)}
-                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out ${
-                      selectedStorage === antivirus
-                        ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
-                        : "bg-white border"
-                    }`}
-                  >
-                    {antivirus}
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-          <div className="mb-4">
-            <h3 className="text-lg font-semibold mb-2 text-cs3">
-              Select Design Software:
-            </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-              {/* {windowsData[selectedProductType].processorOptions.map( */}
-              {additionalData[selectedBrand].designSoftwareOptions.map(
-                (design, index) => (
-                  <div
-                    key={index}
-                    onClick={() => handleMemorySelect(design)}
-                    className={`p-4 border rounded cursor-pointer transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out ${
-                      selectedMemory === design
-                        ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
-                        : "bg-white border"
-                    }`}
-                  >
-                    {design}
-                  </div>
-                )
-              )}
-            </div>
-          </div>
         </div>
-      )}
+      )} */}
 
       {/* Configuration Options */}
       {(selectedProductType === "Desktop" ||
@@ -1225,6 +1196,123 @@ const Select = ({ arg }) => {
           </div>
         </div>
       )}
+      {selectedBrand === "Softwares" && (
+        <div>
+          <h2 className="text-2xl font-bold mb-6 text-cs3 flex items-center justify-center">
+            Select Software :-
+          </h2>
+          <div className="grid md:grid-cols-4 grid-cols-2  gap-4">
+            {Object.keys(softwareImages).map((software) => (
+              <div
+                key={software}
+                className={`cursor-pointer md:mx-14 my-1 p-4 border rounded-xl transform transition duration-300 hover:scale-110 hover:bg-cs1 hover:text-white ease-in-out software ${
+                  selectedSoftwares.includes(software)
+                    ? "bg-gray-300 hover:bg-gray-300 hover:text-white"
+                    : "bg-white border "
+                }`}
+                onClick={() => handleSoftwareSelect(software)}
+              >
+                <img
+                  src={softwareImages[software]}
+                  alt={software}
+                  className="w-48 h-24 object-contain"
+                />
+
+                <div className="text-center mt-2">{software}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {selectedSoftwares.length > 0 && (
+        <div className="mt-12 p-6 border rounded-2xl bg-white">
+          <h2 className="text-xl font-bold mb-2 text-cs3">
+            <u>Selected Softwares</u>
+          </h2>
+          <div className="grid grid-cols-3 gap-4">
+            {selectedSoftwares.map((software, index) => (
+              <div key={index} className="p-2  bg-cs5 rounded-xl">
+                <img
+                  src={softwareImages[software]}
+                  alt={software}
+                  className="w-48 h-24  object-contain"
+                />
+                <div className="text-center mt-2">{software}</div>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-col items-center justify-center">
+            <button
+              onClick={handleWhatsAppClick}
+              className="p-2 mt-4 bg-gray-800 hover:bg-gray-600 allproduct rounded-full text-white"
+            >
+              <div className="flex flex-row items-center">
+                <div className="font-semibold pl-3">
+                  Send Specification via{" "}
+                </div>
+                <div className="px-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    x="0px"
+                    y="0px"
+                    width="40"
+                    viewBox="0 0 48 48"
+                  >
+                    <path
+                      fill="#fff"
+                      d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-0.001,0,0,0,0,0h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303z"
+                    ></path>
+                    <path
+                      fill="#fff"
+                      d="M4.868,43.803c-0.132,0-0.26-0.052-0.355-0.148c-0.125-0.127-0.174-0.312-0.127-0.483l2.639-9.636c-1.636-2.906-2.499-6.206-2.497-9.556C4.532,13.238,13.273,4.5,24.014,4.5c5.21,0.002,10.105,2.031,13.784,5.713c3.679,3.683,5.704,8.577,5.702,13.781c-0.004,10.741-8.746,19.48-19.486,19.48c-3.189-0.001-6.344-0.788-9.144-2.277l-9.875,2.589C4.953,43.798,4.911,43.803,4.868,43.803z"
+                    ></path>
+                    <path
+                      fill="#cfd8dc"
+                      d="M24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,4C24.014,4,24.014,4,24.014,4C12.998,4,4.032,12.962,4.027,23.979c-0.001,3.367,0.849,6.685,2.461,9.622l-2.585,9.439c-0.094,0.345,0.002,0.713,0.254,0.967c0.19,0.192,0.447,0.297,0.711,0.297c0.085,0,0.17-0.011,0.254-0.033l9.687-2.54c2.828,1.468,5.998,2.243,9.197,2.244c11.024,0,19.99-8.963,19.995-19.98c0.002-5.339-2.075-10.359-5.848-14.135C34.378,6.083,29.357,4.002,24.014,4L24.014,4z"
+                    ></path>
+                    <path
+                      fill="#40c351"
+                      d="M35.176,12.832c-2.98-2.982-6.941-4.625-11.157-4.626c-8.704,0-15.783,7.076-15.787,15.774c-0.001,2.981,0.833,5.883,2.413,8.396l0.376,0.597l-1.595,5.821l5.973-1.566l0.577,0.342c2.422,1.438,5.2,2.198,8.032,2.199h0.006c8.698,0,15.777-7.077,15.78-15.776C39.795,19.778,38.156,15.814,35.176,12.832z"
+                    ></path>
+                    <path
+                      fill="#fff"
+                      fillRule="evenodd"
+                      d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+            </button>
+            <button
+              onClick={handleEmailClick}
+              className="p-2 mt-2 bg-gray-800 hover:bg-gray-600 allproduct rounded-full text-white"
+            >
+              <div className="flex flex-row items-center py-1 px-1">
+                <div className="font-semibold pl-3">
+                  Send Specification via{" "}
+                </div>
+                <div className="px-3">
+                  <svg
+                    viewBox="0 0 512 512"
+                    xmlns="http://www.w3.org/2000/svg"
+                    x="0px"
+                    y="0px"
+                    width="32"
+                  >
+                    <path
+                      d="M256 352c-16.53 0-33.06-5.422-47.16-16.41L0 173.2V400C0 426.5 21.49 448 48 448h416c26.51 0 48-21.49 48-48V173.2l-208.8 162.5C289.1 346.6 272.5 352 256 352zM16.29 145.3l212.2 165.1c16.19 12.6 38.87 12.6 55.06 0l212.2-165.1C505.1 137.3 512 125 512 112C512 85.49 490.5 64 464 64h-416C21.49 64 0 85.49 0 112C0 125 6.01 137.3 16.29 145.3z"
+                      fill="white"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+      )}
+
       {selectedProcessor && selectedStorage && selectedMemory && (
         <div className="mt-4 p-8 border rounded-2xl bg-white">
           <h2 className="text-xl font-bold mb-2 text-cs3">
@@ -1261,15 +1349,6 @@ const Select = ({ arg }) => {
             </div>
           )}
           {selectedBrand === "Audio" && (
-            <div>
-              <div>Category: {selectedBrand}</div>
-              <div>OS: {selectedProcessor}</div>
-              <div>Office Suite: {selectedGraphics}</div>
-              <div>Antivirus: {selectedStorage}</div>
-              <div>Design Software: {selectedMemory}</div>
-            </div>
-          )}
-          {selectedBrand === "Softwares" && (
             <div>
               <div>Category: {selectedBrand}</div>
               <div>OS: {selectedProcessor}</div>
@@ -1350,6 +1429,7 @@ const Select = ({ arg }) => {
           </div>
         </div>
       )}
+
       {(selectedProduct === "Studio Display" ||
         selectedProduct === "Pro Display XDR") && (
         <div className="mt-4 p-8 border rounded bg-white">
@@ -1376,7 +1456,7 @@ const Select = ({ arg }) => {
                 <div className=" font-semibold pl-3">
                   Send Specification via{" "}
                 </div>
-                <div className="px-3"> 
+                <div className="px-3">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     x="0px"
@@ -1464,7 +1544,7 @@ const Select = ({ arg }) => {
       ) : (
         <>
           <div className="relative mt-10">
-            <div className="text-xl font-semibold mb-3">What to {arg} ??</div>
+            <div className="text-xl text-cs3 font-semibold mb-3">What to {arg} ??</div>
             <textarea
               className="border-2 border-gray-300 rounded-md px-6 py-2 focus:outline-none focus:border-blue-500 w-full"
               rows="4"

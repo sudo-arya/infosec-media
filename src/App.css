@@ -174,6 +174,8 @@
 
 
 
+
+
 #arrow {
   fill: #E0E1DD;
   transition: fill 0.3s ease; /* Optional: smooth transition */
@@ -201,6 +203,7 @@
   stroke: #FFFFFF; /* Change this color to your desired hover color*/
   fill: #FFFFFF;
   transform: scale(1.25);
+  
 }
 #apple {
   stroke: #0D1B2A; /* Change this color to your desired hover color*/
@@ -248,9 +251,37 @@
     fill: #0D1B2A; /* Change this color to your desired hover color*/
     --transition-duration: 300ms;
   transition: transform var(--transition-duration) ease-in-out, background-color var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
-
-  
 }
+#amcimage:hover{
+    /* transform: scale(1.1); */
+/* transform: var(--transition-duration); */
+}
+#amcimage {
+    --transition-duration: 300ms;
+  transition: transform var(--transition-duration) ease-in-out, background-color var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
+}
+
+
+@media (max-width: 600px) {
+  #apple:hover {
+    transform: scale(1.1); /* Adjust the scale for small screens */
+  }
+  #windows:hover {
+    transform: scale(1.1); /* Adjust the scale for small screens */
+  }
+  #monitor:hover {
+    transform: scale(1.1); /* Adjust the scale for small screens */
+  }
+  #audio:hover {
+    transform: scale(1.1); /* Adjust the scale for small screens */
+  }
+  #software:hover {
+    transform: scale(1.1); /* Adjust the scale for small screens */
+  }
+}
+
+
+
 #call1:hover{
   stroke: #FFFFFF; /* Change this color to your desired hover color*/
     fill: #FFFFFF;
@@ -325,6 +356,26 @@
 }
 .handler:hover {
   transform: scale(1.5);
+}
+.software{
+ 
+    --transition-duration: 300ms;
+  transition: transform var(--transition-duration) ease-in-out, background-color var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
+
+}
+
+
+
+#submitamc {
+  color:white;
+  --transition-duration: 300ms;
+  transition: transform var(--transition-duration) ease-in-out, background-color var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
+  
+}
+#submitamc:hover{
+  color: #0D1B2A;
+    transform: scale(1.25);
+
 }
 
 /* App.css */

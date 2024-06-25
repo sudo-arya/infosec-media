@@ -11,6 +11,7 @@ import Rental from "./Components/Rental";
 import Contact from "./Components/Contact";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
+import Amc from "./Components/Amc";
 
 function App() {
   const [activeComponent, setActiveComponent] = useState("Home");
@@ -35,6 +36,8 @@ function App() {
         return <Rental setActiveComponent={setActiveComponent} />;
       case "Products":
         return <Products setActiveComponent={setActiveComponent} />;
+      case "Amc":
+        return <Amc setActiveComponent={setActiveComponent} />;
       case "Contact":
         return <Contact setActiveComponent={setActiveComponent} />;
       // Add cases for other components if needed

@@ -108,6 +108,12 @@ const Navbar = ({ activeComponent, setActiveComponent }) => {
             About Us
           </div>
           <div
+            className={`nav-item ${getNavItemClass("Amc")}`}
+            onClick={() => handleNavItemClick("Amc")}
+          >
+            AMC
+          </div>
+          <div
             className={`nav-item ${getNavItemClass("Products")}`}
             onClick={() => handleNavItemClick("Products")}
           >
@@ -180,6 +186,12 @@ const Navbar = ({ activeComponent, setActiveComponent }) => {
                 onClick={() => handleNavItemClick("About")}
               >
                 About Us
+              </div>
+              <div
+                className={getNavItemClass("Amc")}
+                onClick={() => handleNavItemClick("Amc")}
+              >
+                AMC
               </div>
               <div
                 className={getNavItemClass("Products")}

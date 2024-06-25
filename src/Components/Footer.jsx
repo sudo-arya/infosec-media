@@ -243,7 +243,8 @@ const Footer = ({ setActiveComponent }) => {
         {/* &nbsp; */}
         {/* </div> */}
         {isSmallScreen && (
-          <div className="max-w-full sm:max-w-sm rounded overflow-hidden space-x-4 mx-auto flex items-center justify-center p-4 pt-8">
+          <div className=" sm:max-w-sm rounded overflow-hidden mx-auto flex items-center justify-center p-4 pt-8">
+            <div className="w-2">&nbsp;</div>
             <button onClick={handleAddressClick} id="address2">
               <p
                 className="text-cs5 hover:text-cs1 hover:bg-cs4 rounded-xl text-base font-medium cursor-pointer nav-item px-4 flex-col"
@@ -375,6 +376,7 @@ const Footer = ({ setActiveComponent }) => {
                 <br />
               </p>
             </button>
+            <div className="w-2">&nbsp;</div>
           </div>
         )}
         <div className="container mx-auto">

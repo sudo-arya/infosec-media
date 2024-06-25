@@ -6,6 +6,7 @@ import imgrepair from "../Assets/repair.jpg";
 import imgupgrade from "../Assets/upgrade.jpg";
 import owcLogo from "../Assets/owc.png";
 import promiseLogo from "../Assets/promise.png";
+import amcImage from "../Assets/amc4.jpg";
 
 const images = [
   `${imgnewmacbook}`,
@@ -152,7 +153,7 @@ const Home = ({ setActiveComponent }) => {
         <button
           className={
             isSmallScreen
-              ? "absolute left-0 bottom-1/2 transform translate-y-full bg-cs3 text-white p-4 rounded-full"
+              ? "absolute left-0 bottom-1/2 transform translate-y-full bg-cs3 text-white p-3 rounded-full"
               : "absolute -left-5 bottom-1/2 transform translate-y-full bg-cs1 text-white px-3 p-4 w-14 hover:bg-cs3 rounded-full transition duration-300 hover:scale-105 ease-in-out hover:text-cs1 hover:w-12 "
           }
           id="arrow"
@@ -163,6 +164,7 @@ const Home = ({ setActiveComponent }) => {
             width="22"
             height="40"
             viewBox="0 0 11 20"
+            className="md:w-6 w-4"
           >
             <path
               fillRule="evenodd"
@@ -174,7 +176,7 @@ const Home = ({ setActiveComponent }) => {
           style={{ transform: "rotate(180deg)" }}
           className={
             isSmallScreen
-              ? "absolute right-0 top-1/2 transform -translate-y-1/2 bg-cs3 text-white p-4 rounded-full"
+              ? "absolute right-0 top-1/2 transform -translate-y-1/2 bg-cs3 text-white p-3 rounded-full"
               : "absolute -right-5 top-1/2 transform  bg-cs1 text-white px-3 p-4 w-14 hover:bg-cs3 rounded-full transition duration-300 hover:scale-105 ease-in-out hover:text-cs1 hover:w-12 flex-row"
           }
           id="arrowrev"
@@ -186,7 +188,7 @@ const Home = ({ setActiveComponent }) => {
             height="40"
             viewBox="0 0 11 20"
             // transform="rotate(180, 1.5, 0)"
-            className=""
+            className="md:w-6 w-4"
           >
             <path
               fillRule="evenodd"
@@ -382,6 +384,29 @@ const Home = ({ setActiveComponent }) => {
               />
               <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2 text-cs2">Softwares</div>
+              </div>
+              <div className="px-6 pt-1 pb-2">
+                <span className="inline-block bg-cs4 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
+                  #tag1
+                </span>
+                <span className="inline-block bg-cs4 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
+                  #tag2
+                </span>
+              </div>
+            </div>
+          </button>
+          <button
+            className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
+            onClick={() => handleNavItemClick("Amc")}
+          >
+            <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
+              <img
+                className="w-full h-48 object-cover"
+                src={amcImage}
+                alt="Product"
+              />
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2 text-cs2">AMC</div>
               </div>
               <div className="px-6 pt-1 pb-2">
                 <span className="inline-block bg-cs4 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
