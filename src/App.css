@@ -252,10 +252,7 @@
     --transition-duration: 300ms;
   transition: transform var(--transition-duration) ease-in-out, background-color var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
 }
-#amcimage:hover{
-    /* transform: scale(1.1); */
-/* transform: var(--transition-duration); */
-}
+
 #amcimage {
     --transition-duration: 300ms;
   transition: transform var(--transition-duration) ease-in-out, background-color var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
