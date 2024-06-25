@@ -356,7 +356,7 @@ const Select = ({ arg }) => {
   // Reset selectedProcessor in handleBrandSelect, handleProductSelect, handleVariantSelect
   const [inputedText, setInputedText] = useState("");
   const [isSmallScreen, setIsSmallScreen] = useState(false);
-  let mobileno = 9718627660;
+  let mobileno = 9718617660;
   let emailas = "sales@infosecmediasolutions.com";
   const [selectedSoftwares, setSelectedSoftwares] = useState([]);
 

@@ -24,7 +24,7 @@ const imageData = [
 ];
 const Amc = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
-  let mobileno = 9718627660;
+  let mobileno = 9718617660;
   let emailas = "sales@infosecmediasolutions.com";
 
   const arg = "AMC";
