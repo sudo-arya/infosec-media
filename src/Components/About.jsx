@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useState} from "react";
 import imgpurchase from "../Assets/purchase.jpg";
 import imgrent from "../Assets/rent.jpg";
 import imgrepair from "../Assets/repair.jpg";
 import imgupgrade from "../Assets/upgrade.jpg";
+import { useNavigate } from "react-router-dom";
+
 
 
 const About = ({ setActiveComponent }) => {
   // const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-  const handleNavItemClick = (componentName) => {
-    setActiveComponent(componentName);
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const handleNavItemClick = (path) => {
+    navigate(path);
+    setIsOpen(false); // Close the navbar on item click for smaller screens
   };
 
   // useEffect(() => {

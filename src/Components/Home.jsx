@@ -7,6 +7,8 @@ import imgupgrade from "../Assets/upgrade.jpg";
 import owcLogo from "../Assets/owc.png";
 import promiseLogo from "../Assets/promise.png";
 import amcImage from "../Assets/amc4.jpg";
+import { useNavigate } from "react-router-dom";
+
 
 const images = [
   `${imgnewmacbook}`,
@@ -71,14 +73,19 @@ const StatItem = ({ target, label }) => {
   );
 };
 
-const Home = ({ setActiveComponent }) => {
-  const handleNavItemClick = (componentName) => {
-    setActiveComponent(componentName);
-  };
+const Home = () => {
+  
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+   const [isOpen, setIsOpen] = useState(false);
+   const navigate = useNavigate();
+   const handleNavItemClick = (path) => {
+     navigate(path);
+     setIsOpen(false); // Close the navbar on item click for smaller screens
+   };
 
   useEffect(() => {
     const handleResize = () => {

@@ -1,34 +1,26 @@
-import React, { useState,useEffect } from "react";
+// Navbar.jsx
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import sidewayLogos from "../Assets/Infosec media solutions logo final files/Infosec media solutions logo  AI liner.svg";
 
-const Navbar = ({ activeComponent, setActiveComponent }) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // const [activeComponent, setActiveComponentState] = useState("Home");
-
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth <= 768); // Adjust the threshold as per your requirement
+      setIsSmallScreen(window.innerWidth <= 768);
     };
 
     window.addEventListener("resize", handleResize);
-
-    // Call the handleResize initially to set the initial state
     handleResize();
 
-    // Cleanup event listener on unmount
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const handleNavItemClick = (componentName) => {
-    setActiveComponent(componentName);
-    // setActiveComponentState(componentName);
-    setIsOpen(false); // Close the navbar on item click for smaller screens
-  };
-
-  const getNavItemClass = (componentName) =>
-    activeComponent === componentName
+  const getNavItemClass = (path) =>
+    location.pathname === path
       ? "text-white cs-1 font-semibold bg-gray-90 py-2 px-3 rounded-lg cursor-pointer"
       : "text-white font-semibold cs-2 py-2 px-2 rounded-lg cursor-pointer hover:bg-cs4 hover:text-black ";
 
@@ -39,45 +31,20 @@ const Navbar = ({ activeComponent, setActiveComponent }) => {
       }
     >
       <div className="container mx-auto flex justify-between items-center">
-        <div
-          className="text-white text-lg font-bold cursor-pointer nav-item"
-          onClick={() => handleNavItemClick("Home")}
-        >
-          <img
-            src={sidewayLogos}
-            // width="160px"
-            alt="logo"
-            className={isSmallScreen ? " w-40 ml-2" : "w-48"}
-          />
+        <div className="text-white text-lg font-bold cursor-pointer nav-item">
+          <Link to="/">
+            <img
+              src={sidewayLogos}
+              alt="logo"
+              className={isSmallScreen ? "w-40 ml-2" : "w-48"}
+            />
+          </Link>
         </div>
         <div className="md:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="text-white rounded-xl focus:outline-none"
           >
-            {/* <svg
-              className="w-8 h-8 "
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              style={{ fill: "#fed9b7", stroke: "#fed9b7" }}
-            >
-              {isOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg> */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="48"
@@ -94,55 +61,30 @@ const Navbar = ({ activeComponent, setActiveComponent }) => {
           </button>
         </div>
         <div className="hidden md:flex md:space-x-2">
-          <div
-            className={`nav-item ${getNavItemClass("Home")}`}
-            onClick={() => handleNavItemClick("Home")}
-          >
+          <Link className={getNavItemClass("/")} to="/">
             Home
-          </div>
-
-          <div
-            className={`nav-item ${getNavItemClass("About")}`}
-            onClick={() => handleNavItemClick("About")}
-          >
+          </Link>
+          <Link className={getNavItemClass("/about")} to="/about">
             About Us
-          </div>
-          <div
-            className={`nav-item ${getNavItemClass("Amc")}`}
-            onClick={() => handleNavItemClick("Amc")}
-          >
+          </Link>
+          <Link className={getNavItemClass("/amc")} to="/amc">
             AMC
-          </div>
-          <div
-            className={`nav-item ${getNavItemClass("Products")}`}
-            onClick={() => handleNavItemClick("Products")}
-          >
+          </Link>
+          <Link className={getNavItemClass("/products")} to="/products">
             Products
-          </div>
-          <div
-            className={`nav-item ${getNavItemClass("Services")}`}
-            onClick={() => handleNavItemClick("Services")}
-          >
+          </Link>
+          <Link className={getNavItemClass("/services")} to="/services">
             Upgrade
-          </div>
-          <div
-            className={`nav-item ${getNavItemClass("Rental")}`}
-            onClick={() => handleNavItemClick("Rental")}
-          >
+          </Link>
+          <Link className={getNavItemClass("/rental")} to="/rental">
             Rent Equipments
-          </div>
-          <div
-            className={`nav-item ${getNavItemClass("Repair")}`}
-            onClick={() => handleNavItemClick("Repair")}
-          >
+          </Link>
+          <Link className={getNavItemClass("/repair")} to="/repair">
             Repair
-          </div>
-          <div
-            className={`nav-item ${getNavItemClass("Contact")}`}
-            onClick={() => handleNavItemClick("Contact")}
-          >
+          </Link>
+          <Link className={getNavItemClass("/contact")} to="/contact">
             Contact
-          </div>
+          </Link>
         </div>
       </div>
       {isOpen && (
@@ -161,8 +103,6 @@ const Navbar = ({ activeComponent, setActiveComponent }) => {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  // width="40"
-                  // height="40"
                   style={{ fill: "#415A77", stroke: "#778DA9" }}
                 >
                   <path
@@ -175,54 +115,30 @@ const Navbar = ({ activeComponent, setActiveComponent }) => {
               </button>
             </div>
             <div className="flex flex-col space-y-2 pl-4 pr-4 mt-4 mb-4">
-              <div
-                className={getNavItemClass("Home")}
-                onClick={() => handleNavItemClick("Home")}
-              >
+              <Link className={getNavItemClass("/")} to="/">
                 Home
-              </div>
-              <div
-                className={getNavItemClass("About")}
-                onClick={() => handleNavItemClick("About")}
-              >
+              </Link>
+              <Link className={getNavItemClass("/about")} to="/about">
                 About Us
-              </div>
-              <div
-                className={getNavItemClass("Amc")}
-                onClick={() => handleNavItemClick("Amc")}
-              >
+              </Link>
+              <Link className={getNavItemClass("/amc")} to="/amc">
                 AMC
-              </div>
-              <div
-                className={getNavItemClass("Products")}
-                onClick={() => handleNavItemClick("Products")}
-              >
+              </Link>
+              <Link className={getNavItemClass("/products")} to="/products">
                 Products
-              </div>
-              <div
-                className={getNavItemClass("Services")}
-                onClick={() => handleNavItemClick("Services")}
-              >
+              </Link>
+              <Link className={getNavItemClass("/services")} to="/services">
                 Upgrade
-              </div>
-              <div
-                className={getNavItemClass("Rental")}
-                onClick={() => handleNavItemClick("Rental")}
-              >
-                Rental Equipments
-              </div>
-              <div
-                className={getNavItemClass("Repair")}
-                onClick={() => handleNavItemClick("Repair")}
-              >
+              </Link>
+              <Link className={getNavItemClass("/rental")} to="/rental">
+                Rent Equipments
+              </Link>
+              <Link className={getNavItemClass("/repair")} to="/repair">
                 Repair
-              </div>
-              <div
-                className={getNavItemClass("Contact")}
-                onClick={() => handleNavItemClick("Contact")}
-              >
+              </Link>
+              <Link className={getNavItemClass("/contact")} to="/contact">
                 Contact
-              </div>
+              </Link>
             </div>
           </div>
         </div>

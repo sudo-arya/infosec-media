@@ -9,6 +9,8 @@ import amc6 from "../Assets/amc6.png";
 import amc7 from "../Assets/amc7.jpg";
 import amc8 from "../Assets/amc8.png";
 import amc9 from "../Assets/amc9.jpg";
+import { useNavigate } from "react-router-dom";
+
 
 
 const imageData = [
@@ -20,14 +22,17 @@ const imageData = [
   { id: 6, src: amc9, alt: "Image 6" },
   { id: 7, src: amc3, alt: "Image 6" },
 ];
-const Amc = ({ setActiveComponent }) => {
+const Amc = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
    let mobileno = 9718627660;
    let emailas = "sales@infosecmediasolutions.com";
 
   const arg = "AMC";
-  const handleNavItemClick = (componentName) => {
-    setActiveComponent(componentName);
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const handleNavItemClick = (path) => {
+    navigate(path);
+    setIsOpen(false); // Close the navbar on item click for smaller screens
   };
 
   useEffect(() => {

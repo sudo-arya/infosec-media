@@ -1,5 +1,11 @@
-// app.jsx
-import React, { useState, useEffect } from "react";
+// App.jsx
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import "./App.css";
 import Home from "./Components/Home";
 import About from "./Components/About";
@@ -13,52 +19,38 @@ import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import Amc from "./Components/Amc";
 
-function App() {
-  const [activeComponent, setActiveComponent] = useState("Home");
-  // Scroll to top whenever activeComponent changes
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [activeComponent]);
+  }, [pathname]);
 
-  const renderComponent = () => {
-    switch (activeComponent) {
-      case "Home":
-        return <Home setActiveComponent={setActiveComponent} />;
-      case "About":
-        return <About setActiveComponent={setActiveComponent} />;
-      case "Services":
-        return <Services setActiveComponent={setActiveComponent} />;
-      case "Repair":
-        return <Repair setActiveComponent={setActiveComponent} />;
-      case "Select":
-        return <Select setActiveComponent={setActiveComponent} />;
-      case "Rental":
-        return <Rental setActiveComponent={setActiveComponent} />;
-      case "Products":
-        return <Products setActiveComponent={setActiveComponent} />;
-      case "Amc":
-        return <Amc setActiveComponent={setActiveComponent} />;
-      case "Contact":
-        return <Contact setActiveComponent={setActiveComponent} />;
-      // Add cases for other components if needed
-      default:
-        return null;
-    }
-  };
+  return null;
+};
 
+function App() {
   return (
-    <div className="cs-5">
-      <Navbar
-        activeComponent={activeComponent}
-        setActiveComponent={setActiveComponent}
-      />
-      <div className="container mx-auto p-4 mt-0">{renderComponent()}</div>
-      {/* {removed mx-auto p-4} */}
-      <Footer
-        activeComponent={activeComponent}
-        setActiveComponent={setActiveComponent}
-      />
-    </div>
+    <Router>
+      <div className="cs-5">
+        <ScrollToTop />
+        <Navbar />
+        <div className="container mx-auto p-4 mt-0">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/repair" element={<Repair />} />
+            <Route path="/select" element={<Select />} />
+            <Route path="/rental" element={<Rental />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/amc" element={<Amc />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

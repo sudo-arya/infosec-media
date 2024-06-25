@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import fullLogo1 from "../Assets/Infosec media solutions logo final files/Infosec media solutions logo new 1.svg";
 // import fullLogo from "../Assets/Infosec media solutions logo final files/Infosec media solutions logo  3D.png";
 
-const Footer = ({ setActiveComponent }) => {
+const Footer = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const handleNavItemClick = (path) => {
+    navigate(path);
+    setIsOpen(false); // Close the navbar on item click for smaller screens
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -19,9 +28,6 @@ const Footer = ({ setActiveComponent }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const handleNavItemClick = (componentName) => {
-    setActiveComponent(componentName);
-  };
 
   const handlePhoneNumberClick = () => {
     const phoneNumber = "9718627660"; // Replace this with your actual phone number
