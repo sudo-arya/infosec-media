@@ -6,7 +6,7 @@ import fullLogo1 from "../Assets/Infosec media solutions logo final files/Infose
 
 const Footer = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
-
+  // eslint-disable-next-line no-unused-vars
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const handleNavItemClick = (path) => {
@@ -27,7 +27,6 @@ const Footer = () => {
     // Cleanup event listener on unmount
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
 
   const handlePhoneNumberClick = () => {
     const phoneNumber = "9718627660"; // Replace this with your actual phone number
@@ -116,7 +115,6 @@ const Footer = () => {
                   alt="logo"
                   className="flex items-center justify-center py-2"
                 />
-                
               </div>
               <div className="flex items-center justify-center content-center">
                 <p

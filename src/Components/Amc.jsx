@@ -24,10 +24,11 @@ const imageData = [
 ];
 const Amc = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
-   let mobileno = 9718627660;
-   let emailas = "sales@infosecmediasolutions.com";
+  let mobileno = 9718627660;
+  let emailas = "sales@infosecmediasolutions.com";
 
   const arg = "AMC";
+  // eslint-disable-next-line no-unused-vars
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const handleNavItemClick = (path) => {
@@ -87,7 +88,6 @@ const Amc = () => {
 
     window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
   };
-
 
   return (
     <div className="min-h-screen flex-col justify-center items-center text-cs3">

@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const About = ({ setActiveComponent }) => {
   // const [isSmallScreen, setIsSmallScreen] = useState(false);
-
+  // eslint-disable-next-line no-unused-vars
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const handleNavItemClick = (path) => {

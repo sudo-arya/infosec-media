@@ -74,18 +74,16 @@ const StatItem = ({ target, label }) => {
 };
 
 const Home = () => {
-  
-
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const [isSmallScreen, setIsSmallScreen] = useState(false);
-
-   const [isOpen, setIsOpen] = useState(false);
-   const navigate = useNavigate();
-   const handleNavItemClick = (path) => {
-     navigate(path);
-     setIsOpen(false); // Close the navbar on item click for smaller screens
-   };
+  // eslint-disable-next-line no-unused-vars
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const handleNavItemClick = (path) => {
+    navigate(path);
+    setIsOpen(false); // Close the navbar on item click for smaller screens
+  };
 
   useEffect(() => {
     const handleResize = () => {
