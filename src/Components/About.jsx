@@ -4,6 +4,8 @@ import imgrent from "../Assets/rent.jpg";
 import imgrepair from "../Assets/repair.jpg";
 import imgupgrade from "../Assets/upgrade.jpg";
 import { useNavigate } from "react-router-dom";
+import amcImage from "../Assets/amc4.jpg";
+
 
 
 
@@ -13,7 +15,7 @@ const About = ({ setActiveComponent }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const handleNavItemClick = (path) => {
-    navigate(path);
+    navigate(`/${path}`);
     setIsOpen(false); // Close the navbar on item click for smaller screens
   };
 
@@ -102,7 +104,7 @@ const About = ({ setActiveComponent }) => {
           <div className="text-white flex items-center justify-center md:pt-5 h-18">
             <button
               className="md:w-48 pt-3 pb-3 bg-cs1 flex font-semibold items-center justify-between px-4 rounded-full allproduct hover:bg-cs4"
-              onClick={() => handleNavItemClick("Contact")}
+              onClick={() => handleNavItemClick("contact")}
             >
               <div className="flex items-center justify-between w-full">
                 <div className="ml-2 flex-nowrap">Contact Us Today</div>
@@ -135,9 +137,9 @@ const About = ({ setActiveComponent }) => {
           </div>
 
           {/* Services list */}
-          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 p-4 items-center justify-center">
+          <div className="flex flex-col sm:flex-row space-y-5 sm:space-y-0 sm:space-x-4 p-4 items-center justify-center">
             <button
-              onClick={() => handleNavItemClick("Products")}
+              onClick={() => handleNavItemClick("products")}
               className="flex-grow"
             >
               <div className="max-w-full sm:max-w-sm rounded-xl overflow-hidden shadow-lg bg-cs5 service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
@@ -170,7 +172,7 @@ const About = ({ setActiveComponent }) => {
             </button>
 
             <button
-              onClick={() => handleNavItemClick("Services")}
+              onClick={() => handleNavItemClick("services")}
               className="flex-grow"
             >
               <div className="max-w-full sm:max-w-sm rounded-xl overflow-hidden shadow-lg bg-cs5 service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
@@ -204,7 +206,7 @@ const About = ({ setActiveComponent }) => {
             </button>
 
             <button
-              onClick={() => handleNavItemClick("Rental")}
+              onClick={() => handleNavItemClick("rental")}
               className="flex-grow"
             >
               <div className="max-w-full sm:max-w-sm rounded-xl overflow-hidden shadow-lg bg-cs5 service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
@@ -237,7 +239,7 @@ const About = ({ setActiveComponent }) => {
             </button>
 
             <button
-              onClick={() => handleNavItemClick("Repair")}
+              onClick={() => handleNavItemClick("repair")}
               className="flex-grow"
             >
               <div className="max-w-full sm:max-w-sm rounded-xl overflow-hidden shadow-lg bg-cs5 service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
@@ -263,6 +265,39 @@ const About = ({ setActiveComponent }) => {
                   </span>
                   <span className="inline-block bg-cs1 rounded-full px-3 py-1 text-sm font-semibold text-cs5 mr-2 mb-2">
                     #quick-fix
+                  </span>
+                  {/* <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                #tag3
+              </span> */}
+                </div>
+              </div>
+            </button>
+
+            <button
+              onClick={() => handleNavItemClick("amc")}
+              className="flex-grow"
+            >
+              <div className="max-w-full sm:max-w-sm rounded-xl overflow-hidden shadow-lg bg-cs5 service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
+                <img
+                  className="w-full h-48 object-cover"
+                  src={amcImage}
+                  alt="Product"
+                />
+                <div className="px-6 py-4">
+                  <div className="font-bold text-cs3 text-xl mb-2">
+                    Annual Maintenance Contracts
+                  </div>
+                  <p className="text-cs1 text-base">
+                    Ensure the longevity & reliability of your equipment with
+                    our AMC.
+                  </p>
+                </div>
+                <div className="px-6 pt-1 pb-2">
+                  <span className="inline-block bg-cs1 rounded-full px-3 py-1 text-sm font-semibold text-cs5 mr-2 mb-2">
+                    #support
+                  </span>
+                  <span className="inline-block bg-cs1 rounded-full px-3 py-1 text-sm font-semibold text-cs5 mr-2 mb-2">
+                    #maintenance
                   </span>
                   {/* <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                 #tag3

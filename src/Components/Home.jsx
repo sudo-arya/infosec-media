@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+
 import imgpurchase from "../Assets/purchase.jpg";
 import imgnewmacbook from "../Assets/new-macbook.jpg";
 import imgrent from "../Assets/rent.jpg";
@@ -9,13 +10,31 @@ import promiseLogo from "../Assets/promise.png";
 import amcImage from "../Assets/amc4.jpg";
 import { useNavigate } from "react-router-dom";
 
-
 const images = [
-  `${imgnewmacbook}`,
-  `${imgupgrade}`,
-  `${imgrent}`,
-  `${imgrepair}`,
-  // Add more image URLs here
+  {
+    src: imgnewmacbook,
+    link: "/products",
+    text: "Buy Now",
+    align: "bottom-10 left-1/2 transform -translate-x-1/2",
+  },
+  {
+    src: imgupgrade,
+    link: "/services",
+    text: "Upgrade For Better Experience",
+    align: "top-20 left-3/4 transform -translate-x-1/2",
+  },
+  {
+    src: imgrent,
+    link: "/rental",
+    text: "Rent Your System",
+    align: "bottom-72 left-3/4 transform -translate-x-1/2",
+  },
+  {
+    src: imgrepair,
+    link: "/repair",
+    text: "Repair Now",
+    align: "top-80 left-2/4 transform -translate-x-1/2",
+  },
 ];
 
 const StatItem = ({ target, label }) => {
@@ -74,16 +93,19 @@ const StatItem = ({ target, label }) => {
 };
 
 const Home = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  const handleNavItemClick = (path) => {
-    navigate(path);
-    setIsOpen(false); // Close the navbar on item click for smaller screens
-  };
+  const [currentIndex, setCurrentIndex] = useState(0);
+  // const [intervalId, setIntervalId] = useState(null);
+  // const [isManual, setIsManual] = useState(false);
+  let touchStartX = 0;
+
+   const handleNavItemClick = (path) => {
+     navigate(`/${path}`);
+     setIsOpen(false); // Close the navbar on item click for smaller screens
+   };
 
   useEffect(() => {
     const handleResize = () => {
@@ -96,61 +118,69 @@ const Home = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      handleNext();
-    }, 3000); // Change image every 3 seconds
+   useEffect(() => {
+     const interval = setInterval(() => {
+       handleNext();
+     }, 3000); // Change image every 3 seconds
 
-    return () => clearInterval(interval);
-  }, []);
+     return () => clearInterval(interval);
+   }, []);
 
-  const handlePrevious = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
+   const handlePrevious = () => {
+     setCurrentIndex((prevIndex) =>
+       prevIndex === 0 ? images.length - 1 : prevIndex - 1
+     );
+   };
 
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
+   const handleNext = () => {
+     setCurrentIndex((prevIndex) =>
+       prevIndex === images.length - 1 ? 0 : prevIndex + 1
+     );
+   };
 
-  const handleTouchStart = (e) => {
-    touchStartX = e.touches[0].clientX;
-  };
+   const handleTouchStart = (e) => {
+     touchStartX = e.touches[0].clientX;
+   };
 
-  const handleTouchMove = (e) => {
-    if (touchStartX - e.touches[0].clientX < 0) {
-      handleNext(); // Swipe left
-    } else if (touchStartX - e.touches[0].clientX > 0) {
-      handlePrevious(); // Swipe right
-    }
-  };
-
-  let touchStartX = 0;
+   const handleTouchMove = (e) => {
+     if (touchStartX - e.touches[0].clientX < 0) {
+       handleNext(); // Swipe left
+     } else if (touchStartX - e.touches[0].clientX > 0) {
+       handlePrevious(); // Swipe right
+     }
+   };
 
   return (
     <div className="min-h-screen flex-col justify-center items-center cs-5">
       {/* <div>home</div> */}
       {/* image carousel */}
       <div className="relative w-full mx-auto mt-0" style={{ height: "69vh" }}>
-        <div className="overflow-hidden relative h-full ">
+        <div className="overflow-hidden relative h-full">
           <div
             className="relative h-full w-full"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
           >
             {images.map((image, index) => (
-              <img
+              <div
                 key={index}
-                src={image}
-                alt={`Slide ${index + 1}`}
-                className={`absolute top-0 left-0 w-full h-full object-cover object-center rounded-3xl transition ${
-                  index === currentIndex ? "opacity-100" : "opacity-0"
+                className={`absolute top-0 left-0 w-full h-full ${
+                  index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
                 }`}
-                style={{ transitionDuration: "1s" }} // Adjust transition duration as needed
-              />
+                style={{ transitionDuration: "2s" }}
+              >
+                <img
+                  src={image.src}
+                  alt={`Slide ${index + 1}`}
+                  className="w-full h-full object-cover object-center rounded-3xl"
+                />
+                <button
+                  className={`absolute ${image.align} bg-cs2 text-white hover:bg-cs4 hover:text-cs2 font-bold cursor-pointer px-8 py-4 text-3xl rounded-md`}
+                  onClick={() => navigate(image.link)}
+                >
+                  {image.text}
+                </button>
+              </div>
             ))}
           </div>
         </div>
@@ -158,8 +188,8 @@ const Home = () => {
         <button
           className={
             isSmallScreen
-              ? "absolute left-0 bottom-1/2 transform translate-y-full bg-cs3 text-white p-3 rounded-full"
-              : "absolute -left-5 bottom-1/2 transform translate-y-full bg-cs1 text-white px-3 p-4 w-14 hover:bg-cs3 rounded-full transition duration-300 hover:scale-105 ease-in-out hover:text-cs1 hover:w-12 "
+              ? "absolute left-0 bottom-1/2 transform translate-y-full bg-cs3 text-white p-3 rounded-full z-10"
+              : "absolute -left-5 bottom-1/2 transform translate-y-full bg-cs1 text-white px-3 p-4 w-14 hover:bg-cs3 rounded-full transition duration-300 hover:scale-105 ease-in-out hover:text-cs1 hover:w-12 z-10 "
           }
           id="arrow"
           onClick={handlePrevious}
@@ -181,8 +211,8 @@ const Home = () => {
           style={{ transform: "rotate(180deg)" }}
           className={
             isSmallScreen
-              ? "absolute right-0 top-1/2 transform -translate-y-1/2 bg-cs3 text-white p-3 rounded-full"
-              : "absolute -right-5 top-1/2 transform  bg-cs1 text-white px-3 p-4 w-14 hover:bg-cs3 rounded-full transition duration-300 hover:scale-105 ease-in-out hover:text-cs1 hover:w-12 flex-row"
+              ? "absolute right-0 top-1/2 transform -translate-y-1/2 bg-cs3 text-white p-3 rounded-full z-10"
+              : "absolute -right-5 top-1/2 transform  bg-cs1 text-white px-3 p-4 w-14 hover:bg-cs3 rounded-full transition duration-300 hover:scale-105 ease-in-out hover:text-cs1 hover:w-12 flex-row z-10"
           }
           id="arrowrev"
           onClick={handleNext}
@@ -228,7 +258,7 @@ const Home = () => {
 
           <button
             className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
-            onClick={() => handleNavItemClick("Products")}
+            onClick={() => handleNavItemClick("products")}
           >
             <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
               <img
@@ -253,7 +283,7 @@ const Home = () => {
           {/* Add more cards here */}
           <button
             className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
-            onClick={() => handleNavItemClick("Products")}
+            onClick={() => handleNavItemClick("products")}
           >
             <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
               <img
@@ -277,7 +307,7 @@ const Home = () => {
 
           <button
             className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
-            onClick={() => handleNavItemClick("Products")}
+            onClick={() => handleNavItemClick("products")}
           >
             <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
               <img
@@ -303,7 +333,7 @@ const Home = () => {
 
           <button
             className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
-            onClick={() => handleNavItemClick("Products")}
+            onClick={() => handleNavItemClick("products")}
           >
             <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
               <img
@@ -327,7 +357,7 @@ const Home = () => {
 
           <button
             className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
-            onClick={() => handleNavItemClick("Products")}
+            onClick={() => handleNavItemClick("products")}
           >
             <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
               <img
@@ -353,7 +383,7 @@ const Home = () => {
 
           <button
             className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
-            onClick={() => handleNavItemClick("Products")}
+            onClick={() => handleNavItemClick("products")}
           >
             <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
               <img
@@ -379,7 +409,7 @@ const Home = () => {
 
           <button
             className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
-            onClick={() => handleNavItemClick("Products")}
+            onClick={() => handleNavItemClick("products")}
           >
             <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
               <img
@@ -402,7 +432,7 @@ const Home = () => {
           </button>
           <button
             className="transition lets-move duration-300 ease-in-out md:contrast-75 hover:contrast-100 allproduct flex-shrink-0"
-            onClick={() => handleNavItemClick("Amc")}
+            onClick={() => handleNavItemClick("amc")}
           >
             <div className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg rounded overflow-hidden shadow-lg bg-white">
               <img
@@ -437,7 +467,7 @@ const Home = () => {
           <button
             className="custom-button"
             // className="px-4 py-2 transform transition-transform transition-colors ease-in-out bg-cs1 text-white font-bold rounded hover:bg-cs4 hover:text-cs2 duration-500 hover:scale-150"
-            onClick={() => handleNavItemClick("Products")}
+            onClick={() => handleNavItemClick("products")}
           >
             View All Products
           </button>
@@ -454,9 +484,9 @@ const Home = () => {
         </div>
 
         {/* Services list */}
-        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 p-4 items-center justify-center">
+        <div className="flex flex-col sm:flex-row space-y-5 sm:space-y-0 sm:space-x-4 p-4 items-center justify-center">
           <button
-            onClick={() => handleNavItemClick("Products")}
+            onClick={() => handleNavItemClick("products")}
             className="flex-grow"
           >
             <div className="max-w-full sm:max-w-sm rounded-xl overflow-hidden shadow-lg bg-cs5 service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
@@ -489,7 +519,7 @@ const Home = () => {
           </button>
 
           <button
-            onClick={() => handleNavItemClick("Services")}
+            onClick={() => handleNavItemClick("services")}
             className="flex-grow"
           >
             <div className="max-w-full sm:max-w-sm rounded-xl overflow-hidden shadow-lg bg-cs5 service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
@@ -523,7 +553,7 @@ const Home = () => {
           </button>
 
           <button
-            onClick={() => handleNavItemClick("Rental")}
+            onClick={() => handleNavItemClick("rental")}
             className="flex-grow"
           >
             <div className="max-w-full sm:max-w-sm rounded-xl overflow-hidden shadow-lg bg-cs5 service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
@@ -556,7 +586,7 @@ const Home = () => {
           </button>
 
           <button
-            onClick={() => handleNavItemClick("Repair")}
+            onClick={() => handleNavItemClick("repair")}
             className="flex-grow"
           >
             <div className="max-w-full sm:max-w-sm rounded-xl overflow-hidden shadow-lg bg-cs5 service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
@@ -589,6 +619,39 @@ const Home = () => {
               </div>
             </div>
           </button>
+
+          <button
+            onClick={() => handleNavItemClick("amc")}
+            className="flex-grow"
+          >
+            <div className="max-w-full sm:max-w-sm rounded-xl overflow-hidden shadow-lg bg-cs5 service transition duration-300 ease-in-out md:contrast-75 hover:contrast-100">
+              <img
+                className="w-full h-48 object-cover"
+                src={amcImage}
+                alt="Product"
+              />
+              <div className="px-6 py-4">
+                <div className="font-bold text-cs3 text-xl mb-2">
+                  Annual Maintenance Contracts
+                </div>
+                <p className="text-cs1 text-base">
+                  Ensure the longevity & reliability of your equipment with our
+                  AMC.
+                </p>
+              </div>
+              <div className="px-6 pt-1 pb-2">
+                <span className="inline-block bg-cs1 rounded-full px-3 py-1 text-sm font-semibold text-cs5 mr-2 mb-2">
+                  #support
+                </span>
+                <span className="inline-block bg-cs1 rounded-full px-3 py-1 text-sm font-semibold text-cs5 mr-2 mb-2">
+                  #maintenance
+                </span>
+                {/* <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                #tag3
+              </span> */}
+              </div>
+            </div>
+          </button>
         </div>
       </div>
 
@@ -602,7 +665,7 @@ const Home = () => {
           <div className="text-white flex items-center justify-center md:pt-5 h-18">
             <button
               className="md:w-48 pt-3 pb-3 bg-cs1 flex font-semibold items-center justify-between px-4 rounded-full allproduct hover:bg-cs4"
-              onClick={() => handleNavItemClick("Contact")}
+              onClick={() => handleNavItemClick("contact")}
             >
               <div className="flex items-center justify-between w-full">
                 <div className="ml-2 flex-nowrap">Contact Us Today</div>

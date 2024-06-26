@@ -9,10 +9,10 @@ const Footer = () => {
   // eslint-disable-next-line no-unused-vars
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  const handleNavItemClick = (path) => {
-    navigate(path);
-    setIsOpen(false); // Close the navbar on item click for smaller screens
-  };
+   const handleNavItemClick = (path) => {
+     navigate(`/${path}`);
+     setIsOpen(false); // Close the navbar on item click for smaller screens
+   };
 
   useEffect(() => {
     const handleResize = () => {
@@ -74,7 +74,7 @@ const Footer = () => {
               {/* <div className="bg-cs2 w-full p-5"></div> */}
               <button
                 className="md:w-48 pt-3 pb-3 bg-cs1 flex font-semibold items-center justify-between px-4 rounded-full allproduct  hover:bg-cs4 "
-                onClick={() => handleNavItemClick("Contact")}
+                onClick={() => handleNavItemClick("contact")}
               >
                 <div className="flex items-center justify-between w-full">
                   <div className="ml-2">Contact Us Today</div>

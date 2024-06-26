@@ -89,10 +89,10 @@ const Navbar = () => {
       </div>
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-10 transform transition duration-1000 ease-in-out"
+          className="fixed inset-0 bg-black bg-opacity-50 z-20 transform transition duration-1000 ease-in-out"
           onClick={() => setIsOpen(false)}
         >
-          <div className="fixed right-0 top-0 w-2/4 max-w-sm cs-2 h-5/12 rounded-lg mt-3 z-20">
+          <div className="fixed right-0 top-0 w-2/4 max-w-sm cs-2 h-5/12 rounded-lg mt-3 z-30">
             <div className="flex justify-end pl-4 pr-4 pt-4">
               <button
                 onClick={() => setIsOpen(false)}
