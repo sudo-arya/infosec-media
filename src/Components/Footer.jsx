@@ -10,10 +10,10 @@ const Footer = () => {
   // eslint-disable-next-line no-unused-vars
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-   const handleNavItemClick = (path) => {
-     navigate(`/${path}`);
-     setIsOpen(false); // Close the navbar on item click for smaller screens
-   };
+  const handleNavItemClick = (path) => {
+    navigate(`/${path}`);
+    setIsOpen(false); // Close the navbar on item click for smaller screens
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -57,8 +57,7 @@ const Footer = () => {
   };
 
   const handleAddressClick = () => {
-    const address =
-      "C-107, 1st Floor, Pandav Nagar Complex Ganesh Nagar, New Delhi - 110092"; // Replace this with your actual address
+    // const address ="C-107, 1st Floor, Pandav Nagar Complex Ganesh Nagar, New Delhi - 110092"; // Replace this with your actual address
     // const encodedAddress = encodeURIComponent(address);
     window.open(`https://maps.app.goo.gl/YRJQWw6MTmbhTQg8A`, "_blank");
   };
