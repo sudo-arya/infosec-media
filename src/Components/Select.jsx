@@ -590,9 +590,9 @@ const Select = ({ arg }) => {
   return (
     <div className="h-auto flex flex-col items-center p-4">
       <Seo
-        title="Products - Infosec Media"
+        title="Infosec Media Solutions"
         description="Infosec Media is a leading provider of computer sales, service, and corporate rentals. We cater to a range of customer requirements, from desktops to workstations, and provide premier services to consumers and large corporations alike."
-        keywords="Infosec Media, computer sales, computer service, corporate rentals, Apple, Lacie, Hp, OWC, Dell, Blackmagic Design, Lenovo, Promise, Intel, AMD"
+        keywords="Infosec Media, computer sales, computer service, corporate rentals, Apple, Lacie, Hp, OWC, Dell, Blackmagic Design, Lenovo, Promise, Intel, AMD,,Software Issue,Hardware Issue,,Macbook,Mac Studio,iMac,SSD Upgarde,RAM upgrade,HDD"
       />
       <h1 className="text-2xl font-semibold text-center text-cs3 mt-16 mb-4">
         Select {arg !== "Buy" && arg !== "Rent" ? <>your</> : <></>} Product to{" "}

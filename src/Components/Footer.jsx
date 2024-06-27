@@ -69,9 +69,9 @@ const Footer = () => {
   return (
     <div>
       <Seo
-        title="About Us - Infosec Media"
-        description="Learn more about Infosec Media, a leading provider of computer sales, service, and corporate rentals."
-        keywords="Infosec Media, about us, computer sales, computer service"
+        title="Home Page - Infosec Media"
+        description="Infosec Media is a leading provider of computer sales, service, and corporate rentals. We cater to a range of customer requirements, from desktops to workstations, and provide premier services to consumers and large corporations alike."
+        keywords="Infosec Media, computer sales, computer service, corporate rentals, Apple, Lacie, Hp, OWC, Dell, Blackmagic Design, Lenovo, Promise, Intel, AMD"
       />
       <div>
         {isSmallScreen && (
