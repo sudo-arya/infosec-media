@@ -52,7 +52,7 @@ const Contact = () => {
   const handleAddressClick = () => {
     const address =
       "C-107, 1st Floor, Pandav Nagar Complex Ganesh Nagar, New Delhi - 110092"; // Replace this with your actual address
-    const encodedAddress = encodeURIComponent(address);
+    // const encodedAddress = encodeURIComponent(address);
     window.open(`https://maps.app.goo.gl/YRJQWw6MTmbhTQg8A`, "_blank");
   };
 
