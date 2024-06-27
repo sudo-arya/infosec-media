@@ -18,6 +18,7 @@ import Contact from "./Components/Contact";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import Amc from "./Components/Amc";
+import Seo from "./Components/Seo";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -35,6 +36,11 @@ function App() {
       <div className="cs-5">
         <ScrollToTop />
         <Navbar />
+        <Seo
+          title="Home Page - Infosec Media"
+          description="Infosec Media is a leading provider of computer sales, service, and corporate rentals. We cater to a range of customer requirements, from desktops to workstations, and provide premier services to consumers and large corporations alike."
+          keywords="Infosec Media, computer sales, computer service, corporate rentals, Apple, Lacie, Hp, OWC, Dell, Blackmagic Design, Lenovo, Promise, Intel, AMD"
+        />
         <div className="container mx-auto p-4 mt-0">
           <Routes>
             <Route path="/" element={<Home />} />

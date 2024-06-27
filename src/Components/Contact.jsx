@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Map from "./Map";
+import Seo from "./Seo";
+
 
 const Contact = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -126,6 +128,11 @@ const Contact = () => {
   return (
     <div className="h-auto flex-col justify-center items-center">
       {/* <div>Contact</div> */}
+      <Seo
+        title="Contact Us - Infosec Media"
+        description="Learn more about Infosec Media, a leading provider of computer sales, service, and corporate rentals."
+        keywords="Infosec Media, about us, computer sales, computer service"
+      />
       <h1 className="text-3xl font-bold text-center text-cs3 mt-8 mb-4">
         Contact Details
       </h1>

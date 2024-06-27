@@ -5,6 +5,7 @@ import imgrepair from "../Assets/repair.jpg";
 import imgupgrade from "../Assets/upgrade.jpg";
 import { useNavigate } from "react-router-dom";
 import amcImage from "../Assets/amc4.jpg";
+import Seo from "./Seo";
 
 
 
@@ -35,6 +36,11 @@ const About = ({ setActiveComponent }) => {
   return (
     <div className="min-h-screen flex-col justify-center items-center">
       {/* <div>About</div> */}
+      <Seo
+        title="About Us - Infosec Media"
+        description="Learn more about Infosec Media, a leading provider of computer sales, service, and corporate rentals."
+        keywords="Infosec Media, about us, computer sales, computer service"
+      />
       <h1 className="text-4xl font-bold text-center text-cs3 mt-8 mb-2">
         Our Story
       </h1>

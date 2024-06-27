@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import sidewayLogos from "../Assets/Infosec media solutions logo final files/Infosec media solutions logo  AI liner.svg";
+import Seo from "./Seo";
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,6 +32,11 @@ const Navbar = () => {
         isSmallScreen ? "cs-2 p-2 pt-2 shadow-md" : "cs-2 p-4 pt-3 shadow-md"
       }
     >
+      <Seo
+        title="Home Page - Infosec Media"
+        description="Infosec Media is a leading provider of computer sales, service, and corporate rentals. We cater to a range of customer requirements, from desktops to workstations, and provide premier services to consumers and large corporations alike."
+        keywords="Infosec Media, computer sales, computer service, corporate rentals, Apple, Lacie, Hp, OWC, Dell, Blackmagic Design, Lenovo, Promise, Intel, AMD"
+      />
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-white text-lg font-bold cursor-pointer nav-item">
           <Link to="/">

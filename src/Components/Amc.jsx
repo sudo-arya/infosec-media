@@ -10,6 +10,7 @@ import amc7 from "../Assets/amc7.jpg";
 import amc8 from "../Assets/amc8.png";
 import amc9 from "../Assets/amc9.jpg";
 import { useNavigate } from "react-router-dom";
+import Seo from "./Seo";
 
 
 
@@ -91,6 +92,11 @@ const Amc = () => {
 
   return (
     <div className="min-h-screen flex-col justify-center items-center text-cs3">
+      <Seo
+        title="Annual Maintenance Contracts - Infosec Media"
+        description="Designed to keep your systems running smoothly year-round, our AMCs provide comprehensive support and regular maintenance to prevent unexpected downtime and costly repairs."
+        keywords="Infosec Media, AMC, computer sales,Annual Maintenance Contracts, computer service"
+      />
       <h1 className="text-4xl font-bold text-center text-cs3 mt-8 mb-2">
         Annual Maintenance Contracts ({arg})
       </h1>

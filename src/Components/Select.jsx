@@ -20,6 +20,8 @@ import nortonlogo from "../Assets/softwares logo/norton.svg";
 import kaperskylogo from "../Assets/softwares logo/Kaspersky.svg"
 import libreofficelogo from "../Assets/softwares logo/LibreOffice.svg"
 // import logo from "../Assets/softwares logo"
+import Seo from "./Seo";
+
 
 const productsData = {
   Apple: [
@@ -587,6 +589,11 @@ const Select = ({ arg }) => {
 
   return (
     <div className="h-auto flex flex-col items-center p-4">
+      <Seo
+        title="Products - Infosec Media"
+        description="Infosec Media is a leading provider of computer sales, service, and corporate rentals. We cater to a range of customer requirements, from desktops to workstations, and provide premier services to consumers and large corporations alike."
+        keywords="Infosec Media, computer sales, computer service, corporate rentals, Apple, Lacie, Hp, OWC, Dell, Blackmagic Design, Lenovo, Promise, Intel, AMD"
+      />
       <h1 className="text-2xl font-semibold text-center text-cs3 mt-16 mb-4">
         Select {arg !== "Buy" && arg !== "Rent" ? <>your</> : <></>} Product to{" "}
         {arg}
@@ -1544,7 +1551,9 @@ const Select = ({ arg }) => {
       ) : (
         <>
           <div className="relative mt-10">
-            <div className="text-xl text-cs3 font-semibold mb-3">What to {arg} ??</div>
+            <div className="text-xl text-cs3 font-semibold mb-3">
+              What to {arg} ??
+            </div>
             <textarea
               className="border-2 border-gray-300 rounded-md px-6 py-2 focus:outline-none focus:border-blue-500 w-full"
               rows="4"

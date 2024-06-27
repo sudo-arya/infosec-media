@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Seo from "./Seo";
 
 import fullLogo1 from "../Assets/Infosec media solutions logo final files/Infosec media solutions logo new 1.svg";
 // import fullLogo from "../Assets/Infosec media solutions logo final files/Infosec media solutions logo  3D.png";
@@ -67,6 +68,11 @@ const Footer = () => {
 
   return (
     <div>
+      <Seo
+        title="About Us - Infosec Media"
+        description="Learn more about Infosec Media, a leading provider of computer sales, service, and corporate rentals."
+        keywords="Infosec Media, about us, computer sales, computer service"
+      />
       <div>
         {isSmallScreen && (
           <div className="">

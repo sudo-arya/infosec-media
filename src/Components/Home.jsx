@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-
+import Seo from "./Seo";
 import imgpurchase from "../Assets/purchase.jpg";
 import imgnewmacbook from "../Assets/new-macbook.jpg";
 import imgrent from "../Assets/rent.jpg";
@@ -153,6 +153,11 @@ const Home = () => {
   return (
     <div className="min-h-screen flex-col justify-center items-center cs-5">
       {/* <div>home</div> */}
+      <Seo
+        title="Home Page - Infosec Media"
+        description="Infosec Media is a leading provider of computer sales, service, and corporate rentals. We cater to a range of customer requirements, from desktops to workstations, and provide premier services to consumers and large corporations alike."
+        keywords="Infosec Media, computer sales, computer service, corporate rentals, Apple, Lacie, Hp, OWC, Dell, Blackmagic Design, Lenovo, Promise, Intel, AMD"
+      />
       {/* image carousel */}
       <div className="relative w-full mx-auto mt-0" style={{ height: "69vh" }}>
         <div className="overflow-hidden relative h-full">
