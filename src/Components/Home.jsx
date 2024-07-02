@@ -98,6 +98,7 @@ const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
+   const intervalRef = useRef(null);
   // const [intervalId, setIntervalId] = useState(null);
   // const [isManual, setIsManual] = useState(false);
   let touchStartX = 0;
@@ -118,13 +119,25 @@ const Home = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-   useEffect(() => {
-     const interval = setInterval(() => {
+   const startInterval = () => {
+     if (intervalRef.current) {
+       clearInterval(intervalRef.current);
+     }
+     intervalRef.current = setInterval(() => {
        handleNext();
-     }, 3000); // Change image every 3 seconds
+     }, 5000); // Change image every 3 seconds
+   };
 
-     return () => clearInterval(interval);
+   useEffect(() => {
+     startInterval();
+     return () => clearInterval(intervalRef.current);
+     // eslint-disable-next-line
    }, []);
+
+   useEffect(() => {
+     startInterval();
+     // eslint-disable-next-line
+   }, [currentIndex]);
 
    const handlePrevious = () => {
      setCurrentIndex((prevIndex) =>
@@ -143,9 +156,9 @@ const Home = () => {
    };
 
    const handleTouchMove = (e) => {
-     if (touchStartX - e.touches[0].clientX < 0) {
+     if (touchStartX - e.touches[0].clientX > 50) {
        handleNext(); // Swipe left
-     } else if (touchStartX - e.touches[0].clientX > 0) {
+     } else if (touchStartX - e.touches[0].clientX < -50) {
        handlePrevious(); // Swipe right
      }
    };
